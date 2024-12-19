@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 const ServiceBarWithDetailedCards = () => {
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState("Web Development");
 
   const handleTabClick = (tab) => {
     setActiveTab(activeTab === tab ? null : tab); // Toggle active tab
@@ -84,7 +84,7 @@ const ServiceBarWithDetailedCards = () => {
     <div className="bg-primary py-8">
       <div className="container mx-auto px-6">
         {/* Status Bar */}
-        <div className="flex justify-center space-x-8 mb-10">
+        <div className="grid grid-cols-2 gap-4 sm:flex sm:justify-center sm:space-x-8 mb-10">
           {services.map((service, index) => (
             <div
               key={index}
@@ -101,35 +101,37 @@ const ServiceBarWithDetailedCards = () => {
         </div>
 
         {/* Content Display for Active Tab using Flexbox */}
-        <div className="mt-8 flex flex-col items-center gap-8">
+        <div className="mt-8 flex flex-col items-center">
           {activeTab &&
             services
               .filter((service) => service.name === activeTab)
               .map((service) => (
-                <div key={service.name}>
-                  {service.dropdown.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white p-6 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-72 md:w-80"
-                    >
-                      <div className="flex flex-col items-center">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-24 h-24 object-cover rounded-full mb-4"
-                        />
-                        <h3 className="text-xl font-semibold text-center text-gray-800">
-                          {item.title}
-                        </h3>
-                        <ul className="text-sm text-gray-600 list-disc list-inside mb-3">
-                          {item.advantages.map((adv, i) => (
-                            <li key={i}>{adv}</li>
-                          ))}
-                        </ul>
-                        <p className="text-lg font-bold text-center text-gray-800">{item.price}</p>
+                <div key={service.name} className="w-full">
+                  <div className="flex flex-wrap justify-center gap-6">
+                    {service.dropdown.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white p-6 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-72 md:w-80 flex-shrink-0"
+                      >
+                        <div className="flex flex-col items-center">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-24 h-24 object-cover rounded-full mb-4"
+                          />
+                          <h3 className="text-xl font-semibold text-center text-gray-800">
+                            {item.title}
+                          </h3>
+                          <ul className="text-sm text-gray-600 list-disc list-inside mb-3">
+                            {item.advantages.map((adv, i) => (
+                              <li key={i}>{adv}</li>
+                            ))}
+                          </ul>
+                          <p className="text-lg font-bold text-center text-gray-800">{item.price}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               ))}
         </div>

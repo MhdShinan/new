@@ -43,7 +43,6 @@ function App() {
               <ContactUs/>
               <Team/>
               <Footer/>  
-              <ServiceBarWithDetailedCards />            
             </>
           } />
           
@@ -56,6 +55,7 @@ function App() {
           <Route path="/pricing" element={<Pricing/>}/>
           <Route path="/Portfolio" element={<Portfolio/>}/>
           <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards/>}/>
+          <Route path='/Getstarted' element={<Getstarted/>}/>
         </Routes>
       </div>
     </Router>

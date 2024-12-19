@@ -4,6 +4,8 @@ import Marquee from "react-fast-marquee"; // For smooth sliding effect
 import { FaSuitcase } from "react-icons/fa"; // For the suitcase icon
 import { FaUser } from "react-icons/fa"; // For the person icon
 import '../styles/Testimonials.css'; // Import custom styles
+import { backEndURL } from "../Backendurl";
+import { imageURL } from "../Backendurl";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -12,7 +14,7 @@ const Testimonials = () => {
   // Fetch testimonials data from the API
   const fetchTestimonials = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/testimonials`);
+      const response = await fetch(`${backEndURL}/api/testimonials`);
       const data = await response.json();
       setTestimonials(data);
     } catch (error) {
@@ -74,7 +76,7 @@ const Testimonials = () => {
                 {/* Image on the left */}
                 <div className="client-image-container">
                   <img 
-                    src={testimonial.image ? `${process.env.REACT_APP_API_URL}${testimonial.image}` : 'images/default-avatar.png'} 
+                    src={testimonial.image ? `${imageURL}${testimonial.image}` : 'images/default-avatar.png'} 
                     alt={testimonial.name} 
                     className="client-logo"
                   />

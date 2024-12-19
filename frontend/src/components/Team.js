@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaUser, FaBriefcase, FaPlus, FaGithub, FaWhatsapp, FaLinkedin } from 'react-icons/fa'; // Added GitHub, WhatsApp, LinkedIn
 import '../styles/Team.css';
+import { backEndURL } from "../Backendurl";
+import { imageURL } from "../Backendurl";
 
 const Team = () => {
   const [managementTeam, setManagementTeam] = useState([]);
@@ -10,10 +12,10 @@ const Team = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const managementResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/team?teamType=management`);
+        const managementResponse = await fetch(`${backEndURL}/api/team?teamType=management`);
         const managementData = await managementResponse.json();
 
-        const developmentResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/team?teamType=development`);
+        const developmentResponse = await fetch(`${backEndURL}/api/team?teamType=development`);
         const developmentData = await developmentResponse.json();
 
         setManagementTeam(managementData);
@@ -54,7 +56,7 @@ const Team = () => {
           {managementTeam.map((member, index) => (
             <div key={member._id} className={`member card animate__animated animate__fadeIn animate__delay-${index + 1}s`}>
               <img
-                src={member.image ? `${process.env.REACT_APP_API_URL}${member.image}` : 'images/default-avatar.png'}
+                src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
                 alt={member.name}
                 className="avatar mb-4 rounded-full w-40 h-40 object-cover border-4 border-[#005880]"
               />
@@ -102,7 +104,7 @@ const Team = () => {
           {developmentTeam.map((member, index) => (
             <div key={member._id} className={`member card animate__animated animate__fadeIn animate__delay-${index + 1}s`}>
               <img
-                src={member.image ? `${process.env.REACT_APP_API_URL}${member.image}` : 'images/default-avatar.png'}
+                src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
                 alt={member.name}
                 className="avatar mb-4 rounded-full w-40 h-40 object-cover border-4 border-[#005880]"
               />
