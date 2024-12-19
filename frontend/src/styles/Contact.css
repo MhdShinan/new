@@ -1,0 +1,26 @@
+/* Ensure styles are applied correctly */
+.iti__country-name {
+    color: #005880 !important; 
+  }
+  
+  .gradient-btn {
+    background: linear-gradient(to left, #005880, #fefefe); /* Gradient colors */
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+
+  .gradient-btn:hover {
+    transform: scale(1.25); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .gradient-btn:active {
+    transform: scale(0.95); 
+  }

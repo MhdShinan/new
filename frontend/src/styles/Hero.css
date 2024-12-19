@@ -1,0 +1,63 @@
+/* Hero Background with two images and blur effect */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('../assets/images/Property\ 1=Default\ \(1\).png'), url('../assets/images/Property\ 2=Default.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  animation: backgroundLoop 10s infinite alternate;
+}
+
+@keyframes backgroundLoop {
+  0% {
+    background-image: url('../assets/images/app-dev.png');
+  }
+  50% {
+    background-image: url('../assets/images/network.png');
+  }
+  100% {
+    background-image: url('../assets/images/pos.png');
+  }
+}
+
+/* Typewriter Effect */
+.typewriter-text {
+  display: inline-block;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid black;
+  animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Sri Lanka Text with Background Image */
+.sri-lanka-text {
+  background-image: url('../assets/images/sri-lanka-text-bg.png');
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0 4px;
+}

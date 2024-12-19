@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R-tech SOlutions</title> 
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/js/all.min.js"></script>
+
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#005880',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      
+      .faq-tab {
+          padding: 10px 20px;
+          font-size: 1rem;
+          border-radius: 8px;
+          color: #005880;
+          cursor: pointer;
+          transition: background 0.3s;
+      }
+  
+      .faq-tab.active {
+          background: #005880;
+          color: white;
+      }
+  
+      .faq-tab:hover {
+          background: #005880;
+          color: white;
+      }
+  
+      .rotate-180 {
+          transform: rotate(90deg);
+      }
+  
+      .gradient-button {
+        background: linear-gradient(to right, #0072a3, #005880);
+      }
+      
+      .sri-lanka-text {
+        background-image: url('./images/download\ \(1\).png');
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 0 4px;
+      }
+  
+      .counter {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+  
+      .counter.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .iti__country-name {
+    color: #005880 !important; 
+  }
+  
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
