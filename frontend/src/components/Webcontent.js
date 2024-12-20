@@ -23,7 +23,7 @@ function Webcontent() {
             borderRadius: '8px', // Optional: Add rounded corners
           }}
            />
-         <h3>Ios App</h3>
+         <h3>Single Page</h3>
         </Link>
 
         
@@ -37,7 +37,7 @@ function Webcontent() {
              }}
           />
           
-          <h3>Android Development</h3>
+          <h3>Portfolio</h3>
         </Link>
         
         <Link to="" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
@@ -48,7 +48,7 @@ function Webcontent() {
               objectFit: 'cover',
                borderRadius: '8px', 
              }} />
-          <h3>Cross Platform Development</h3>
+          <h3>E-comerce</h3>
         </Link>
       </div>
     </div>

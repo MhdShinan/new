@@ -6,13 +6,13 @@ import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 // Import images
-import App from '../assets/images/app-dev.png';
-import Web from '../assets/images/web-dev.png';
-import Pos from '../assets/images/pos.png';
-import Background1 from '../assets/images/B1.png';
-import Background2 from '../assets/images/B2.png';
+import App from '../../assets/images/app-dev.png';
+import Web from '../../assets/images/web-dev.png';
+import Pos from '../../assets/images/pos.png';
+import Background1 from '../../assets/images/B1.png';
+import Background2 from '../../assets/images/B2.png';
 
-const AppHero = () => {
+const Poshero = () => {
   const [selectedService, setSelectedService] = useState(null);
 
   const services = [
@@ -23,9 +23,10 @@ const AppHero = () => {
 
   const handleServiceClick = (index) => {
     setSelectedService(selectedService === index ? null : index);
-  };
+  }; 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div>
+      <div className="relative min-h-screen overflow-hidden">
     {/* Animated Background */}
     <motion.div
       className="absolute inset-0 z-0"
@@ -58,7 +59,7 @@ const AppHero = () => {
           >
             <Typewriter
               options={{
-                strings: ['Mobile Development'],
+                strings: ['POS Solution'],
                 autoStart: true,
                 loop: true,
               }}
@@ -93,7 +94,6 @@ const AppHero = () => {
     transition={{ duration: 0.3 }}
   />
 </motion.button>;
-
         </div>
 
         {/* Right Side - Floating Images */}
@@ -138,7 +138,8 @@ const AppHero = () => {
       </div>
     </div>
   </div>
+    </div>
   )
 }
 
-export default AppHero
+export default Poshero

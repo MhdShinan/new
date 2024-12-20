@@ -35,10 +35,10 @@ const WebFAQ = () => {
               E-comerce
             </button>
             <button
-              className={`faq-tab ${activeTab === 'Office' ? 'active' : ''}`}
-              onClick={() => filterFAQ('Office')}
+              className={`faq-tab ${activeTab === 'Single_page' ? 'active' : ''}`}
+              onClick={() => filterFAQ('Single_page')}
             >
-              Office
+              Single_page
             </button>
           </div>
         </div>
@@ -76,8 +76,8 @@ const WebFAQ = () => {
           )}
 
           {/* Cross Platform FAQ */}
-          {activeTab === 'Office' && (
-            <div className="faq-content" data-category="Office">
+          {activeTab === 'Single_page' && (
+            <div className="faq-content" data-category="Single_page">
               <div className="bg-[#005880] rounded-lg overflow-hidden hover:bg-[#003d4d] transition">
                 <button
                   className="w-full flex items-center justify-between p-4 text-left text-white"

@@ -20,7 +20,6 @@ import Getstarted from './components/Getstarted';
 import OurProcess from './components/OurProcess';
 import TechnologyWeUse from './components/TechnologyWeUse';
 import ServiceBarWithDetailedCards from './components/ServiceBarWithDetailedCards';
-import Pricing from './components/Pricing';
 import Portfolio from './components/Portfolio';
 
 
@@ -52,7 +51,6 @@ function App() {
           <Route path="/services/cctv-installation" element={<CctvInstallation />} />
           <Route path="/services/networking" element={<Networking />} />
           <Route path="/services/getstarted" element={<Getstarted/>}/>
-          <Route path="/pricing" element={<Pricing/>}/>
           <Route path="/Portfolio" element={<Portfolio/>}/>
           <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards/>}/>
           <Route path='/Getstarted' element={<Getstarted/>}/>

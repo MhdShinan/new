@@ -1,14 +1,22 @@
 import React from 'react';
 import '../../styles/pages/Services.css';
+import SatisfiedClients from '../SatisfiedClients'
+import Footer from '../Footer'
+import Team from '../Team'
+import Contact from '../ContactUs'
+import '../../styles/pages/Services.css';
+import Poshero from '../Pos/Poshero';
+import Poscontent from '../Pos/Poscontent';
 
 function PosSystem() {
   return (
     <div className="service-page">
-      <div className="service-content">
-        <h1>POS System Development</h1>
-        <img src="/images/pos-system.jpg" alt="POS System" className="service-image" />
-        <p>Our POS solutions are designed to streamline your business operations with user-friendly interfaces and robust backend systems that handle transactions efficiently.</p>
-      </div>
+      <Poshero/>
+      <Poscontent/>
+      <SatisfiedClients/>
+      <Contact/>
+      <Team/>
+      <Footer/>
     </div>
   );
 }
