@@ -11,7 +11,12 @@ const fs = require('fs');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin : "*",
+  methods : "GET,PUT,DELETE,POST",
+}
+));
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public ')));
 app.use('/uploads', express.static('uploads'));
