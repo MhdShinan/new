@@ -8,6 +8,15 @@ if (!fs.existsSync(testimonialsDir)) {
   fs.mkdirSync(testimonialsDir, { recursive: true });
 }
 
+const testimonialsStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, testimonialsDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
 const managementTeamDir = path.join(__dirname, '../uploads/team/ManagementTeam');
 if (!fs.existsSync(managementTeamDir)) {
   fs.mkdirSync(managementTeamDir, { recursive: true });
@@ -23,17 +32,6 @@ const satisfiedClientsDir = path.join(__dirname, '../uploads/satisfiedclients');
 if (!fs.existsSync(satisfiedClientsDir)) {
   fs.mkdirSync(satisfiedClientsDir, { recursive: true });
 }
-
-const testimonialsStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, testimonialsDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-
 
 const teamStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -68,9 +66,10 @@ const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);
   } else {
-    cb(new Error('Only image files are allowed'), false);
+    cb(new Error('Invalid file type. Only image files are allowed!'), false);
   }
 };
+
 
 // Multer instances
 const upload = multer({ storage: testimonialsStorage, fileFilter });
@@ -78,7 +77,7 @@ const uploadTeam = multer({ storage: teamStorage, fileFilter });
 const uploadSatisfiedClients = multer({ storage: satisfiedClientsStorage, fileFilter });
 
 module.exports = {
-  upload,
+  upload, // Ensure `upload` is being exported
   uploadTeam,
   uploadSatisfiedClients,
 };

@@ -69,6 +69,9 @@ const Header = () => {
           <Link to="/getstarted">
             <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
           </Link>
+          <Link to="/TestimonialForm">
+            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Admin</button>
+          </Link>
         </div>
       </nav>
 

@@ -1,7 +1,7 @@
 const Testimonial = require('../models/Testimonial');
 const multer = require('multer');
 const path = require('path');
-const upload = require('../utils/multerConfig');
+const { upload } = require('../utils/multerConfig');
 
 // Fetch all testimonials
 exports.getTestimonials = async (req, res) => {
@@ -13,12 +13,12 @@ exports.getTestimonials = async (req, res) => {
   }
 };
 
-// Add a new testimonial with an image
 exports.createTestimonial = async (req, res) => {
-  const uploadSingle = upload.single('image'); // Single file upload field
+  const uploadSingle = upload.single('image');
 
   uploadSingle(req, res, async (err) => {
     if (err) {
+      console.error('Multer Error:', err.message);
       return res.status(400).json({ error: err.message });
     }
 
@@ -35,13 +35,15 @@ exports.createTestimonial = async (req, res) => {
         company,
         message,
         rating,
-        image: req.file ? `/uploads/testimonials/${req.file.filename}` : null, // Use relative path
+        image: req.file ? `/uploads/testimonials/${req.file.filename}` : null,
       });
 
       await newTestimonial.save();
       res.status(201).json({ success: true, testimonial: newTestimonial });
     } catch (error) {
+      console.error('Save Error:', error.message);
       res.status(500).json({ error: 'Failed to create testimonial' });
     }
   });
 };
+

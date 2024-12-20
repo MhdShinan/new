@@ -21,16 +21,21 @@ import OurProcess from './components/OurProcess';
 import TechnologyWeUse from './components/TechnologyWeUse';
 import ServiceBarWithDetailedCards from './components/ServiceBarWithDetailedCards';
 import Portfolio from './components/Portfolio';
+import TestimonialForm from './components/admin/TestimonialForm';
+import AdminHeader from './components/admin/AdminHeader';
+
 
 
 function App() {
   return (
     <Router>
       <div className="app">
-        <Header />
+
         <Routes>
           <Route path="/" element={
             <>
+             <Header />
+            <AdminHeader/>
               <Hero />
               <Services />
               <Stats/>
@@ -54,6 +59,7 @@ function App() {
           <Route path="/Portfolio" element={<Portfolio/>}/>
           <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards/>}/>
           <Route path='/Getstarted' element={<Getstarted/>}/>
+          <Route path="/TestimonialForm" element={<TestimonialForm/>}/>
         </Routes>
       </div>
     </Router>
