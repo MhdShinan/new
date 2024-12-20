@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { imageURL } from "../../Backendurl";
 import Swal from "sweetalert2";
-import { backEndURL } from "../../Backendurl";
+import { imageURL, backEndURL } from "../../Backendurl";
+import { FiEdit, FiTrash, FiUpload } from "react-icons/fi";
+import { MdAddCircle, MdViewList } from "react-icons/md";
 
 const TestimonialsManager = () => {
   const [activeTab, setActiveTab] = useState("add"); // "add" or "view"
@@ -15,79 +16,103 @@ const TestimonialsManager = () => {
   });
   const [image, setImage] = useState(null);
   const [testimonials, setTestimonials] = useState([]);
-  const [statusMessage, setStatusMessage] = useState("");
-  const [editingTestimonial, setEditingTestimonial] = useState(null); // To track the testimonial being edited
+  const [isLoading, setIsLoading] = useState(false);
+  const [editingTestimonial, setEditingTestimonial] = useState(null);
 
-  // Fetch testimonials when "See All" is active
+  // Fetch testimonials when switching to "view" tab
   useEffect(() => {
-    if (activeTab === "view") {
-      axios
-        .get(`${backEndURL}/api/testimonials`)
-        .then((response) => {
-          setTestimonials(response.data);
-        })
-        .catch((error) => console.error("Error fetching testimonials:", error));
-    }
+    if (activeTab === "view") fetchTestimonials();
   }, [activeTab]);
+
+  const fetchTestimonials = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${backEndURL}/api/testimonials`);
+      setTestimonials(response.data);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      Swal.fire("Error!", "Failed to fetch testimonials.", "error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("role", formData.role);
-    formDataToSend.append("company", formData.company);
-    formDataToSend.append("message", formData.message);
-    formDataToSend.append("rating", formData.rating);
-    formDataToSend.append("image", image);
+    Object.keys(formData).forEach((key) => formDataToSend.append(key, formData[key]));
+    if (image) formDataToSend.append("image", image);
+
+    const url = editingTestimonial
+      ? `${backEndURL}/api/testimonials/${editingTestimonial._id}`
+      : `${backEndURL}/api/testimonials`;
 
     try {
-      const response = await axios.post(`${backEndURL}/api/testimonials`, formDataToSend, {
+      const response = await axios({
+        method: editingTestimonial ? "put" : "post",
+        url,
+        data: formDataToSend,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (response.data.success) {
-        setStatusMessage("Testimonial added successfully!");
-        setFormData({
-          name: "",
-          role: "",
-          company: "",
-          message: "",
-          rating: "",
-        });
-        setImage(null);
-        Swal.fire("Success!", "Testimonial added successfully!", "success");
-      }
+
+      Swal.fire(
+        editingTestimonial ? "Updated!" : "Added!",
+        `Testimonial ${editingTestimonial ? "updated" : "added"} successfully!`,
+        "success"
+      );
+      setFormData({ name: "", role: "", company: "", message: "", rating: "" });
+      setImage(null);
+      setEditingTestimonial(null);
+      fetchTestimonials();
     } catch (error) {
-      setStatusMessage("Error adding testimonial.");
-      Swal.fire("Error!", "There was an error adding the testimonial.", "error");
+      Swal.fire("Error!", "Failed to save testimonial.", "error");
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(`${backEndURL}/api/testimonials/${id}`);
-      if (response.data.success) {
-        setTestimonials((prev) => prev.filter((testimonial) => testimonial._id !== id));
-        setStatusMessage("Testimonial deleted successfully.");
-        Swal.fire("Deleted!", "Testimonial deleted successfully.", "success");
+  const handleDeleteTestimonial = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          // API call to delete testimonial
+          const response = await fetch(`${backEndURL}/api/testimonials/${id}`, {
+            method: 'DELETE',
+          });
+
+          if (!response.ok) {
+            const { error } = await response.json();
+            throw new Error(error);
+          }
+
+          // Update the testimonials state
+          setTestimonials((prevTestimonials) =>
+            prevTestimonials.filter((testimonial) => testimonial._id !== id)
+          );
+
+          Swal.fire('Deleted!', 'Your testimonial has been deleted.', 'success');
+        } catch (error) {
+          console.error('Error deleting testimonial:', error);
+          Swal.fire('Error!', 'Failed to delete the testimonial.', 'error');
+        }
       }
-    } catch (error) {
-      setStatusMessage("Error deleting testimonial.");
-      Swal.fire("Error!", "There was an error deleting the testimonial.", "error");
-    }
+    });
   };
-  
 
   const handleEdit = (testimonial) => {
     setEditingTestimonial(testimonial);
@@ -98,127 +123,97 @@ const TestimonialsManager = () => {
       message: testimonial.message,
       rating: testimonial.rating,
     });
-    setImage(testimonial.image); // Set the current image if available
-    setActiveTab("add"); // Switch to "Add" tab to show the form
+    setActiveTab("add");
   };
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("role", formData.role);
-    formDataToSend.append("company", formData.company);
-    formDataToSend.append("message", formData.message);
-    formDataToSend.append("rating", formData.rating);
-    formDataToSend.append("image", image);
+  const renderTestimonials = () => {
+    if (isLoading) return <p>Loading testimonials...</p>;
+    if (!testimonials.length) return <p>No testimonials found.</p>;
 
-    try {
-      const response = await axios.put(`${backEndURL}/api/testimonials/${editingTestimonial._id}`, formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      if (response.data.success) {
-        setStatusMessage("Testimonial updated successfully!");
-        setTestimonials((prev) =>
-          prev.map((testimonial) =>
-            testimonial._id === editingTestimonial._id ? response.data.testimonial : testimonial
-          )
-        );
-        setEditingTestimonial(null); // Clear editing state
-        setFormData({
-          name: "",
-          role: "",
-          company: "",
-          message: "",
-          rating: "",
-        });
-        setImage(null);
-        Swal.fire("Updated!", "Testimonial updated successfully!", "success");
-      }
-    } catch (error) {
-      setStatusMessage("Error updating testimonial.");
-      Swal.fire("Error!", "There was an error updating the testimonial.", "error");
-    }
+    return testimonials.map((testimonial) => (
+      <div key={testimonial._id} className="border rounded-lg shadow p-4 bg-white">
+        <img
+          src={testimonial.image ? `${imageURL}${testimonial.image}` : "/images/default-avatar.png"}
+          alt={testimonial.name}
+          className="w-full h-32 object-cover rounded"
+        />
+        <h3 className="text-lg font-bold mt-2">{testimonial.name}</h3>
+        <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
+        <p className="text-sm mt-2">{testimonial.message}</p>
+        <div className="flex justify-between items-center mt-4">
+          <span className="text-yellow-500 font-bold">{testimonial.rating} ★</span>
+          <div className="space-x-2">
+            <button
+              onClick={() => handleEdit(testimonial)}
+              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            >
+              <FiEdit />
+            </button>
+           < button
+              onClick={() => handleDeleteTestimonial(testimonial._id)}
+              className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+            >
+              <FiTrash />
+            </button>
+          </div>
+        </div>
+      </div>
+    ));
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between mb-6">
         <button
           onClick={() => setActiveTab("add")}
-          className={`px-4 py-2 ${activeTab === "add" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`flex items-center px-4 py-2 rounded ${
+            activeTab === "add" ? "bg-blue-500 text-white" : "bg-gray-200"
+          }`}
         >
-          Add New
+          <MdAddCircle className="mr-2" /> Add New
         </button>
         <button
           onClick={() => setActiveTab("view")}
-          className={`px-4 py-2 ${activeTab === "view" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`flex items-center px-4 py-2 rounded ${
+            activeTab === "view" ? "bg-blue-500 text-white" : "bg-gray-200"
+          }`}
         >
-          See All
+          <MdViewList className="mr-2" /> View All
         </button>
       </div>
 
-      {statusMessage && <p className="text-green-500 mb-4">{statusMessage}</p>}
-
       {activeTab === "add" && (
-        <form onSubmit={editingTestimonial ? handleUpdate : handleSubmit} encType="multipart/form-data" className="space-y-4">
+        <form
+          onSubmit={handleFormSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-6 rounded shadow"
+        >
+          {["name", "role", "company", "message", "rating"].map((field, idx) => (
+            <div key={idx}>
+              <label className="block mb-1 capitalize">{field}</label>
+              {field === "message" ? (
+                <textarea
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                />
+              ) : (
+                <input
+                  type={field === "rating" ? "number" : "text"}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                  min={field === "rating" ? 1 : undefined}
+                  max={field === "rating" ? 5 : undefined}
+                />
+              )}
+            </div>
+          ))}
           <div>
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div>
-            <label>Role</label>
-            <input
-              type="text"
-              name="role"
-              value={formData.role}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div>
-            <label>Company</label>
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div>
-            <label>Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div>
-            <label>Rating</label>
-            <input
-              type="number"
-              name="rating"
-              value={formData.rating}
-              onChange={handleInputChange}
-              min="1"
-              max="5"
-              required
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div>
-            <label>Image</label>
+            <label className="block mb-1">Image</label>
             <input
               type="file"
               onChange={handleImageChange}
@@ -226,54 +221,18 @@ const TestimonialsManager = () => {
               className="w-full p-2 border rounded"
             />
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded">
-            {editingTestimonial ? "Update" : "Submit"}
+          <button
+            type="submit"
+            className="col-span-1 md:col-span-2 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600"
+          >
+            {editingTestimonial ? "Update Testimonial" : "Add Testimonial"}
           </button>
-          {editingTestimonial && (
-            <button
-              type="button"
-              onClick={() => setEditingTestimonial(null)}
-              className="bg-gray-500 text-white px-6 py-2 rounded ml-2"
-            >
-              Cancel
-            </button>
-          )}
         </form>
       )}
 
       {activeTab === "view" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial._id} className="border rounded-lg overflow-hidden shadow-lg">
-              <img
-                src={testimonial.image ? `${imageURL}${testimonial.image}` : "images/default-avatar.png"}
-                alt={testimonial.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-xl">{testimonial.name}</h3>
-                <p className="text-gray-500">{testimonial.role} at {testimonial.company}</p>
-                <p className="mt-2 text-sm">{testimonial.message}</p>
-                <div className="mt-4 flex justify-between items-center">
-                  <span className="text-yellow-500 font-semibold">{testimonial.rating}★</span>
-                  <div>
-                    <button
-                      onClick={() => handleEdit(testimonial)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded ml-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(testimonial._id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded ml-2"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+          {renderTestimonials()}
         </div>
       )}
     </div>

@@ -64,12 +64,12 @@ const Header = () => {
           <Link to="/" className="text-gray-700 text-sm font-medium hover:text-primary">Home</Link>
           <Link to="/ServiceBarWithDetailedCards" className="text-gray-700 text-sm font-medium hover:text-primary">Pricing</Link>
           <Link to="/Portfolio" className="text-gray-700 text-sm font-medium hover:text-primary">Portfolio</Link>
-          <Link to="/blog" className="text-gray-700 text-sm font-medium hover:text-primary">Blog</Link>
-          <Link to="/blog" className="text-gray-700 text-sm font-medium hover:text-primary">Careers</Link>
+          <Link to="/Blog" className="text-gray-700 text-sm font-medium hover:text-primary">Blog</Link>
+          <Link to="/Carears" className="text-gray-700 text-sm font-medium hover:text-primary">Careers</Link>
           <Link to="/getstarted">
             <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
           </Link>
-          <Link to="/TestimonialForm">
+          <Link to="/Adminapp">
             <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Admin</button>
           </Link>
         </div>
@@ -113,23 +113,32 @@ const Header = () => {
                 <Dropdown title="Services" icon={<FaList className="text-primary" />} links={servicesLinks} />
               </li>
               <li>
-                <Link to="/pricing" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/ServiceBarWithDetailedCards" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
                   <FaTag className="text-primary" />
                   <span>Pricing</span>
                 </Link>
               </li>
               <li>
-                <Link to="/portfolio" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/Portfolio" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
                   <FaClipboard className="text-primary" />
                   <span>Portfolio</span>
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/Blog" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
                   <FaRegPaperPlane className="text-primary" />
                   <span>Blog</span>
                 </Link>
               </li>
+              <li>
+              <Link to="/getstarted">
+            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
+          </Link>      
+                  </li>
+          <li>   
+            <Link to="/Adminapp">
+            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Admin</button>
+          </Link>              </li>
             </ul>
           </div>
         </div>

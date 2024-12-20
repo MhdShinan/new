@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Footer from './Footer';
+import Header from './Header';
+
 const ServiceBarWithDetailedCards = () => {
   const [activeTab, setActiveTab] = useState("Web Development");
 
@@ -83,6 +85,7 @@ const ServiceBarWithDetailedCards = () => {
 
   return (
     <div className="bg-primary py-8">
+      <Header/>
       <div className="container mx-auto px-6">
         {/* Status Bar */}
         <div className="grid grid-cols-2 gap-4 sm:flex sm:justify-center sm:space-x-8 mb-10">

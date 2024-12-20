@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../styles/Getstarted.css';
 import Footer from "./Footer";
 import Team from "./Team";
+import Header from './Header';
 
 const Getstarted = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -41,6 +42,7 @@ const Getstarted = () => {
 
   return (
     <div className="service-page bg-[#005880] font-[Inter]" >
+        <Header/>
             <main className="main-container">
                 <div className="bg-white rounded-[30px] p-8 shadow-lg">
                     <h1 className="welcome-text" id="welcomeText" >Welcome to R-tech Solution</h1>

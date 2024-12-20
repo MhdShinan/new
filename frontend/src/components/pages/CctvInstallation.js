@@ -1,9 +1,11 @@
 import React from 'react';
 import '../../styles/pages/Services.css';
-
+import Header from '../Header';
 function CctvInstallation() {
   return (
+
     <div className="service-page">
+          <Header/>
       <div className="service-content">
         <h1>CCTV Installation</h1>
         <img src="/images/cctv-installation.jpg" alt="CCTV Installation" className="service-image" />

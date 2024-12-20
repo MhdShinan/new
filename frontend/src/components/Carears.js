@@ -1,14 +1,13 @@
 import React from 'react'
 import Footer from './Footer';
 import Header from './Header';
-function Portfolio() {
+function Carears() {
   return (
     <div>
-      <Header/>
-      <h2>Hello</h2>
+        <Header/>
       <Footer/>
     </div>
   )
 }
 
-export default Portfolio
+export default Carears

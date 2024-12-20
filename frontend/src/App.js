@@ -22,8 +22,9 @@ import TechnologyWeUse from './components/TechnologyWeUse';
 import ServiceBarWithDetailedCards from './components/ServiceBarWithDetailedCards';
 import Portfolio from './components/Portfolio';
 import TestimonialForm from './components/admin/TestimonialForm';
-import AdminHeader from './components/admin/AdminHeader';
-
+import Adminapp from './Adminapp';
+import Blog from './components/Blog';
+import Carears from './components/Carears';
 
 
 function App() {
@@ -34,8 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-             <Header />
-            <AdminHeader/>
+      <Header />
               <Hero />
               <Services />
               <Stats/>
@@ -60,6 +60,9 @@ function App() {
           <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards/>}/>
           <Route path='/Getstarted' element={<Getstarted/>}/>
           <Route path="/TestimonialForm" element={<TestimonialForm/>}/>
+          <Route path='/Adminapp' element={<Adminapp/>}/>
+          <Route path='/blog' element={<Blog/>}/>
+          <Route path='/Carears' element={<Carears/>}/>
         </Routes>
       </div>
     </Router>

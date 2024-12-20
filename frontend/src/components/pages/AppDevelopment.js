@@ -8,9 +8,12 @@ import FAQ from '../FAQ';
 import AppHero from '../AppHero';
 import Appcontent from '../Appcontent';
 import AppFaq from '../AppFaq';
+import Header from '../Header';
+
 function AppDevelopment() {
   return (
     <div className="service-page">
+<Header/>
      <AppHero/>
      <Appcontent/>
      <AppFaq/>

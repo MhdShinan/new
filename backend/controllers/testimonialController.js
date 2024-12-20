@@ -3,6 +3,8 @@ const multer = require('multer');
 const path = require('path');
 const { upload } = require('../utils/multerConfig');
 
+
+
 // Fetch all testimonials
 exports.getTestimonials = async (req, res) => {
   try {
@@ -47,3 +49,22 @@ exports.createTestimonial = async (req, res) => {
   });
 };
 
+exports.deleteTestimonial = async (req, res) => {
+  const { id } = req.params; // Get the ID from the URL params
+
+  try {
+    // Check if testimonial exists in the database
+    const testimonial = await Testimonial.findById(id);
+    if (!testimonial) {
+      return res.status(404).json({ error: 'Testimonial not found' });
+    }
+
+    // Delete the testimonial from the database
+    await Testimonial.findByIdAndDelete(id);  // This will remove the testimonial from the database
+
+    res.status(200).json({ success: true, message: 'Testimonial deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting testimonial:', error);
+    res.status(500).json({ error: 'Failed to delete testimonial' });
+  }
+};
