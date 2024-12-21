@@ -1,10 +1,9 @@
 import React from 'react'
 import Footer from './Footer';
-import Header from './Header';
+
 function Portfolio() {
   return (
     <div>
-      <Header/>
       <h2>Hello</h2>
       <Footer/>
     </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   FaFacebook,
   FaGithub,
@@ -6,6 +8,7 @@ import {
   FaTwitter,
   FaTwitch,
 } from "react-icons/fa";
+
 
 const sections = [
   {
@@ -63,6 +66,9 @@ const Footer = () => {
               placeholder="Enter email.."
             />
             <button className="p-2 mb-4">Subscribe</button>
+            <Link to="/Login">
+              <button className="p-2 mb-4">Login</button>
+            </Link>
           </form>
         </div>
       </div>
