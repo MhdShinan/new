@@ -1,21 +1,15 @@
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const Testimonial = require('../models/Testimonial');
+const { unlink } = require('fs/promises');
 
 
+// make directory 
 const testimonialsDir = path.join(__dirname, '../uploads/testimonials');
 if (!fs.existsSync(testimonialsDir)) {
   fs.mkdirSync(testimonialsDir, { recursive: true });
 }
-
-const testimonialsStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, testimonialsDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
 
 const managementTeamDir = path.join(__dirname, '../uploads/team/ManagementTeam');
 if (!fs.existsSync(managementTeamDir)) {
@@ -32,6 +26,16 @@ const satisfiedClientsDir = path.join(__dirname, '../uploads/satisfiedclients');
 if (!fs.existsSync(satisfiedClientsDir)) {
   fs.mkdirSync(satisfiedClientsDir, { recursive: true });
 }
+
+// saving to the folder 
+const testimonialsStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, testimonialsDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
 
 const teamStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -62,6 +66,8 @@ const satisfiedClientsStorage = multer.diskStorage({
 });
 
 
+
+// filter
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaHome ,FaBars, FaTachometerAlt, FaStar, FaUsers, FaDollarSign, FaBlog, FaPhone, FaRocket } from "react-icons/fa";
 import TestimonialsManager from "./components/admin/TestimonialForm";
 import Carears from "./components/Carears";
+import TeamManagement from "./components/admin/TeamManagement";
 
 const Adminapp = () => {
   const [activePage, setActivePage] = useState("dashboard");
@@ -16,7 +17,7 @@ const Adminapp = () => {
       case "satisfiedClients":
         return <h1 className="text-center text-2xl mt-10">Welcome to Satisfied Clients</h1>;
       case "team":
-        return <h1 className="text-center text-2xl mt-10">Welcome to Team</h1>;
+        return  <TeamManagement/>   ;
       case "pricing":
         return <h1 className="text-center text-2xl mt-10">Welcome to Pricing</h1>;
       case "blog":
@@ -102,6 +103,7 @@ const Adminapp = () => {
             <FaDollarSign className="inline-block mr-2" />
             Pricing
           </li>
+
           <li
             onClick={() => {
               setActivePage("blog");
@@ -114,6 +116,7 @@ const Adminapp = () => {
             <FaBlog className="inline-block mr-2" />
             Blog
           </li>
+
           <li
             onClick={() => {
               setActivePage("contactUs");
