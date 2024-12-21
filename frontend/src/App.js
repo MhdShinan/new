@@ -25,17 +25,17 @@ import TestimonialForm from './components/admin/TestimonialForm';
 import Adminapp from './Adminapp';
 import Blog from './components/Blog';
 import Carears from './components/Carears';
-
+import Login from './components/Login';
 
 function App() {
   return (
     <Router>
       <div className="app">
-
+      <Header />
         <Routes>
           <Route path="/" element={
             <>
-      <Header />
+
               <Hero />
               <Services />
               <Stats/>
@@ -61,6 +61,7 @@ function App() {
           <Route path='/Getstarted' element={<Getstarted/>}/>
           <Route path="/TestimonialForm" element={<TestimonialForm/>}/>
           <Route path='/Adminapp' element={<Adminapp/>}/>
+          <Route path='/Login' element={<Login/>}/>
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/Carears' element={<Carears/>}/>
         </Routes>

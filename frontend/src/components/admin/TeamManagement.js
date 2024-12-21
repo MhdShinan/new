@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2'; // Import SweetAlert2
+import { imageURL, backEndURL } from "../../Backendurl";
 
 const TeamManagement = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -14,8 +15,8 @@ const TeamManagement = () => {
   const fetchTeamMembers = async () => {
     try {
       const [managementResponse, developmentResponse] = await Promise.all([
-        axios.get('http://localhost:3001/api/team?teamType=management'),
-        axios.get('http://localhost:3001/api/team?teamType=development')
+        axios.get(`${backEndURL}/api/team?teamType=management`),
+        axios.get(`${backEndURL}/api/team?teamType=development`),
       ]);
       const combinedMembers = [...managementResponse.data, ...developmentResponse.data];
       setTeamMembers(combinedMembers);
@@ -40,11 +41,11 @@ const TeamManagement = () => {
     try {
       if (editId) {
         // Send PATCH request to update the team member
-        await axios.patch(`http://localhost:3001/api/team/update/${editId}`, formData);
+        await axios.patch(`${backEndURL}/api/team/update/${editId}`, formData);
         Swal.fire('Success', 'Team member updated successfully!', 'success');
       } else {
         // Send POST request to add a new team member
-        await axios.post('http://localhost:3001/api/team/create', formData);
+        await axios.post(`${backEndURL}/api/team/create`, formData);
         Swal.fire('Success', 'Team member added successfully!', 'success');
       }
       fetchTeamMembers();
@@ -68,7 +69,7 @@ const TeamManagement = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:3001/api/team/delete/${id}`);
+          await axios.delete(`${backEndURL}/api/team/delete/${id}`);
           fetchTeamMembers();
           Swal.fire('Deleted!', 'The team member has been deleted.', 'success');
         } catch (error) {
@@ -141,7 +142,7 @@ const TeamManagement = () => {
         {teamMembers.map((member) => (
           <div key={member._id} className="border p-4 rounded shadow">
             <img
-              src={`http://localhost:3001${member.image}`}
+              src={`${backEndURL}${member.image}`}
               alt={member.name}
               className="w-full h-40 object-cover mb-4"
             />

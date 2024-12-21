@@ -8,12 +8,10 @@ import Contact from '../ContactUs'
 import FAQ from '../FAQ';
 import WebFAQ from '../WebFAQ';
 import Webcontent from '../Webcontent';
-import Header from '../Header';
 
 function WebDevelopment() {
   return (
     <div className="service-page">
-      <Header/>
       <Webhero/>
       <Webcontent/>
       <WebFAQ/>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaHome ,FaBars, FaTachometerAlt, FaStar, FaUsers, FaDollarSign, FaBlog, FaPhone, FaRocket } from "react-icons/fa";
+import { FaHome, FaBars, FaTachometerAlt, FaStar, FaUsers, FaDollarSign, FaBlog, FaPhone, FaRocket } from "react-icons/fa";
 import TestimonialsManager from "./components/admin/TestimonialForm";
 import Carears from "./components/Carears";
 import TeamManagement from "./components/admin/TeamManagement";
@@ -17,7 +17,7 @@ const Adminapp = () => {
       case "satisfiedClients":
         return <h1 className="text-center text-2xl mt-10">Welcome to Satisfied Clients</h1>;
       case "team":
-        return  <TeamManagement/>   ;
+        return  <TeamManagement />;
       case "pricing":
         return <h1 className="text-center text-2xl mt-10">Welcome to Pricing</h1>;
       case "blog":
@@ -26,8 +26,8 @@ const Adminapp = () => {
         return <h1 className="text-center text-2xl mt-10">Welcome to Contact Us</h1>;
       case "getStarted":
         return <h1 className="text-center text-2xl mt-10">Welcome to Get Started</h1>;
-        case "home":
-          return <Carears/>;
+      case "home":
+        return <Carears />;
       default:
         return <h1 className="text-center text-2xl mt-10">Page Not Found</h1>;
     }
@@ -156,12 +156,12 @@ const Adminapp = () => {
         </ul>
       </div>
 
-      {/* Hamburger Icon */}
+      {/* Dashboard Icon on the Right, Larger and Centered */}
       <button
-        className="lg:hidden fixed top-4 left-4 bg-blue-800 text-white p-2 rounded focus:outline-none"
+        className="lg:hidden fixed top-1/2 right-4 transform -translate-y-1/2 bg-[#005880] text-white p-4 rounded-full focus:outline-none text-3xl"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <FaBars />
+        <FaTachometerAlt />
       </button>
 
       {/* Main Content */}

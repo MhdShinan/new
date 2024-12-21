@@ -10,7 +10,7 @@ import Web from '../assets/images/web-dev.png';
 import Pos from '../assets/images/pos.png';
 import Background1 from '../assets/images/B1.png';
 import Background2 from '../assets/images/B2.png';
-import CCTV from '../assets/images/cctv.png';
+
 
 const Hero = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -19,7 +19,7 @@ const Hero = () => {
     { title: 'Mobile Development', image: App },
     { title: 'Web Development', image: Web },
     { title: 'POS Solutions', image: Pos },
-    { title: 'CCTV Solutions', image: CCTV },
+
   ];
 
   const handleServiceClick = (index) => {
