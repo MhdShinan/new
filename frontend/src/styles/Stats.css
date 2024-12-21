@@ -1,7 +1,7 @@
 .stats-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto; /* Adjust to content height */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,12 +16,13 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .background-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Optional blur effect */
+  object-fit: cover;
 }
 
 .stats-content {
@@ -29,32 +30,33 @@
   z-index: 2;
   text-align: center;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.2); /* Lightened background */
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Softer shadow */
-  max-width: 100%;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  max-width: 1200px;
+  width: 90%;
 }
 
 .stats-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: whitesmoke; /* Primary color */
+  color: whitesmoke;
 }
 
 .stats-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .stat-item {
-  flex: 1 1 250px;
+  flex: 1 1 calc(25% - 1rem);
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
@@ -67,18 +69,15 @@
 }
 
 .stat-icon {
-  font-size: 4rem; /* Larger icon size */
-  color: whitesmoke; /* Primary color */
+  font-size: 3rem;
+  color: whitesmoke;
   margin-bottom: 1rem;
 }
 
 .stat-number {
-  font-size: 4rem; /* Larger number */
+  font-size: 3rem;
   font-weight: bold;
-  color: whitesmoke; /* Primary color */
-  display: flex;
-  justify-content: center; /* Center the number */
-  align-items: center;
+  color: whitesmoke;
 }
 
 .stat-label {
@@ -86,62 +85,81 @@
   font-size: 1.2rem;
   opacity: 0.9;
 }
-@media (max-width: 768px) {
-  .stats-content {
-    padding: 1rem; /* Reduce padding for smaller screens */
-  }
 
-  .stats-title {
-    font-size: 2rem; /* Adjust font size for mobile */
-    margin-bottom: 1.5rem; /* Reduce bottom margin */
-  }
-
+/* Tablet View */
+@media (max-width: 1024px) {
   .stats-container {
-    flex-direction: column; /* Stack items vertically */
-    gap: 1rem; /* Reduce gap between items */
+    gap: 1rem;
   }
 
   .stat-item {
-    flex: 1 1 100%; /* Ensure items take full width */
-    padding: 1rem; /* Reduce padding for compactness */
+    flex: 1 1 calc(33.33% - 1rem); /* Show 3 columns on tablets */
+    padding: 1rem;
   }
 
   .stat-icon {
-    font-size: 2.5rem; /* Smaller icon for mobile */
-    margin-bottom: 0.5rem; /* Reduce margin below icon */
+    font-size: 2.5rem;
   }
 
   .stat-number {
-    font-size: 2.5rem; /* Adjust number size for mobile */
+    font-size: 2.5rem;
   }
 
   .stat-label {
-    font-size: 1rem; /* Smaller font size for labels */
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile View */
+@media (max-width: 768px) {
   .stats-title {
-    font-size: 1.8rem; /* Further reduce font size for very small screens */
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .stats-container {
-    gap: 0.8rem; /* Further reduce gap for very small screens */
+    gap: 1rem;
   }
 
   .stat-item {
-    padding: 0.8rem; /* Reduce padding */
+    flex: 1 1 calc(50% - 1rem); /* Show 2 columns on mobile */
+    padding: 0.8rem;
   }
 
   .stat-icon {
-    font-size: 2rem; /* Smaller icon size */
+    font-size: 2rem;
   }
 
   .stat-number {
-    font-size: 2rem; /* Adjust number size */
+    font-size: 2rem;
   }
 
   .stat-label {
-    font-size: 0.9rem; /* Slightly smaller label font */
+    font-size: 1rem;
+  }
+}
+
+/* Small Mobile View */
+@media (max-width: 480px) {
+  .stats-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-item {
+    flex: 1 1 100%; /* Single column on small devices */
+    padding: 0.6rem;
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
   }
 }
