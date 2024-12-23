@@ -29,21 +29,23 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Routes
-const emailRoutes = require('./routes/emailRoutes');
+// const emailRoutes = require('./routes/emailRoutes');
 const formRoutes = require('./routes/formRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const satisfiedClientsRouter = require('./routes/satisfiedClientRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const getStartedRoutes = require('./routes/getStartedRoutes');
+const applyRoutes = require('./routes/applyRoutes');
 
-
-
-app.use('/api/send-email', emailRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api', getStartedRoutes);
+// app.use('/api/send-email', emailRoutes);
 app.use('/api/form-email', formRoutes);
 app.use('/api', testimonialRoutes); 
 app.use('/api/team', teamRoutes);
 app.use('/api/satisfiedclients', satisfiedClientsRouter);
-
-
+app.use('/api', applyRoutes);
 
 app.get('/test-upload-dir', (req, res) => {
   const dir = path.join(__dirname, 'uploads/testimonials'); // Path to your testimonials folder
