@@ -27,6 +27,7 @@ import Blog from './components/Blog';
 import Carears from './components/Carears';
 import Login from './components/Login';
 
+
 function App() {
   return (
     <Router>
@@ -47,6 +48,7 @@ function App() {
               <ContactUs/>
               <Team/>
               <Footer/>  
+
             </>
           } />
           

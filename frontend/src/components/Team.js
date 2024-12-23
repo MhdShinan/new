@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { FaUser, FaBriefcase, FaPlus, FaGithub, FaWhatsapp, FaLinkedin } from 'react-icons/fa'; // Added GitHub, WhatsApp, LinkedIn
-import '../styles/Team.css';
-import { backEndURL } from "../Backendurl";
-import { imageURL } from "../Backendurl";
+import React, { useState, useEffect } from 'react';
+import {FaWhatsapp, FaLinkedin, FaGlobe, FaPlus, FaUser, FaBriefcase, FaTimes, FaFacebook } from 'react-icons/fa'; // React Icons
+import '../styles/Team.css'; // Custom styles for Team
+import { backEndURL, imageURL } from "../Backendurl";
 
 const Team = () => {
   const [managementTeam, setManagementTeam] = useState([]);
@@ -43,6 +42,12 @@ const Team = () => {
     }
   };
 
+  const closeSocialLinks = (index) => {
+    const updatedTeam = [...managementTeam];
+    updatedTeam[index].showSocialLinks = false;
+    setManagementTeam(updatedTeam);
+  };
+
   if (loading) {
     return <p className="text-center text-white">Loading...</p>;
   }
@@ -52,42 +57,52 @@ const Team = () => {
       {/* Management Team Section */}
       <section className="management-team text-center">
         <h2 className="team-header text-4xl font-bold text-white">Meet Our Management Team</h2>
-        <div className="team-members management-team-grid mt-8">
+        <div className="team-members management-team-grid mt-8 flex justify-center">
           {managementTeam.map((member, index) => (
-            <div key={member._id} className={`member card animate__animated animate__fadeIn animate__delay-${index + 1}s`}>
-              <img
-                src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
-                alt={member.name}
-                className="avatar mb-4 rounded-full w-40 h-40 object-cover border-4 border-[#005880]"
-              />
-              <div className="member-info">
-                <div className="name-container flex justify-between items-center mb-4">
-                  <div className="position-container">
-                    <div className="flex items-center">
-                      <FaUser className="icon text-2xl text-[#005880] mr-2" />
-                      <h3 className="name text-xl font-semibold">{member.name}</h3>
-                    </div>
-                    <div className="flex items-center">
-                      <FaBriefcase className="icon text-2xl text-[#005880] mr-2" />
-                      <p className="position text-lg text-[#7EC8E3]">{member.position}</p>
-                    </div>
+            <div key={member._id} className={`member card relative w-[250px] bg-white p-4 flex flex-col items-center`}>
+              <div className="card-content flex flex-col items-center h-full">
+                <img
+                  src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
+                  alt={member.name}
+                  className="avatar mb-4 rounded-full w-32 h-32 object-cover border-4 border-[#005880]"
+                />
+                <div className="member-info text-left px-4 w-full">
+                  <div className="name-container mb-4 flex items-center">
+                    <FaUser className="text-xl mr-2 text-[#61dafb]" />
+                    <h3 className="name text-xl font-semibold">{member.name}</h3>
                   </div>
-                  <div className="social-links-toggle mt-4">
-                    <button className="plus-icon" onClick={() => handleSocialLinksToggle('management', index)}>
-                      <FaPlus className="text-xl text-white" />
+                  <div className="position-container mb-4 flex justify-between items-center">
+                    <div className="position flex items-center">
+                      <FaBriefcase className="text-lg mr-2 text-[#7EC8E3]" />
+                      <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
+                    </div>
+                    <button
+                      className="plus-icon text-white bg-[#005880] p-2 rounded-full"
+                      onClick={() => handleSocialLinksToggle('management', index)}
+                    >
+                      <FaPlus className="text-xl" />
                     </button>
                   </div>
                 </div>
                 {member.showSocialLinks && (
-                  <div className="social-links-bar animate__animated animate__fadeInUp">
+                  <div className="social-links-bar absolute top-0 left-0 w-full h-full bg-[#003e63] bg-opacity-90 flex flex-col justify-center items-center p-4 rounded-lg space-y-4">
+                    <button
+                      className="close-btn absolute top-4 right-4 text-white text-2xl"
+                      onClick={() => closeSocialLinks(index)}
+                    >
+                      <FaTimes />
+                    </button>
                     <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer">
-                      <FaGithub className="social-icon" />
+                      <FaFacebook className="social-icon text-2xl text-[#61dafb]" />
                     </a>
-                    <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                      <FaWhatsapp className="social-icon" />
+                    <a href={member.website} target="_blank" rel="noopener noreferrer">
+                      <FaGlobe className="social-icon text-2xl text-[#4CAF50]" />
                     </a>
                     <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
-                      <FaLinkedin className="social-icon" />
+                      <FaLinkedin className="social-icon text-2xl text-[#0077b5]" />
+                    </a>
+                    <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                      <FaWhatsapp className="social-icon text-2xl text-[#25d366]" />
                     </a>
                   </div>
                 )}
@@ -100,25 +115,22 @@ const Team = () => {
       {/* Development Team Section */}
       <section className="dev-team mt-16">
         <h2 className="team-header text-4xl font-bold text-center text-white">Meet Our Development Team</h2>
-        <div className="team-members development-team-grid mt-8">
+        <div className="team-members development-team-grid mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {developmentTeam.map((member, index) => (
-            <div key={member._id} className={`member card animate__animated animate__fadeIn animate__delay-${index + 1}s`}>
-              <img
-                src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
-                alt={member.name}
-                className="avatar mb-4 rounded-full w-40 h-40 object-cover border-4 border-[#005880]"
-              />
-              <div className="member-info">
-                <div className="name-container flex justify-between items-center mb-4">
-                  <div className="position-container">
-                    <div className="flex items-center">
-                      <FaUser className="icon text-2xl text-[#005880] mr-2" />
-                      <h3 className="name text-xl font-semibold">{member.name}</h3>
-                    </div>
-                    <div className="flex items-center">
-                      <FaBriefcase className="icon text-2xl text-[#005880] mr-2" />
-                      <p className="position text-lg text-[#7EC8E3]">{member.position}</p>
-                    </div>
+            <div key={member._id} className="member card bg-white p-4 flex flex-col items-center">
+              <div className="card-content flex flex-col items-center h-full">
+                <img
+                  src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
+                  alt={member.name}
+                  className="avatar mb-4 rounded-full w-32 h-32 object-cover border-4 border-[#005880]"
+                />
+                <div className="member-info text-left px-4 w-full">
+                  <div className="name-container mb-4 flex items-center">
+                    <FaUser className="text-xl mr-2 text-[#61dafb]" />
+                    <h3 className="name text-xl font-semibold">{member.name}</h3>
+                  </div>
+                  <div className="position-container mb-4 flex items-center">
+                    <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
                   </div>
                 </div>
               </div>

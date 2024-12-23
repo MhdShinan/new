@@ -13,7 +13,6 @@ import AppFaq from '../AppFaq';
 function AppDevelopment() {
   return (
     <div className="service-page">
-
      <AppHero/>
      <Appcontent/>
      <AppFaq/>
