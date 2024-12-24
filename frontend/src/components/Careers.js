@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaMapMarkerAlt, FaUser, FaRegFileAlt, FaArrowRight, FaTimes, FaPhoneAlt } from 'react-icons/fa'; // React Icons
 import axios from 'axios';
 import Swal from 'sweetalert2'; // SweetAlert2 for alerting
+import { backEndURL } from "../Backendurl";
 
 const Careers = () => {
   const [showModal, setShowModal] = useState(false);
@@ -43,7 +44,7 @@ const Careers = () => {
     });
   
     try {
-      await axios.post('http://localhost:3001/api/apply', formData, {
+      await axios.post(`${backEndURL}/api/apply`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

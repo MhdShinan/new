@@ -4,6 +4,8 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import Swal from 'sweetalert2';
 import 'tailwindcss/tailwind.css';
+import { backEndURL } from "../Backendurl";
+
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +38,7 @@ const ContactUs = () => {
     });
 
     try {
-      const response = await fetch('http://localhost:3001/api/contact', {
+      const response = await fetch(`${backEndURL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

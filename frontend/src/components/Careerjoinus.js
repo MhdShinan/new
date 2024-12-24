@@ -1,12 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react";
-
+// import Carears from "./Carears";
+import { Link } from "react-router-dom";
 function CareerJoinUs() {
-  // Floating animation variants
-
-
-  // Icon animation variants
   const iconVariants = {
     initial: { x: 0 },
     hover: { x: 10, transition: { duration: 0.3, ease: "easeInOut" } },
@@ -32,11 +29,23 @@ function CareerJoinUs() {
           </p>
 
           {/* Advanced CTA Button */}
-          <motion.div
+
+            <motion.div
             whileHover="hover"
             className="mt-8 inline-flex items-center bg-[#00A3FF] hover:bg-[#005880] text-white rounded-full px-8 py-3 shadow-md cursor-pointer transition"
           >
-            <span className="text-lg font-medium">Access Job Opportunities</span>
+            <Link to="/Carears" className="flex items-center">
+              <span className="text-lg font-medium">Access Job Opportunities</span>
+              <motion.div
+                className="ml-3"
+                variants={iconVariants}
+                initial="initial"
+                whileHover="hover"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </motion.div>
+            </Link>
+
             <motion.div
               className="ml-3"
               variants={iconVariants}

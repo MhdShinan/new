@@ -65,7 +65,6 @@ const Header = () => {
           <Link to="/ServiceBarWithDetailedCards" className="text-gray-700 text-sm font-medium hover:text-primary">Pricing</Link>
           <Link to="/Portfolio" className="text-gray-700 text-sm font-medium hover:text-primary">Portfolio</Link>
           <Link to="/Blog" className="text-gray-700 text-sm font-medium hover:text-primary">Blog</Link>
-          <Link to="/Carears" className="text-gray-700 text-sm font-medium hover:text-primary">Careers</Link>
           <Link to="/getstarted">
             <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
           </Link>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import '../styles/Getstarted.css';
-
+import { backEndURL } from "../Backendurl";
 
 const Getstarted = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -74,7 +74,7 @@ const Getstarted = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/getstarted', {
+      const response = await fetch(`${backEndURL}/api/getstarted`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

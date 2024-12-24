@@ -6,7 +6,6 @@ function Carears() {
   return (
     <div>
       <Careers/>
-
     </div>
   )
 }

@@ -257,7 +257,7 @@ export default function Portfolio() {
     className="container mx-auto px-4 py-8"
     style={{
       backgroundImage: `url(${Brand})`, // Use the correct path to your image
-      backgroundSize: 'contain', // Ensure the image does not stretch
+      backgroundSize: '10%', // Ensure the image does not stretch
       backgroundPosition: 'center', // Center the image
       backgroundRepeat: 'no-repeat' 
     }}
