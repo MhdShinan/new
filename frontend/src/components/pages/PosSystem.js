@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../styles/pages/Services.css';
 import SatisfiedClients from '../SatisfiedClients'
-import Footer from '../Footer'
 import Team from '../Team'
 import Contact from '../ContactUs'
 import '../../styles/pages/Services.css';
@@ -17,7 +16,6 @@ function PosSystem() {
       <SatisfiedClients/>
       <Contact/>
       <Team/>
-      <Footer/>
     </div>
   );
 }

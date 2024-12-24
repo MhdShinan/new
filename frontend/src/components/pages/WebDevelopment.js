@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/pages/Services.css';
 import Webhero from '../Webhero';
 import SatisfiedClients from '../SatisfiedClients'
-import Footer from '../Footer'
+
 import Team from '../Team'
 import Contact from '../ContactUs'
 import FAQ from '../FAQ';
@@ -19,7 +19,7 @@ function WebDevelopment() {
       <FAQ/>
       <Contact/>
       <Team/>
-      <Footer/>
+
     </div>
   );
 }

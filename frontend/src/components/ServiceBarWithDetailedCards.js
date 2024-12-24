@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Footer from './Footer';
 
 const ServiceBarWithDetailedCards = () => {
   const [activeTab, setActiveTab] = useState("Web Development");
@@ -138,7 +137,6 @@ const ServiceBarWithDetailedCards = () => {
               ))}
         </div>
       </div>
-      <Footer/>
     </div>
   );
 };

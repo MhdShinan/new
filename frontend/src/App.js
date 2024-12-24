@@ -26,6 +26,7 @@ import Adminapp from './Adminapp';
 import Blog from './components/Blog';
 import Carears from './components/Carears';
 import Login from './components/Login';
+import CareerJoinUs from './components/Careerjoinus';
 
 
 function App() {
@@ -45,10 +46,9 @@ function App() {
               <TechnologyWeUse />
               <SatisfiedClients/>
               <FAQ/>
+              <CareerJoinUs/>
               <ContactUs/>
               <Team/>
-              <Footer/>  
-
             </>
           } />
           
@@ -67,6 +67,7 @@ function App() {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/Carears' element={<Carears/>}/>
         </Routes>
+        <Footer/> 
       </div>
     </Router>
   );

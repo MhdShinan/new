@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import '../styles/Getstarted.css';
-import Footer from "./Footer";
+
 
 const Getstarted = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -230,7 +230,7 @@ const Getstarted = () => {
           )}
         </div>
       </main>
-      <Footer />
+
     </div>
   );
 };
