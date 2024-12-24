@@ -130,7 +130,7 @@ const Team = () => {
                     <h3 className="name text-xl font-semibold">{member.name}</h3>
                   </div>
                   <div className="position-container mb-4 flex items-center">
-                    <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
+                  <p className="position text-lg font-medium text-[#005880]">{member.position}</p>
                   </div>
                 </div>
               </div>

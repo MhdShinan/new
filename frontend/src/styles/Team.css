@@ -8,14 +8,6 @@
   font-size: 2rem; /* Font size for header */
   margin-bottom: 2rem;
 }
-
-.card {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  background-color: white; /* Card background color */
-}
-
 .card:hover {
   transform: scale(1.05);
 }
@@ -98,5 +90,105 @@
 @media (min-width: 1024px) {
   .development-team-grid {
     grid-template-columns: repeat(6, 1fr); /* 6 columns on desktop */
+  }
+}
+
+/* Team.css */
+
+/* For fixed size management team cards */
+
+
+.card:hover {
+  transform: scale(1.05);  /* Maintain the hover effect */
+}
+
+/* For development team grid */
+.development-team-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* 1 column for mobile by default */
+  grid-gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .development-team-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .development-team-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets and larger devices */
+  }
+}
+
+@media (min-width: 1024px) {
+  .development-team-grid {
+    grid-template-columns: repeat(6, 1fr); /* 6 columns on desktop */
+  }
+}
+
+/* Default card styles */
+.card {
+  width: 175px;  /* Set a fixed width for larger screens */
+  height: 350px; /* Set a fixed height */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: white; /* Card background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* For mobile screens, change card width to 170px and show 2 per row */
+@media (max-width: 640px) {
+  .card {
+    width: 170px !important;  /* Adjust card width for mobile */
+  }
+  
+  .development-team-grid {
+    grid-template-columns: repeat(2, 1fr) !important; /* Show 2 cards per row */
+  }
+}
+
+/* Other media queries for larger screens can stay as is */
+@media (min-width: 768px) {
+  .development-team-grid {
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 columns for tablets and larger devices */
+  }
+}
+
+@media (min-width: 1024px) {
+  .development-team-grid {
+    grid-template-columns: repeat(6, 1fr) !important; /* 6 columns for desktop */
+  }
+}
+
+
+/* Styling the position text */
+.position {
+  font-size: 1rem; /* Default font size (18px) */
+  font-weight: 200; /* Medium weight */
+  color: #005880; /* Position text color */
+  line-height: 2; /* Line height for better spacing */
+  max-height: 1rem; /* Max height for two lines */
+
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+}
+
+/* For larger screens, increase the font size */
+@media (min-width: 768px) {
+  .position {
+    font-size: 1.25rem; /* Increase font size for larger screens */
+  }
+}
+
+/* For mobile, reduce the font size */
+@media (max-width: 640px) {
+  .position {
+    font-size: 1rem; /* Reduce font size for small screens */
   }
 }
