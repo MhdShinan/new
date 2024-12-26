@@ -150,13 +150,18 @@ export default function Portfolio() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-<button className="btn btn-primary flex items-center gap-2 px-6 py-3 text-white bg-[#005880] rounded-lg shadow-lg hover:bg-[#004A66] transition duration-300 ease-in-out transform hover:scale-105">
-  Get Started <ArrowRight size={20} />
-</button>
+<div className="flex flex-col sm:flex-row gap-4">
+  <button className="btn btn-primary flex items-center gap-2 px-6 py-3 text-white bg-[#005880] rounded-lg shadow-lg hover:bg-[#004A66] transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto max-w-xs mx-auto">
+    Get Started <ArrowRight size={20} />
+  </button>
 
-<button className="btn btn-secondary flex items-center gap-2 px-6 py-3 text-[#005880] border-2 border-[#005880] rounded-lg hover:bg-[#005880] hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
-  Learn More <FaExternalLinkAlt size={20} />
-</button>
+  <button className="btn btn-secondary flex items-center gap-2 px-6 py-3 text-[#005880] border-2 border-[#005880] rounded-lg hover:bg-[#005880] hover:text-white transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto max-w-xs mx-auto">
+    Learn More <FaExternalLinkAlt size={20} />
+  </button>
+</div>
+
+
+
 
                 
               </motion.div>
@@ -254,18 +259,19 @@ export default function Portfolio() {
       </section>
       <section id="vision-mission">
   <div
-    className="container mx-auto px-4 py-8"
+    className="container mx-auto px-4 py-8 bg-cover sm:bg-none sm:bg-center"
     style={{
       backgroundImage: `url(${Brand})`, // Use the correct path to your image
-      backgroundSize: '10%', // Ensure the image does not stretch
-      backgroundPosition: 'center', // Center the image
-      backgroundRepeat: 'no-repeat' 
+      backgroundSize: '10%', // Default size for larger screens
+      backgroundPosition: 'center', // Default position for larger screens
+      backgroundRepeat: 'no-repeat',
     }}
   >
-
     <div className="relative z-10 text-center mb-8">
       <h2 className="text-4xl font-extrabold text-[#005880]">Our Vision & Mission</h2>
-      <p className="text-lg text-[#005880] mt-4">We are committed to driving innovation and excellence in every aspect of our work.</p>
+      <p className="text-lg text-[#005880] mt-4">
+        We are committed to driving innovation and excellence in every aspect of our work.
+      </p>
     </div>
 
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -307,6 +313,7 @@ export default function Portfolio() {
     </div>
   </div>
 </section>
+
 
     </>
   );

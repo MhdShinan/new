@@ -91,7 +91,7 @@ const ServiceBarWithDetailedCards = () => {
               key={index}
               className={`cursor-pointer text-lg font-medium rounded-full py-2 px-4 transition-all duration-300 ${
                 activeTab === service.name
-                  ? "bg-gradient-to-r from-yellow-500 to-orange-600 text-black shadow-lg"
+                  ? "bg-gradient-to-r from-blue-500 to-lightblue-600 text-white shadow-lg"
                   : "text-white hover:bg-gray-700"
               }`}
               onClick={() => handleTabClick(service.name)}

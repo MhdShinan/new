@@ -22,11 +22,20 @@ const upload = multer({ storage });
 
 // Create a new team member
 const createTeamMember = async (req, res) => {
-  const { name, position, teamType } = req.body;
+  const { name, position, teamType, linkedin, whatsapp, website } = req.body;
   const image = req.file ? `/uploads/team/${teamType === 'management' ? 'ManagementTeam' : 'DevelopmentTeam'}/${req.file.filename}` : '';
 
   try {
-    const newMember = new TeamMember({ name, position, image, teamType });
+    const newMember = new TeamMember({
+      name,
+      position,
+      image,
+      teamType,
+      linkedin: teamType === 'management' ? linkedin : undefined,
+      whatsapp: teamType === 'management' ? whatsapp : undefined,
+      website: teamType === 'management' ? website : undefined
+    });
+
     await newMember.save();
     res.status(201).json({ message: 'Team member created successfully', member: newMember });
   } catch (error) {
@@ -34,6 +43,7 @@ const createTeamMember = async (req, res) => {
     res.status(500).json({ error: 'Failed to create team member' });
   }
 };
+
 
 // Get team members by type, or all if no teamType is provided
 const getTeamMembers = async (req, res) => {
@@ -59,26 +69,25 @@ const getTeamMembers = async (req, res) => {
 // Update team member details (including image update)
 const updateTeamMember = async (req, res) => {
   const { id } = req.params;
-  const { name, position, teamType } = req.body;
-  
+  const { name, position, teamType, linkedin, whatsapp, website } = req.body;
+
   try {
     const member = await TeamMember.findById(id);
     if (!member) return res.status(404).json({ error: 'Team member not found' });
 
-    // Update fields if changed
     member.name = name || member.name;
     member.position = position || member.position;
     member.teamType = teamType || member.teamType;
+    member.linkedin = teamType === 'management' ? linkedin : undefined;
+    member.whatsapp = teamType === 'management' ? whatsapp : undefined;
+    member.website = teamType === 'management' ? website : undefined;
 
-    // Update the image if provided
     if (req.file) {
-      // Delete old image if it exists
       if (member.image) {
         const oldImagePath = path.join(__dirname, `../${member.image}`);
         if (fs.existsSync(oldImagePath)) fs.unlinkSync(oldImagePath);
       }
 
-      // Set the new image path
       const folderPath = member.teamType === 'management' ? 'ManagementTeam' : 'DevelopmentTeam';
       member.image = `/uploads/team/${folderPath}/${req.file.filename}`;
     }
@@ -90,6 +99,7 @@ const updateTeamMember = async (req, res) => {
     res.status(500).json({ error: 'Failed to update team member' });
   }
 };
+
 
 // Delete a team member
 const deleteTeamMember = async (req, res) => {

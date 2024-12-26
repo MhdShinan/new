@@ -18,7 +18,7 @@ const OurProcess = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center">
               <FaRegHandshake className="text-6xl text-blue-500 mb-4" />
               <h3 className="text-xl font-semibold text-gray-800">Planning</h3>
               <p className="text-gray-600 mt-2">Understanding what you want out of your site and how you plan to implement it. Created on Figma.</p>
@@ -32,7 +32,7 @@ const OurProcess = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center">
               <FaCog className="text-6xl text-green-500 mb-4" />
               <h3 className="text-xl font-semibold text-gray-800">Development</h3>
               <p className="text-gray-600 mt-2">We develop content management systems for clients who need more than just the basics.</p>
@@ -46,7 +46,7 @@ const OurProcess = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center">
               <FaCheckCircle className="text-6xl text-yellow-500 mb-4" />
               <h3 className="text-xl font-semibold text-gray-800">Review & Test</h3>
               <p className="text-gray-600 mt-2">Once the site is ready, it is thoroughly checked and tested to ensure error-free working.</p>
@@ -60,7 +60,7 @@ const OurProcess = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center">
               <FaRocket className="text-6xl text-red-500 mb-4" />
               <h3 className="text-xl font-semibold text-gray-800">Launch</h3>
               <p className="text-gray-600 mt-2">After successful testing, the product is delivered/deployed to the customer for their use.</p>
@@ -74,7 +74,7 @@ const OurProcess = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="text-center p-6 bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center">
               <FaWrench className="text-6xl text-purple-500 mb-4" />
               <h3 className="text-xl font-semibold text-gray-800">Maintenance</h3>
               <p className="text-gray-600 mt-2">Maintenance ensures your site works with efficiency at all times.</p>

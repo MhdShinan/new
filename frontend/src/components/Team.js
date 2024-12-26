@@ -48,103 +48,134 @@ const Team = () => {
 
   return (
     <section className="team-section py-16 px-8 lg:px-24 bg-[#005880]">
-      {/* Management Team Section */}
-      <section className="management-team text-center">
-        <h2 className="team-header text-4xl font-bold text-white">Meet Our Management Team</h2>
-        <div className="team-members management-team-grid mt-8 flex justify-center flex-wrap gap-4">
-          {managementTeam.map((member, index) => (
-            <div key={member._id} className="member card relative w-64 bg-white p-4 flex flex-col items-center rounded-lg shadow-md hover:shadow-lg">
-              <div className="card-content flex flex-col items-center">
-                <img
-                  src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
-                  alt={member.name}
-                  className="avatar mb-4 rounded-full w-32 h-32 object-cover"
-                />
-                <div className="member-info text-center w-full">
-                  <div className="name-container mb-4 flex items-center justify-center">
-                    <FaUser className="text-xl mr-2 text-[#61dafb]" />
-                    <h3 className="name text-xl font-semibold">{member.name}</h3>
-                  </div>
-                  <div className="position-container mb-4 flex justify-between items-center">
-                    <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
-                    <button
-                      className="plus-icon text-white bg-[#005880] p-2 rounded-full"
-                      onClick={() => handleSocialLinksToggle('management', index)}
-                    >
-                      <FaPlus className="text-xl" />
-                    </button>
-                  </div>
-                </div>
-                {member.showSocialLinks && (
-                  <div
-                    className="social-links-bar absolute top-0 left-0 w-full h-full bg-[#003e63] bg-opacity-90 flex flex-col justify-center items-center p-4 rounded-lg space-y-4 transition-all duration-500 transform translate-y-0"
-                  >
-                    <button
-                      className="close-btn absolute top-4 right-4 text-white text-2xl"
-                      onClick={() => closeSocialLinks('management', index)}
-                    >
-                      <FaTimes />
-                    </button>
-                    <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
-                      <FaLinkedin className="social-icon text-2xl text-[#0077b5]" />
-                    </a>
-                    <a href={member.website} target="_blank" rel="noopener noreferrer">
-                      <FaGlobe className="social-icon text-2xl text-[#4CAF50]" />
-                    </a>
-                    <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                      <FaWhatsapp className="social-icon text-2xl text-[#25d366]" />
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+  {/* Management Team Section */}
+  <section className="management-team text-center">
+    <h2 className="text-4xl font-bold text-white">Meet Our Management Team</h2>
+    <div className="mt-8 flex justify-center flex-wrap gap-8">
+      {managementTeam.map((member, index) => (
+        <div
+          key={member._id}
+          className="relative w-72 bg-white p-6 flex flex-col items-center rounded-3xl shadow-lg transition-transform duration-300 transform hover:scale-105"
+        >
+          {/* Profile Image */}
+          <img
+            src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
+            alt={member.name}
+            className="w-28 h-28 rounded-full mb-4 object-cover border-4 border-gray-200"
+          />
 
-      {/* Development Team Section */}
-      <section className="dev-team mt-16">
-        <h2 className="team-header text-4xl font-bold text-center text-white">Meet Our Development Team</h2>
-        <Marquee pauseOnHover gradient={false} speed={50} className="mt-8">
-          <div className="team-members development-team-grid flex gap-8">
-            {developmentTeam.map((member, index) => (
-              <div key={member._id} className={`member card relative w-64 bg-white p-4 flex flex-col items-center rounded-lg shadow-md hover:shadow-lg ${index === 0 ? 'ml-8' : ''} ${index === developmentTeam.length - 1 ? 'mr-8' : ''}`}>
-                <div className="circular-number absolute -top-4 -left-4 w-12 h-12 bg-[#005880] text-white text-sm flex items-center justify-center rounded-full" style={{ fontSize: '1rem' }}>
-                  {index + 1}
-                </div>
-                <div className="profile-circle w-32 h-32 rounded-full flex items-center justify-center mb-4">
-                  <img
-                    src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
-                    alt={member.name}
-                    className="rounded-full w-28 h-28 object-cover"
-                  />
-                </div>
-                <div className="member-info text-center w-full">
-                  <div className="name-container mb-2 flex items-center justify-center space-x-2">
-                    <FaUser className="text-xl text-[#005880]" />
-                    <h3 className="name text-lg font-semibold">{member.name}</h3>
-                  </div>
-                  <p className="position text-sm font-medium text-[#005880]">{member.position}</p>
-                </div>
-                {/* Show social media links for development team */}
-                {member.teamType === "development" && member.showSocialLinks && (
-                  <div className="social-links">
-                    <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
-                      <FaLinkedin className="text-2xl text-[#0077b5]" />
-                    </a>
-                    <a href={member.website} target="_blank" rel="noopener noreferrer">
-                      <FaGlobe className="text-2xl text-[#4CAF50]" />
-                    </a>
-                    <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                      <FaWhatsapp className="text-2xl text-[#25d366]" />
-                    </a>
-                  </div>
-                )}
-              </div>
-            ))}
+          {/* Member Info */}
+          <h3 className="text-xl font-bold text-[#005880]">{member.name}</h3>
+          <p className="text-gray-500 text-sm font-medium">{member.position}</p>
+          <div className="w-16 h-0.5 bg-[#005880] mt-2"></div>
+
+          {/* Social Bar */}
+          <div
+  className="w-full mt-6 bg-[#D9D9D9] py-2 rounded-full flex justify-around"
+  style={{ boxShadow: '0 4px 6px rgba(0, 88, 128, 0.81)' }}>
+            <a
+              href={member.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-[#005880] rounded-full flex justify-center items-center transition-transform hover:scale-110"
+            >
+              <FaWhatsapp className="text-white text-lg" />
+            </a>
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-[#005880] rounded-full flex justify-center items-center transition-transform hover:scale-110"
+            >
+              <FaLinkedin className="text-white text-lg" />
+            </a>
+            <a
+              href={member.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-[#005880] rounded-full flex justify-center items-center transition-transform hover:scale-110"
+            >
+              <FaGlobe className="text-white text-lg" />
+            </a>
           </div>
-        </Marquee>
-      </section>
+        </div>
+      ))}
+    </div>
+  </section>
+
+     {/* Development Team Section */}
+<section className="dev-team mt-16">
+  <h2 className="team-header text-4xl font-bold text-center text-white">
+    Meet Our Development Team
+  </h2>
+  <Marquee pauseOnClick gradient={false} speed={50} className="mt-8">
+    <div className="team-members flex gap-8">
+      {/* Placeholder card at the beginning */}
+
+
+      {developmentTeam.map((member, index) => (
+        <div
+          key={member._id}
+          className="team-card relative w-64 bg-white p-6 flex flex-col items-center rounded-xl shadow-lg"
+        >
+          {/* Profile Picture */}
+          <div className="profile-circle w-32 h-32 rounded-full flex items-center justify-center shadow-inner mb-4">
+            <img
+              src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
+              alt={member.name}
+              className="rounded-full w-28 h-28 object-cover border border-gray-300"
+            />
+          </div>
+
+          {/* Member Info */}
+          <div className="member-info text-center w-full">
+            <h3 className="name text-xl font-bold text-[#005880] mb-1">{member.name}</h3>
+            <p className="position text-sm font-medium text-gray-600">{member.position}</p>
+            <hr className="w-12 border-t-2 border-[#005880] mt-2 mx-auto" />
+          </div>
+
+          {/* Social Media Links */}
+          {member.teamType === 'development' && member.showSocialLinks && (
+            <div className="social-links flex justify-center gap-4 mt-4">
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin className="text-2xl text-[#0077b5]" />
+                </a>
+              )}
+              {member.website && (
+                <a
+                  href={member.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGlobe className="text-2xl text-[#4CAF50]" />
+                </a>
+              )}
+              {member.whatsapp && (
+                <a
+                  href={member.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp className="text-2xl text-[#25d366]" />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      ))}
+
+      {/* Placeholder card at the end */}
+      <div className="team-card relative w-2 bg-transparent"></div>
+    </div>
+  </Marquee>
+</section>
+
+
     </section>
   );
 };

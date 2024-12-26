@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2'; // Import SweetAlert2
-import { imageURL, backEndURL } from "../../Backendurl";
+import Swal from 'sweetalert2';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { backEndURL } from "../../Backendurl";
 
 const TeamManagement = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -9,17 +10,24 @@ const TeamManagement = () => {
   const [position, setPosition] = useState('');
   const [teamType, setTeamType] = useState('development');
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null); // Image preview state
   const [editId, setEditId] = useState(null);
+  
+  const [whatsapp, setWhatsapp] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [website, setWebsite] = useState('');
+  
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Show 3 cards per page
 
-  // Fetch team members
+  const fileInputRef = useRef(null); // Ref for file input
+
   const fetchTeamMembers = async () => {
     try {
-      const [managementResponse, developmentResponse] = await Promise.all([
-        axios.get(`${backEndURL}/api/team?teamType=management`),
-        axios.get(`${backEndURL}/api/team?teamType=development`),
-      ]);
-      const combinedMembers = [...managementResponse.data, ...developmentResponse.data];
-      setTeamMembers(combinedMembers);
+      const response = await axios.get(`${backEndURL}/api/team`);
+      setTeamMembers(response.data);
     } catch (error) {
       console.error('Error fetching team members:', error);
     }
@@ -29,7 +37,16 @@ const TeamManagement = () => {
     fetchTeamMembers();
   }, []);
 
-  // Handle form submission (create or update)
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => setImagePreview(reader.result);
+      reader.readAsDataURL(image);
+    } else {
+      setImagePreview(null);
+    }
+  }, [image]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -37,26 +54,43 @@ const TeamManagement = () => {
     formData.append('position', position);
     formData.append('teamType', teamType);
     if (image) formData.append('image', image);
-
+  
+    if (teamType === 'management') {
+      formData.append('whatsapp', whatsapp);
+      formData.append('linkedin', linkedin);
+      formData.append('website', website);
+    }
+  
     try {
       if (editId) {
-        // Send PATCH request to update the team member
         await axios.patch(`${backEndURL}/api/team/update/${editId}`, formData);
-        Swal.fire('Success', 'Team member updated successfully!', 'success');
+        Swal.fire({
+          title: 'Success!',
+          text: 'Team member updated successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          resetForm(); // Reset form here
+          fetchTeamMembers();
+        });
       } else {
-        // Send POST request to add a new team member
         await axios.post(`${backEndURL}/api/team/create`, formData);
-        Swal.fire('Success', 'Team member added successfully!', 'success');
+        Swal.fire({
+          title: 'Success!',
+          text: 'Team member added successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          resetForm(); // Reset form here
+          fetchTeamMembers();
+        });
       }
-      fetchTeamMembers();
-      resetForm();
     } catch (error) {
       console.error('Error submitting form:', error);
-      Swal.fire('Error', 'Failed to update team member.', 'error');
+      Swal.fire('Error', 'Failed to submit the team member.', 'error');
     }
   };
 
-  // Handle delete action with SweetAlert2 confirmation
   const handleDelete = (id) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -79,82 +113,171 @@ const TeamManagement = () => {
     });
   };
 
-  // Handle edit action
   const handleEdit = (member) => {
     setEditId(member._id);
     setName(member.name);
     setPosition(member.position);
     setTeamType(member.teamType);
-    setImage(null); // Keep the existing image until a new one is uploaded
+    setWhatsapp(member.whatsapp || '');
+    setLinkedin(member.linkedin || '');
+    setWebsite(member.website || '');
+    setImage(null);
   };
 
-  // Reset form fields
   const resetForm = () => {
     setName('');
     setPosition('');
     setTeamType('development');
+    setWhatsapp('');
+    setLinkedin('');
+    setWebsite('');
     setImage(null);
+    setImagePreview(null);
     setEditId(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''; // Clear file input value
+    }
   };
+
+  const filteredMembers = teamMembers.filter(
+    (member) =>
+      (filter === 'all' || member.teamType === filter) &&
+      member.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const displayedMembers = filteredMembers.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="p-6">
-      {/* Section 1: Add or Edit Team Member Form */}
-      <h1 className="text-2xl font-bold mb-4">{editId ? 'Edit Team Member' : 'Add Team Member'}</h1>
-      <form className="mb-6" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="border p-2 rounded"
-          />
-          <input
-            type="text"
-            placeholder="Position"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            className="border p-2 rounded"
-          />
-          <select
-            value={teamType}
-            onChange={(e) => setTeamType(e.target.value)}
-            className="border p-2 rounded"
-          >
-            <option value="management">Management</option>
-            <option value="development">Development</option>
-          </select>
-          <input
-            type="file"
-            onChange={(e) => setImage(e.target.files[0])}
-            className="border p-2 rounded"
-          />
-        </div>
-        <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+      <h1 className="text-2xl font-bold mb-4">
+        {editId ? 'Edit Team Member' : 'Add Team Member'}
+      </h1>
+      <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="border p-2 rounded"
+        />
+        <input
+          type="text"
+          placeholder="Position"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+          className="border p-2 rounded"
+        />
+        <select
+          value={teamType}
+          onChange={(e) => setTeamType(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="management">Management</option>
+          <option value="development">Development</option>
+        </select>
+        <input
+          ref={fileInputRef} // Attach ref to the input
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
+          className="border p-2 rounded"
+        />
+        {imagePreview && (
+          <img src={imagePreview} alt="Preview" className="w-full h-32 object-cover rounded" />
+        )}
+        {teamType === 'management' && (
+          <>
+            <input
+              type="text"
+              placeholder="WhatsApp Link"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+              className="border p-2 rounded"
+            />
+            <input
+              type="text"
+              placeholder="LinkedIn Link"
+              value={linkedin}
+              onChange={(e) => setLinkedin(e.target.value)}
+              className="border p-2 rounded"
+            />
+            <input
+              type="text"
+              placeholder="Website Link"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className="border p-2 rounded"
+            />
+          </>
+        )}
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           {editId ? 'Update' : 'Add'} Team Member
         </button>
       </form>
 
-      {/* Section 2: See All Team Members */}
-      <h1 className="text-2xl font-bold mb-4 mt-8">See All Team Members</h1>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {teamMembers.map((member) => (
-          <div key={member._id} className="border p-4 rounded shadow">
-            <img
-              src={`${backEndURL}${member.image}`}
-              alt={member.name}
-              className="w-full h-40 object-cover mb-4"
-            />
-            <h2 className="text-xl font-bold">{member.name}</h2>
-            <p>{member.position}</p>
-            <p className="italic text-sm">{member.teamType === 'management' ? 'Management Team' : 'Development Team'}</p>
-            <div className="mt-4 flex justify-between">
-              <button onClick={() => handleEdit(member)} className="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-              <button onClick={() => handleDelete(member._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+      <div className="mt-8">
+        <h1 className="text-2xl font-bold mb-4">Team Members</h1>
+        <div className="flex gap-4 items-center mb-4">
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="border p-2 rounded flex-grow"
+          />
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="border p-2 rounded"
+          >
+            <option value="all">All Teams</option>
+            <option value="management">Management</option>
+            <option value="development">Development</option>
+          </select>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {displayedMembers.map((member) => (
+            <div key={member._id} className="border p-4 rounded shadow">
+              <img
+                src={`${backEndURL}${member.image}`}
+                alt={member.name}
+                className="w-full h-40 object-cover mb-4 rounded"
+              />
+              <h2 className="text-xl font-bold">{member.name}</h2>
+              <p>{member.position}</p>
+              <p className="italic text-sm">{member.teamType}</p>
+              <div className="mt-4 flex gap-2">
+                <button
+                  onClick={() => handleEdit(member)}
+                  className="bg-yellow-500 text-white px-2 py-1 rounded flex items-center gap-1"
+                >
+                  <FaEdit /> Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(member._id)}
+                  className="bg-red-500 text-white px-2 py-1 rounded flex items-center gap-1"
+                >
+                  <FaTrashAlt /> Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className="mt-4 flex justify-center gap-2">
+          {Array.from({ length: Math.ceil(filteredMembers.length / itemsPerPage) }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 rounded ${
+                currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,100 +1,110 @@
-import React, { useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import 'react-tabs/style/react-tabs.css';
-import 'tailwindcss/tailwind.css';
-import UniviewImage1 from '../assets/images/Uniview.jpeg';
-import UniviewImage2 from '../assets/images/Uniview.jpeg';
-import HikvisionImage1 from '../assets/images/Hikvision.jpeg';
-import HikvisionImage2 from '../assets/images/Hikvision.jpeg';
-import HikvisionImage3 from '../assets/images/Hikvision.jpeg';
-import DahuaImage1 from '../assets/images/Dahua.jpeg';
-import DahuaImage2 from '../assets/images/Dahua.jpeg';
-import DahuaImage3 from '../assets/images/Dahua.jpeg';
-import DahuaImage4 from '../assets/images/Dahua.jpeg';
+import { useState } from 'react';
+import Hikvision from '../assets/images/hikvision.jpg';
+import Camera2 from '../assets/images/camera1.jpg';
+import Camera from '../assets/images/camera2.jpg';
 
-const CCTV = () => {
-    const imageSets = {
-        Uniview: [UniviewImage1, UniviewImage2],
-        Hikvision: [HikvisionImage1, HikvisionImage2, HikvisionImage3],
-        Dahua: [DahuaImage1, DahuaImage2, DahuaImage3, DahuaImage4],
-    };
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import { Autoplay } from 'swiper/modules';
 
-    const [selectedTab, setSelectedTab] = useState('Uniview');
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const tabs = [
+  {
+    id: 'uniview',
+    name: 'Uniview',
+    title: 'Uniview',
+    description: "Uniview's IP cameras combine advanced AI analytics, exceptional image clarity and reliable performance. These solutions offer comprehensive security features including facial recognition, perimeter protection and behavior analytics. From basic to advanced models, these systems provide scalable, cost-effective surveillance solutions for residential, commercial and enterprise applications.",
+    analogDescription: "Uniview's analog systems deliver reliable surveillance through proven technology. Features include HD video quality, easy installation and robust durability. These systems offer straightforward setup, stable performance and excellent value for basic security needs. Ideal for small-scale surveillance applications."
+  },
+  {
+    id: 'hikvision',
+    name: 'Hikvision',
+    title: 'Hikvision',
+    About: 'Hikvision leverages advanced technologies in machine perception, artificial intelligence, and big data to drive the future of AIoT, enhancing connectivity, intelligence, and convenience in everyday life. The company offers a comprehensive range of physical security products and AI-powered integrated solutions, including video security, access control, and alarm systems, tailored to diverse industry needs. With expertise in vertical markets such as smart cities, transportation, retail, logistics, and education, Hikvision delivers innovative and intelligent solutions to meet specific demands.',
+    description: "HIKVISION IP cameras feature AI-powered analytics, ultra-HD video quality and comprehensive security features. Advanced capabilities include facial recognition, crowd analysis, vehicle recognition and thermal imaging. These systems deliver exceptional performance in demanding environments, combining cutting-edge technology with user-friendly operation to meet complex security requirements.",
+    analogDescription: "HIKVISION's analog systems offer traditional but high-performance HD surveillance. Features include reliable video quality, simple setup and proven durability. These systems provide stable monitoring with minimal maintenance, making them ideal for basic security needs."
+  },
+  {
+    id: 'dahua',
+    name: 'Dahua',
+    title: 'Dahua',
+    description: "Dahua's IP camera lineup combines superior image quality with advanced AI capabilities. Key innovations include smart motion detection, facial recognition and perimeter protection. These systems deliver reliable performance, easy integration and scalable solutions. Ideal for both small businesses and large enterprise deployments.",
+    analogDescription: "Dahua's analog systems offer reliable, straightforward surveillance with advanced features. Benefits include HD video quality, simple installation and proven reliability. These traditional systems provide dependable monitoring without complex setup. Perfect for basic security needs."
+  }
+];
 
-    const handleTabSelect = (tab) => {
-        setSelectedTab(tab);
-        setCurrentImageIndex(0);
-    };
+function App() {
+  const [activeTab, setActiveTab] = useState('uniview');
+  const images = [Hikvision, Camera, Camera2];
 
-    const nextImage = () => {
-        setCurrentImageIndex(
-            (prevIndex) => (prevIndex + 1) % imageSets[selectedTab].length
-        );
-    };
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-center mb-8 text-blue-800">CCTV Solutions</h1>
 
-    const prevImage = () => {
-        setCurrentImageIndex(
-            (prevIndex) =>
-                (prevIndex - 1 + imageSets[selectedTab].length) %
-                imageSets[selectedTab].length
-        );
-    };
-
-    return (
-        <div className="container mx-auto p-4 md:p-8 bg-gray-50 min-h-screen">
-            <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-600 mb-6">CCTV Solutions</h1>
-
-            <Tabs>
-                <TabList className="flex justify-center space-x-4 md:space-x-8 mb-6">
-                    {Object.keys(imageSets).map((tab, index) => (
-                        <Tab
-                            key={index}
-                            className="px-4 md:px-6 py-2 bg-blue-500 text-white rounded-full cursor-pointer hover:bg-blue-600 transition duration-300"
-                            onClick={() => handleTabSelect(tab)}
-                        >
-                            {tab}
-                        </Tab>
-                    ))}
-                </TabList>
-
-                {Object.keys(imageSets).map((tab) => (
-                    <TabPanel key={tab}>
-                        <div className="text-center mb-4 md:mb-6">
-                            <h2 className="text-2xl md:text-3xl font-semibold text-blue-600 mb-2 md:mb-4">{tab}</h2>
-                        </div>
-                        <div className="flex items-center justify-center relative">
-                            <FaChevronLeft
-                                onClick={prevImage}
-                                className="absolute left-4 md:left-6 text-2xl md:text-3xl text-blue-600 cursor-pointer hover:text-blue-800 transition duration-300"
-                            />
-                            <img
-                                src={imageSets[tab][currentImageIndex]}
-                                alt={`${tab} Image`}
-                                className="w-64 h-auto md:w-96 mx-auto rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300"
-                            />
-                            <FaChevronRight
-                                onClick={nextImage}
-                                className="absolute right-4 md:right-6 text-2xl md:text-3xl text-blue-600 cursor-pointer hover:text-blue-800 transition duration-300"
-                            />
-                        </div>
-                        <div className="max-w-3xl mx-auto bg-white p-4 md:p-6 mt-4 md:mt-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                            <h3 className="text-xl md:text-2xl font-semibold mb-2 text-blue-600">About {tab}</h3>
-                            <p className="text-sm md:text-lg text-gray-700">
-                                {tab === 'Uniview' &&
-                                    'Uniview offers advanced IP and analog surveillance systems with AI features, delivering top-notch security solutions for modern needs.'}
-                                {tab === 'Hikvision' &&
-                                    'Hikvision provides cutting-edge security solutions with AI-powered IP and analog cameras for enterprises and home applications.'}
-                                {tab === 'Dahua' &&
-                                    'Dahua is known for its AI-enabled IP cameras and reliable analog systems, offering innovative security technologies.'}
-                            </p>
-                        </div>
-                    </TabPanel>
-                ))}
-            </Tabs>
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                activeTab === tab.id
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-blue-600 hover:bg-blue-50'
+              }`}
+            >
+              {tab.name}
+            </button>
+          ))}
         </div>
-    );
-};
 
-export default CCTV;
+        {/* Content */}
+        {tabs.map((tab) => (
+          <div key={tab.id} className={`${activeTab === tab.id ? 'block' : 'hidden'}`}>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              {/* Hero Image */}
+              <div className="relative h-[500px]">
+                {/* Hero Content Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="text-center bg-black bg-opacity-50 p-4 rounded-lg text-white mt-64">
+                    <h2 className="text-4xl font-bold">{tab.title}</h2>
+                    <p className="text-lg mt-4">{tab.About || tab.description}</p>
+                  </div>
+                </div>
+
+                {/* Swiper (Sliding Images) */}
+                <Swiper
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 2000 }}
+                  loop={true}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {images.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <img src={image} alt={`Slide ${index}`} className="w-full h-full object-cover" />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+
+              {/* Description Boxes */}
+              <div className="grid md:grid-cols-2 gap-8 p-8">
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">IP</h3>
+                  <p className="text-gray-600">{tab.description}</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Analog</h3>
+                  <p className="text-gray-600">{tab.analogDescription}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;

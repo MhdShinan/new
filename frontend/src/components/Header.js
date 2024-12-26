@@ -126,11 +126,14 @@ const Header = () => {
                   <span>Blog</span>
                 </Link>
               </li>
-              <li>
-              <Link to="/getstarted">
-            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
-          </Link>      
-                  </li>
+              <li className="flex justify-center mt-4">
+  <Link to="/getstarted">
+    <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">
+      Get Started
+    </button>
+  </Link>
+</li>
+
             </ul>
           </div>
         </div>

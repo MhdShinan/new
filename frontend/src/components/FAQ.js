@@ -77,7 +77,7 @@ const AdvancedFAQ = () => {
                 className={`text-base sm:text-lg md:text-xl px-6 py-3 font-medium rounded-lg transition duration-300 ${
                   activeCategory === category.id
                     ? "text-blue-600 bg-blue-100"
-                    : "text-gray-700 hover:text-blue-500"
+                    : "text-gray-700 hover:text-blue-500 hover:bg-blue-50"
                 }`}
                 onClick={() => setActiveCategory(category.id)}
               >
