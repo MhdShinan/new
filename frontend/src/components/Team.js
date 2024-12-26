@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {FaWhatsapp, FaLinkedin, FaGlobe, FaPlus, FaUser, FaBriefcase, FaTimes, FaFacebook } from 'react-icons/fa'; // React Icons
-import '../styles/Team.css'; // Custom styles for Team
+import { FaWhatsapp, FaLinkedin, FaGlobe, FaPlus, FaUser, FaTimes } from 'react-icons/fa';
+import Marquee from 'react-fast-marquee'; // React Fast Marquee
 import { backEndURL, imageURL } from "../Backendurl";
 
 const Team = () => {
@@ -31,18 +31,12 @@ const Team = () => {
   }, []);
 
   const handleSocialLinksToggle = (teamType, index) => {
-    if (teamType === 'management') {
-      const updatedTeam = [...managementTeam];
-      updatedTeam[index].showSocialLinks = !updatedTeam[index].showSocialLinks;
-      setManagementTeam(updatedTeam);
-    } else if (teamType === 'development') {
-      const updatedTeam = [...developmentTeam];
-      updatedTeam[index].showSocialLinks = !updatedTeam[index].showSocialLinks;
-      setDevelopmentTeam(updatedTeam);
-    }
+    const updatedTeam = [...managementTeam];
+    updatedTeam[index].showSocialLinks = !updatedTeam[index].showSocialLinks;
+    setManagementTeam(updatedTeam);
   };
 
-  const closeSocialLinks = (index) => {
+  const closeSocialLinks = (teamType, index) => {
     const updatedTeam = [...managementTeam];
     updatedTeam[index].showSocialLinks = false;
     setManagementTeam(updatedTeam);
@@ -57,25 +51,22 @@ const Team = () => {
       {/* Management Team Section */}
       <section className="management-team text-center">
         <h2 className="team-header text-4xl font-bold text-white">Meet Our Management Team</h2>
-        <div className="team-members management-team-grid mt-8 flex justify-center">
+        <div className="team-members management-team-grid mt-8 flex justify-center flex-wrap gap-4">
           {managementTeam.map((member, index) => (
-            <div key={member._id} className={`member card relative w-[250px] bg-white p-4 flex flex-col items-center`}>
-              <div className="card-content flex flex-col items-center h-full">
+            <div key={member._id} className="member card relative w-64 bg-white p-4 flex flex-col items-center rounded-lg shadow-md hover:shadow-lg">
+              <div className="card-content flex flex-col items-center">
                 <img
                   src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
                   alt={member.name}
-                  className="avatar mb-4 rounded-full w-32 h-32 object-cover border-4 border-[#005880]"
+                  className="avatar mb-4 rounded-full w-32 h-32 object-cover"
                 />
-                <div className="member-info text-left px-4 w-full">
-                  <div className="name-container mb-4 flex items-center">
+                <div className="member-info text-center w-full">
+                  <div className="name-container mb-4 flex items-center justify-center">
                     <FaUser className="text-xl mr-2 text-[#61dafb]" />
                     <h3 className="name text-xl font-semibold">{member.name}</h3>
                   </div>
                   <div className="position-container mb-4 flex justify-between items-center">
-                    <div className="position flex items-center">
-                      <FaBriefcase className="text-lg mr-2 text-[#7EC8E3]" />
-                      <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
-                    </div>
+                    <p className="position text-lg font-medium text-[#7EC8E3]">{member.position}</p>
                     <button
                       className="plus-icon text-white bg-[#005880] p-2 rounded-full"
                       onClick={() => handleSocialLinksToggle('management', index)}
@@ -85,21 +76,20 @@ const Team = () => {
                   </div>
                 </div>
                 {member.showSocialLinks && (
-                  <div className="social-links-bar absolute top-0 left-0 w-full h-full bg-[#003e63] bg-opacity-90 flex flex-col justify-center items-center p-4 rounded-lg space-y-4">
+                  <div
+                    className="social-links-bar absolute top-0 left-0 w-full h-full bg-[#003e63] bg-opacity-90 flex flex-col justify-center items-center p-4 rounded-lg space-y-4 transition-all duration-500 transform translate-y-0"
+                  >
                     <button
                       className="close-btn absolute top-4 right-4 text-white text-2xl"
-                      onClick={() => closeSocialLinks(index)}
+                      onClick={() => closeSocialLinks('management', index)}
                     >
                       <FaTimes />
                     </button>
-                    <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer">
-                      <FaFacebook className="social-icon text-2xl text-[#61dafb]" />
+                    <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
+                      <FaLinkedin className="social-icon text-2xl text-[#0077b5]" />
                     </a>
                     <a href={member.website} target="_blank" rel="noopener noreferrer">
                       <FaGlobe className="social-icon text-2xl text-[#4CAF50]" />
-                    </a>
-                    <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
-                      <FaLinkedin className="social-icon text-2xl text-[#0077b5]" />
                     </a>
                     <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
                       <FaWhatsapp className="social-icon text-2xl text-[#25d366]" />
@@ -115,28 +105,45 @@ const Team = () => {
       {/* Development Team Section */}
       <section className="dev-team mt-16">
         <h2 className="team-header text-4xl font-bold text-center text-white">Meet Our Development Team</h2>
-        <div className="team-members development-team-grid mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {developmentTeam.map((member, index) => (
-            <div key={member._id} className="member card bg-white p-4 flex flex-col items-center">
-              <div className="card-content flex flex-col items-center h-full">
-                <img
-                  src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
-                  alt={member.name}
-                  className="avatar mb-4 rounded-full w-32 h-32 object-cover border-4 border-[#005880]"
-                />
-                <div className="member-info text-left px-4 w-full">
-                  <div className="name-container mb-4 flex items-center">
-                    <FaUser className="text-xl mr-2 text-[#61dafb]" />
-                    <h3 className="name text-xl font-semibold">{member.name}</h3>
-                  </div>
-                  <div className="position-container mb-4 flex items-center">
-                  <p className="position text-lg font-medium text-[#005880]">{member.position}</p>
-                  </div>
+        <Marquee pauseOnHover gradient={false} speed={50} className="mt-8">
+          <div className="team-members development-team-grid flex gap-8">
+            {developmentTeam.map((member, index) => (
+              <div key={member._id} className={`member card relative w-64 bg-white p-4 flex flex-col items-center rounded-lg shadow-md hover:shadow-lg ${index === 0 ? 'ml-8' : ''} ${index === developmentTeam.length - 1 ? 'mr-8' : ''}`}>
+                <div className="circular-number absolute -top-4 -left-4 w-12 h-12 bg-[#005880] text-white text-sm flex items-center justify-center rounded-full" style={{ fontSize: '1rem' }}>
+                  {index + 1}
                 </div>
+                <div className="profile-circle w-32 h-32 rounded-full flex items-center justify-center mb-4">
+                  <img
+                    src={member.image ? `${imageURL}${member.image}` : 'images/default-avatar.png'}
+                    alt={member.name}
+                    className="rounded-full w-28 h-28 object-cover"
+                  />
+                </div>
+                <div className="member-info text-center w-full">
+                  <div className="name-container mb-2 flex items-center justify-center space-x-2">
+                    <FaUser className="text-xl text-[#005880]" />
+                    <h3 className="name text-lg font-semibold">{member.name}</h3>
+                  </div>
+                  <p className="position text-sm font-medium text-[#005880]">{member.position}</p>
+                </div>
+                {/* Show social media links for development team */}
+                {member.teamType === "development" && member.showSocialLinks && (
+                  <div className="social-links">
+                    <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
+                      <FaLinkedin className="text-2xl text-[#0077b5]" />
+                    </a>
+                    <a href={member.website} target="_blank" rel="noopener noreferrer">
+                      <FaGlobe className="text-2xl text-[#4CAF50]" />
+                    </a>
+                    <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                      <FaWhatsapp className="text-2xl text-[#25d366]" />
+                    </a>
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Marquee>
       </section>
     </section>
   );

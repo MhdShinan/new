@@ -36,14 +36,14 @@ function CareerJoinUs() {
           >
             <Link to="/Carears" className="flex items-center">
               <span className="text-lg font-medium">Access Job Opportunities</span>
-              <motion.div
+              {/* <motion.div
                 className="ml-3"
                 variants={iconVariants}
                 initial="initial"
                 whileHover="hover"
               >
                 <ArrowRight className="h-5 w-5" />
-              </motion.div>
+              </motion.div> */}
             </Link>
 
             <motion.div

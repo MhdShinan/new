@@ -6,7 +6,7 @@ import { imageURL } from "../Backendurl";
 
 function SatisfiedClients() {
   const [sectionOneClients, setSectionOneClients] = useState([]);
-  const [sectionTwoClients, setSectionTwoClients] = useState([]);
+  // const [sectionTwoClients, setSectionTwoClients] = useState([]);
 
   useEffect(() => {
     fetch(`${backEndURL}/api/satisfiedclients/1`)
@@ -15,12 +15,12 @@ function SatisfiedClients() {
       .catch((error) => console.error('Error fetching Section 1 clients:', error));
   }, []);
   
-  useEffect(() => {
-    fetch(`${backEndURL}/api/satisfiedclients/2`)
-      .then((response) => response.json())
-      .then((data) => setSectionTwoClients(data))
-      .catch((error) => console.error('Error fetching Section 2 clients:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${backEndURL}/api/satisfiedclients/2`)
+  //     .then((response) => response.json())
+  //     .then((data) => setSectionTwoClients(data))
+  //     .catch((error) => console.error('Error fetching Section 2 clients:', error));
+  // }, []);
 
   return (
     <section className="bg-primary py-16 px-8 lg:px-24">
@@ -39,7 +39,7 @@ function SatisfiedClients() {
   ))}
 </Marquee>
 
-      <Marquee gradient={false} speed={20} direction="left">
+      {/* <Marquee gradient={false} speed={20} direction="left">
         {sectionTwoClients.map((client, index) => (
           <img
             key={index}
@@ -49,7 +49,7 @@ function SatisfiedClients() {
             style={{ width: '100px', height: '100px' }}
           />
         ))}
-      </Marquee>
+      </Marquee> */}
     </section>
   );
 }
