@@ -4,7 +4,7 @@ import SatisfiedClients from '../SatisfiedClients';
 import FAQ from '../FAQ';
 import ContactUs from '../ContactUs';
 import Team from '../Team';
-
+import NetworkingSolutions from '../NetworkingSolutions'; // Import the NetworkingSolutions component
 function Networking() {
   const data = [
     {
@@ -91,37 +91,13 @@ function Networking() {
     <div className="service-page bg-gray-50 p-8">
           <div className="service-page">
       <NetHero /> 
-      <h1 className="text-center text-4xl font-bold text-primary mb-10">
-        Networking Solutions
-      </h1>
-      {data.map((brand, index) => (
-        <div key={index} className="brand-section mb-16">
-          <h2 className="text-3xl font-semibold text-primary text-center mb-6">{brand.brand}</h2>
-          <div className="brand-image mb-6 text-center">
-            <img
-              src={brand.imageUrl}
-              alt={brand.brand}
-              className="inline-block w-full max-w-[300px] h-64 object-cover rounded-lg shadow-lg"
-            />
-          </div>
-          <div className="features grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {brand.features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="feature-card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <h3 className="text-xl font-semibold text-primary mb-4 text-center">{feature.title}</h3>
-                <p className="text-gray-700 text-center">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+
+    <NetworkingSolutions /> 
     <SatisfiedClients/>
     <FAQ/>
     <Team/>
     <ContactUs/>
+    </div>
     </div>
   );
 }
