@@ -106,7 +106,7 @@ const Team = () => {
      {/* Development Team Section */}
 <section className="dev-team mt-16">
   <h2 className="team-header text-4xl font-bold text-center text-white">
-    Meet Our Development Team
+    Meet Our Team
   </h2>
   <Marquee pauseOnClick gradient={false} speed={50} className="mt-8">
     <div className="team-members flex gap-8">
@@ -131,7 +131,7 @@ const Team = () => {
           <div className="member-info text-center w-full">
             <h3 className="name text-xl font-bold text-[#005880] mb-1">{member.name}</h3>
             <p className="position text-sm font-medium text-gray-600">{member.position}</p>
-            <hr className="w-12 border-t-2 border-[#005880] mt-2 mx-auto" />
+           
           </div>
 
           {/* Social Media Links */}

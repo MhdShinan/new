@@ -5,7 +5,7 @@ import SatisfiedClients from '../SatisfiedClients'
 import CCTV from '../CCTV';
 import Contact from '../ContactUs'
 import FAQ from '../FAQ';
-
+import Products from '../Products';
 function CctvInstallation() {
   return (
 
@@ -13,6 +13,7 @@ function CctvInstallation() {
 
         <CctvHero />
         <CCTV />
+        <Products />
         <SatisfiedClients />
         <FAQ />
 

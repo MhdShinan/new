@@ -1,38 +1,45 @@
 .client-item {
-    position: relative;
-  }
-  
-  .client-image {
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    border-radius: 50%;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .client-item:hover .overlay {
-    opacity: 1;
-  }
-  
-  .client-item:hover .client-image {
-    opacity: 0.7;
-  }
-  
-  .company-name {
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
+  position: relative;
+  display: inline-block;
+  margin: 0 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.client-item:hover {
+  transform: scale(1.1);
+}
+
+.client-image {
+  width: auto;
+  height: 100px; /* Keep all logos a consistent height */
+  object-fit: contain; /* Ensures the image fits without cropping */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.client-item:hover .overlay {
+  opacity: 1;
+}
+
+.company-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 8px;
+  text-transform: capitalize;
+  line-height: 1.2;
+}

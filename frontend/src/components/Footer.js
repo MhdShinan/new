@@ -6,7 +6,7 @@ import {
   FaGithub,
   FaInstagram,
   FaTwitter,
-  FaTwitch,
+  FaLinkedin,
 } from "react-icons/fa";
 
 
@@ -33,7 +33,7 @@ const items = [
   { name: "Facebook", icon: FaFacebook, link: "https://www.facebook.com/" },
   { name: "Instagram", icon: FaInstagram, link: "https://www.instagram.com/" },
   { name: "Twitter", icon: FaTwitter, link: "https://twitter.com/" },
-  { name: "Twitch", icon: FaTwitch, link: "https://www.twitch.tv/" },
+  { name: "Linkedin", icon: FaLinkedin, link: "https://www.Linkedin.tv/" },
   { name: "Github", icon: FaGithub, link: "https://github.com/" },
 ];
 

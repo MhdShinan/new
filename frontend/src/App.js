@@ -27,7 +27,7 @@ import Blog from './components/Blog';
 import Carears from './components/Carears';
 import Login from './components/Login';
 import CareerJoinUs from './components/Careerjoinus';
-
+import FloatingButtons from './components/Floating-buttons';
 
 function App() {
   return (
@@ -49,6 +49,7 @@ function App() {
               <CareerJoinUs/>
               <ContactUs/>
               <Team/>
+
             </>
           } />
           
@@ -67,6 +68,7 @@ function App() {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/Carears' element={<Carears/>}/>
         </Routes>
+        <FloatingButtons/>
         <Footer/> 
       </div>
     </Router>
