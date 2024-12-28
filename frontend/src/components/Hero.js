@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket } from '@fortawesome/free-solid-svg-icons';
 
 // Import images
 import App from '../assets/images/app-dev.png';
@@ -11,7 +9,6 @@ import Pos from '../assets/images/pos.png';
 import Background1 from '../assets/images/B1.png';
 import Background2 from '../assets/images/B2.png';
 
-
 const Hero = () => {
   const [selectedService, setSelectedService] = useState(null);
 
@@ -19,7 +16,6 @@ const Hero = () => {
     { title: 'Mobile Development', image: App },
     { title: 'Web Development', image: Web },
     { title: 'POS Solutions', image: Pos },
-
   ];
 
   const handleServiceClick = (index) => {
@@ -27,7 +23,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-r from-blue-50 to-blue-100">
       {/* Animated Background */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -47,15 +43,13 @@ const Hero = () => {
       </motion.div>
 
       {/* Content Container */}
-      <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+      <div className="relative z-10 container mx-auto px-8 lg:px-16 h-screen flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side */}
-          <div className="text-white space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#005880] flex items-center">
-              <FontAwesomeIcon icon={faRocket} className="mr-3" /> Cutting-Edge
-            </h1>
+          <div className="text-gray-800 space-y-6 lg:pl-10">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#005880]">Cutting-Edge Solutions</h1>
             <div
-              className="text-3xl md:text-4xl font-semibold text-[#005880]"
+              className="text-2xl md:text-3xl font-semibold text-[#005880]"
               style={{ fontFamily: 'sans-serif' }}
             >
               <Typewriter
@@ -66,36 +60,28 @@ const Hero = () => {
                 }}
               />
             </div>
-            <div className="flex items-center gap-2 text-2xl md:text-3xl text-[#005880]">
+            <div className="flex items-center gap-2 text-xl md:text-2xl text-[#005880]">
               <span>in</span>
               <div className="relative">
                 <span className="font-bold">Sri Lanka</span>
               </div>
             </div>
-            <p className="text-lg md:text-xl text-gray-600 max-w-xl">
+            <p className="text-lg md:text-xl text-gray-700 max-w-xl">
               Enhance your online presence with our professional services, offering
               budget-friendly custom-made apps, responsive web designs, and POS
               systems designed to meet your business requirements.
             </p>
             <motion.button
-              className="bg-[#005880] text-white px-8 py-3 rounded-full font-semibold 
-                       transition-all duration-300 transform hover:scale-105 relative 
-                       overflow-hidden group"
+              className="bg-[#005880] text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">Get Started</span>
-              <motion.div
-                className="absolute inset-0 bg-[#004060]"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
+              Get Started
             </motion.button>
           </div>
 
           {/* Right Side - Floating Images */}
-          <div className="relative h-[500px] hidden md:block">
+          <div className="relative hidden md:block h-[500px]">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -121,6 +107,35 @@ const Hero = () => {
                 }}
                 whileHover={{ scale: 1.05, zIndex: 10 }}
                 onClick={() => handleServiceClick(index)}
+              >
+                <div className="relative w-full h-full group">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover rounded-2xl transition-all duration-300 group-hover:blur-none blur-sm"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-0 transition-all duration-300" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile View Images */}
+          <div className="relative flex flex-wrap justify-center gap-6 md:hidden">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                className={`w-40 h-40 rounded-2xl overflow-hidden cursor-pointer`}
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.3,
+                  },
+                }}
               >
                 <div className="relative w-full h-full group">
                   <img

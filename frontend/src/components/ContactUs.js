@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import Swal from 'sweetalert2';
 import 'tailwindcss/tailwind.css';
 import { backEndURL } from "../Backendurl";
-
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +14,16 @@ const ContactUs = () => {
     message: '',
   });
   const [showMap, setShowMap] = useState(false); // Map visibility state
+  const [isMobile, setIsMobile] = useState(false); // Device type check
+
+  useEffect(() => {
+    // Check if the device is mobile (screen width < 768px)
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +66,7 @@ const ContactUs = () => {
   };
 
   const handleAddressClick = () => {
-    setShowMap((prevShowMap) => !prevShowMap); 
+    setShowMap((prevShowMap) => !prevShowMap);
   };
 
   return (
@@ -82,8 +91,8 @@ const ContactUs = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center p-4 bg-gray-100 rounded-lg shadow-md cursor-pointer hover:bg-blue-500 hover:text-white hover:shadow-lg transition-all"
-              title="Double-click to toggle map"
-              onDoubleClick={handleAddressClick} // Double-click toggles map
+              title="Click to toggle map"
+              onClick={handleAddressClick} // Use onClick for both mobile and desktop
             >
               <div className="w-16 h-16 flex items-center justify-center bg-[#005880] text-white rounded-full">
                 <i className="fas fa-map-marker-alt text-2xl"></i>

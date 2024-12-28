@@ -10,7 +10,7 @@ const TeamManagement = () => {
   const [position, setPosition] = useState('');
   const [teamType, setTeamType] = useState('development');
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null); // Image preview state
+  const [imagePreview, setImagePreview] = useState(null);
   const [editId, setEditId] = useState(null);
   
   const [whatsapp, setWhatsapp] = useState('');
@@ -20,7 +20,7 @@ const TeamManagement = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Show 3 cards per page
+  const itemsPerPage = 3;
 
   const fileInputRef = useRef(null); // Ref for file input
 
@@ -70,7 +70,7 @@ const TeamManagement = () => {
           icon: 'success',
           confirmButtonText: 'OK',
         }).then(() => {
-          resetForm(); // Reset form here
+          resetForm();
           fetchTeamMembers();
         });
       } else {
@@ -81,7 +81,7 @@ const TeamManagement = () => {
           icon: 'success',
           confirmButtonText: 'OK',
         }).then(() => {
-          resetForm(); // Reset form here
+          resetForm();
           fetchTeamMembers();
         });
       }
@@ -152,40 +152,38 @@ const TeamManagement = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">
-        {editId ? 'Edit Team Member' : 'Add Team Member'}
-      </h1>
+      <h1 className="text-2xl font-bold mb-4">{editId ? 'Edit Team Member' : 'Add Team Member'}</h1>
       <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full"
         />
         <input
           type="text"
           placeholder="Position"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full"
         />
         <select
           value={teamType}
           onChange={(e) => setTeamType(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full"
         >
           <option value="management">Management</option>
           <option value="development">Development</option>
         </select>
         <input
-          ref={fileInputRef} // Attach ref to the input
+          ref={fileInputRef}
           type="file"
           onChange={(e) => setImage(e.target.files[0])}
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full"
         />
         {imagePreview && (
-          <img src={imagePreview} alt="Preview" className="w-full h-32 object-cover rounded" />
+          <img src={imagePreview} alt="Preview" className="w-full h-32 object-cover rounded mb-4" />
         )}
         {teamType === 'management' && (
           <>
@@ -194,25 +192,25 @@ const TeamManagement = () => {
               placeholder="WhatsApp Link"
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)}
-              className="border p-2 rounded"
+              className="border p-2 rounded w-full"
             />
             <input
               type="text"
               placeholder="LinkedIn Link"
               value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
-              className="border p-2 rounded"
+              className="border p-2 rounded w-full"
             />
             <input
               type="text"
               placeholder="Website Link"
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
-              className="border p-2 rounded"
+              className="border p-2 rounded w-full"
             />
           </>
         )}
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded w-full">
           {editId ? 'Update' : 'Add'} Team Member
         </button>
       </form>
@@ -237,7 +235,7 @@ const TeamManagement = () => {
             <option value="development">Development</option>
           </select>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {displayedMembers.map((member) => (
             <div key={member._id} className="border p-4 rounded shadow">
               <img

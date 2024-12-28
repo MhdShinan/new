@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -11,7 +11,7 @@ import CctvInstallation from './components/pages/CctvInstallation';
 import Networking from './components/pages/Networking';
 import './styles/App.css';
 import Testimonials from './components/Testimonials';
-import SatisfiedClients from './components/SatisfiedClients'
+import SatisfiedClients from './components/SatisfiedClients';
 import FAQ from './components/FAQ';
 import ContactUs from './components/ContactUs';
 import Team from './components/Team';
@@ -30,49 +30,61 @@ import CareerJoinUs from './components/Careerjoinus';
 import FloatingButtons from './components/Floating-buttons';
 
 function App() {
+  const location = useLocation();
+
+  // Check if the current path is '/Adminapp'
+  const isAdminRoute = location.pathname === '/Adminapp';
+
   return (
-    <Router>
-      <div className="app">
-      <Header />
-        <Routes>
-          <Route path="/" element={
-            <>
+    <div className="app">
+      {/* Conditionally render Header */}
+      {!isAdminRoute && <Header />}
+      
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <Services />
+            <Stats />
+            <OurProcess />
+            <Testimonials />
+            <TechnologyWeUse />
+            <SatisfiedClients />
+            <FAQ />
+            <CareerJoinUs />
+            <ContactUs />
+            <Team />
+          </>
+        } />
 
-              <Hero />
-              <Services />
-              <Stats/>
-              <OurProcess />
-              <Testimonials />
-              <TechnologyWeUse />
-              <SatisfiedClients/>
-              <FAQ/>
-              <CareerJoinUs/>
-              <ContactUs/>
-              <Team/>
-
-            </>
-          } />
-          
-          <Route path="/services/app-development" element={<AppDevelopment />} />
-          <Route path="/services/web-development" element={<WebDevelopment />} />
-          <Route path="/services/pos-system" element={<PosSystem />} />
-          <Route path="/services/cctv-installation" element={<CctvInstallation />} />
-          <Route path="/services/networking" element={<Networking />} />
-          <Route path="/services/getstarted" element={<Getstarted/>}/>
-          <Route path="/Portfolio" element={<Portfolio/>}/>
-          <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards/>}/>
-          <Route path='/Getstarted' element={<Getstarted/>}/>
-          <Route path="/TestimonialForm" element={<TestimonialForm/>}/>
-          <Route path='/Adminapp' element={<Adminapp/>}/>
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/blog' element={<Blog/>}/>
-          <Route path='/Carears' element={<Carears/>}/>
-        </Routes>
-        <FloatingButtons/>
-        <Footer/> 
-      </div>
-    </Router>
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/web-development" element={<WebDevelopment />} />
+        <Route path="/services/pos-system" element={<PosSystem />} />
+        <Route path="/services/cctv-installation" element={<CctvInstallation />} />
+        <Route path="/services/networking" element={<Networking />} />
+        <Route path="/services/getstarted" element={<Getstarted />} />
+        <Route path="/Portfolio" element={<Portfolio />} />
+        <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards />} />
+        <Route path='/Getstarted' element={<Getstarted />} />
+        <Route path="/TestimonialForm" element={<TestimonialForm />} />
+        <Route path='/Adminapp' element={<Adminapp />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/Carears' element={<Carears />} />
+      </Routes>
+      
+      {/* Conditionally render Footer */}
+      {!isAdminRoute && <Footer />}
+      
+      <FloatingButtons />
+    </div>
   );
 }
 
-export default App;
+export default function Root() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}

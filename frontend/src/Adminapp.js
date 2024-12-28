@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { FaHome, FaBars, FaTachometerAlt, FaStar, FaUsers, FaDollarSign, FaBlog, FaPhone, FaRocket } from "react-icons/fa";
+import {
+  FaHome,
+  FaBars,
+  FaTachometerAlt,
+  FaStar,
+  FaUsers,
+  FaDollarSign,
+  FaBlog,
+  FaPhone,
+  FaRocket,
+  FaArrowLeft,
+  FaTimes,
+} from "react-icons/fa";
 import TestimonialsManager from "./components/admin/TestimonialForm";
 import Carears from "./components/Carears";
 import TeamManagement from "./components/admin/TeamManagement";
 
 const Adminapp = () => {
   const [activePage, setActivePage] = useState("dashboard");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [compactSidebar, setCompactSidebar] = useState(false);
 
   const renderPage = () => {
     switch (activePage) {
@@ -17,7 +30,7 @@ const Adminapp = () => {
       case "satisfiedClients":
         return <h1 className="text-center text-2xl mt-10">Welcome to Satisfied Clients</h1>;
       case "team":
-        return  <TeamManagement />;
+        return <TeamManagement />;
       case "pricing":
         return <h1 className="text-center text-2xl mt-10">Welcome to Pricing</h1>;
       case "blog":
@@ -39,133 +52,65 @@ const Adminapp = () => {
       <div
         className={`fixed inset-y-0 left-0 transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-blue-800 text-white w-64 transition-transform duration-200 lg:translate-x-0`}
+        } ${compactSidebar ? "w-20" : "w-64"} bg-[#005880] text-white transition-all duration-300 lg:translate-x-0`}
       >
-        <div className="p-4 text-xl font-bold border-b border-blue-700">Navigation</div>
-        <ul className="mt-4">
-          <li
-            onClick={() => {
-              setActivePage("dashboard");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "dashboard" ? "bg-blue-700" : ""
-            }`}
+        <div className="p-4 flex items-center justify-between border-b border-blue-700">
+          <span className={`text-xl font-bold ${compactSidebar ? "hidden" : "block"}`}>Navigation</span>
+          <button
+            className="text-white focus:outline-none"
+            onClick={() => setCompactSidebar(!compactSidebar)}
           >
-            <FaTachometerAlt className="inline-block mr-2" />
-            Dashboard
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("testimonials");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "testimonials" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaStar className="inline-block mr-2" />
-            Testimonials
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("satisfiedClients");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "satisfiedClients" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaUsers className="inline-block mr-2" />
-            Satisfied Clients
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("team");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "team" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaUsers className="inline-block mr-2" />
-            Team
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("pricing");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "pricing" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaDollarSign className="inline-block mr-2" />
-            Pricing
-          </li>
-
-          <li
-            onClick={() => {
-              setActivePage("blog");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "blog" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaBlog className="inline-block mr-2" />
-            Blog
-          </li>
-
-          <li
-            onClick={() => {
-              setActivePage("contactUs");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "contactUs" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaPhone className="inline-block mr-2" />
-            Contact Us
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("getStarted");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "getStarted" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaRocket className="inline-block mr-2" />
-            Get Started
-          </li>
-          <li
-            onClick={() => {
-              setActivePage("Carears");
-              setSidebarOpen(false);
-            }}
-            className={`p-3 cursor-pointer hover:bg-blue-700 ${
-              activePage === "Carears" ? "bg-blue-700" : ""
-            }`}
-          >
-            <FaHome className="inline-block mr-2" />
-            Home
-          </li>
+            {compactSidebar ? <FaArrowLeft /> : <FaTimes />}
+          </button>
+        </div>
+        <ul className="mt-4 space-y-1">
+          {/* Sidebar Menu Items */}
+          {[
+            { page: "dashboard", icon: FaTachometerAlt, label: "Dashboard" },
+            { page: "testimonials", icon: FaStar, label: "Testimonials" },
+            { page: "satisfiedClients", icon: FaUsers, label: "Satisfied Clients" },
+            { page: "team", icon: FaUsers, label: "Team" },
+            { page: "pricing", icon: FaDollarSign, label: "Pricing" },
+            { page: "blog", icon: FaBlog, label: "Blog" },
+            { page: "contactUs", icon: FaPhone, label: "Contact Us" },
+            { page: "getStarted", icon: FaRocket, label: "Get Started" },
+            { page: "home", icon: FaHome, label: "Home" },
+          ].map(({ page, icon: Icon, label }) => (
+            <li
+              key={page}
+              onClick={() => {
+                setActivePage(page);
+                if (!compactSidebar) setSidebarOpen(false);
+              }}
+              className={`p-3 cursor-pointer hover:bg-blue-700 ${
+                activePage === page ? "bg-blue-700" : ""
+              } flex items-center`}
+            >
+              <Icon className="inline-block mr-2" />
+              <span className={compactSidebar ? "hidden" : "block"}>{label}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
-      {/* Dashboard Icon on the Right, Larger and Centered */}
+      {/* Sidebar Toggle Button (Hidden on mobile) */}
       <button
-        className="lg:hidden fixed top-1/2 right-4 transform -translate-y-1/2 bg-[#005880] text-white p-4 rounded-full focus:outline-none text-3xl"
+        className="lg:hidden fixed top-4 left-4 bg-[#005880] text-white p-2 rounded-md focus:outline-none"
         onClick={() => setSidebarOpen(!sidebarOpen)}
+        style={{ display: sidebarOpen ? 'none' : 'block' }} // Hide on mobile when sidebar is open
       >
-        <FaTachometerAlt />
+        <FaBars />
       </button>
 
       {/* Main Content */}
-      <div className="flex-grow p-4 bg-gray-100 ml-0 lg:ml-64">{renderPage()}</div>
+      <div
+        className={`flex-grow bg-gray-100 transition-all duration-300 ${
+          sidebarOpen && !compactSidebar ? "ml-64" : compactSidebar ? "ml-20" : "ml-0"
+        } p-4`}
+        style={{ marginTop: "60px" }} 
+      >
+        {renderPage()}
+      </div>
     </div>
   );
 };

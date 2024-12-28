@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaList, FaTag, FaClipboard, FaRegPaperPlane, FaChevronDown, FaTimes, FaMobileAlt, FaDesktop, FaStore, FaCamera, FaNetworkWired, FaHome } from "react-icons/fa"; // Imported icons
+import { FaBars, FaList, FaTag, FaClipboard, FaRegPaperPlane, FaChevronDown, FaTimes, FaMobileAlt, FaDesktop, FaStore, FaCamera, FaNetworkWired, FaHome, FaSun, FaMoon } from "react-icons/fa";
 import logo from "../assets/images/brand.jpg";
 
-const Dropdown = ({ title, icon, links }) => {
+const Dropdown = ({ title, icon, links, onSelectLink }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleMouseEnter = () => setIsOpen(true);
+  const handleMouseLeave = () => setIsOpen(false);
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      ref={dropdownRef}
+    >
       <button
-        onClick={toggleDropdown}
         className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors"
+        aria-haspopup="true"
       >
         {icon}
         <span>{title}</span>
@@ -24,7 +43,10 @@ const Dropdown = ({ title, icon, links }) => {
               <Link
                 to={link.to}
                 className="flex items-center px-6 py-3 text-gray-700 hover:text-primary"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  onSelectLink();
+                  setIsOpen(false);
+                }}
               >
                 {link.icon}
                 {link.label}
@@ -39,8 +61,10 @@ const Dropdown = ({ title, icon, links }) => {
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const servicesLinks = [
     { to: "/services/app-development", icon: <FaMobileAlt className="mr-2 text-primary" />, label: "App Development" },
@@ -50,24 +74,43 @@ const Header = () => {
     { to: "/services/networking", icon: <FaNetworkWired className="mr-2 text-primary" />, label: "Networking" },
   ];
 
+  // Close the sidebar when a link is clicked
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   return (
-    <header>
+    <header className={`transition-colors ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-700'}`}>
       {/* Desktop Header */}
-      <nav className="hidden lg:flex items-center justify-between py-6 px-8 lg:px-24 border-b border-gray-100 bg-white shadow-md">
+      <nav className="hidden lg:flex items-center justify-between py-6 px-8 lg:px-24 border-b border-gray-100 shadow-md">
         <div className="flex items-center">
           <Link to="/" className="logo-container">
             <img src={logo} alt="Company Logo" className="w-20 h-20" />
           </Link>
         </div>
         <div className="flex items-center space-x-8">
-          <Dropdown title="Services" icon={<FaList classN78ame="text-primary" />} links={servicesLinks} />
-          <Link to="/" className="text-gray-700 text-sm font-medium hover:text-primary">Home</Link>
-          <Link to="/ServiceBarWithDetailedCards" className="text-gray-700 text-sm font-medium hover:text-primary">Pricing</Link>
-          <Link to="/Portfolio" className="text-gray-700 text-sm font-medium hover:text-primary">Portfolio</Link>
-          <Link to="/Blog" className="text-gray-700 text-sm font-medium hover:text-primary">Blog</Link>
+          <Dropdown
+            title="Services"
+            icon={<FaList className="text-primary" />}
+            links={servicesLinks}
+            onSelectLink={closeSidebar} // Close the sidebar when a link is selected
+          />
+          <Link to="/" className="text-sm font-medium hover:text-primary">Home</Link>
+          <Link to="/ServiceBarWithDetailedCards" className="text-sm font-medium hover:text-primary">Pricing</Link>
+          <Link to="/Portfolio" className="text-sm font-medium hover:text-primary">Portfolio</Link>
+          <Link to="/Blog" className="text-sm font-medium hover:text-primary">Blog</Link>
           <Link to="/getstarted">
-            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">Get Started</button>
+            <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">
+              Get Started
+            </button>
           </Link>
+
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 bg-transparent rounded-full hover:bg-primary focus:outline-none transition-colors"
+            aria-label="Toggle Dark Mode"
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </button>
         </div>
       </nav>
 
@@ -92,7 +135,7 @@ const Header = () => {
 
             {/* Logo Section */}
             <div className="flex items-center justify-center bg-primary py-8">
-              <Link to="/" onClick={() => setIsSidebarOpen(false)}>
+              <Link to="/" onClick={closeSidebar}>
                 <img src={logo} alt="Company Logo" className="w-24 h-24 rounded-full" />
               </Link>
             </div>
@@ -100,40 +143,44 @@ const Header = () => {
             {/* Menu Items */}
             <ul className="flex flex-col space-y-4 mt-6">
               <li>
-                <Link to="/" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/" className="flex items-center space-x-4 px-6 py-3 hover:text-primary transition-colors" onClick={closeSidebar}>
                   <FaHome className="text-primary" />
                   <span>Home</span>
                 </Link>
               </li>
               <li>
-                <Dropdown title="Services" icon={<FaList className="text-primary" />} links={servicesLinks} />
+                <Dropdown
+                  title="Services"
+                  icon={<FaList className="text-primary" />}
+                  links={servicesLinks}
+                  onSelectLink={closeSidebar} // Close the sidebar when a link is selected
+                />
               </li>
               <li>
-                <Link to="/ServiceBarWithDetailedCards" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/ServiceBarWithDetailedCards" className="flex items-center space-x-4 px-6 py-3 hover:text-primary transition-colors" onClick={closeSidebar}>
                   <FaTag className="text-primary" />
                   <span>Pricing</span>
                 </Link>
               </li>
               <li>
-                <Link to="/Portfolio" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/Portfolio" className="flex items-center space-x-4 px-6 py-3 hover:text-primary transition-colors" onClick={closeSidebar}>
                   <FaClipboard className="text-primary" />
                   <span>Portfolio</span>
                 </Link>
               </li>
               <li>
-                <Link to="/Blog" className="flex items-center space-x-4 px-6 py-3 text-gray-700 hover:text-primary transition-colors" onClick={() => setIsSidebarOpen(false)}>
+                <Link to="/Blog" className="flex items-center space-x-4 px-6 py-3 hover:text-primary transition-colors" onClick={closeSidebar}>
                   <FaRegPaperPlane className="text-primary" />
                   <span>Blog</span>
                 </Link>
               </li>
               <li className="flex justify-center mt-4">
-  <Link to="/getstarted">
-    <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">
-      Get Started
-    </button>
-  </Link>
-</li>
-
+                <Link to="/getstarted">
+                  <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">
+                    Get Started
+                  </button>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
