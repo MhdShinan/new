@@ -11,65 +11,118 @@ function Services() {
   return (
     <div className="services-section">
       <div className="services-grid">
-      <Link to="/services/app-development" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-      <img
-        src={App}
-         alt="App Development"
-         className="imageApp"
-        style={{
-         width: '100%', // Make the image fit the width of the card
-          height: '80%', // Maintain aspect ratio
-           objectFit: 'cover', // Ensure the image fills the container proportionally
-            borderRadius: '8px', // Optional: Add rounded corners
+        <Link
+          to="/services/app-development"
+          className="service-card"
+          style={{
+            display: 'block',
+            textAlign: 'center',
+            height: '300px', // Set a fixed height for the card
           }}
-           />
-         <h3>App Development</h3>
+        >
+          <img
+            src={App}
+            alt="App Development"
+            className="imageApp"
+            style={{
+              width: '100%',
+              height: '80%', // Adjust image height to fit the card proportionally
+              objectFit: 'cover',
+              borderRadius: '8px',
+            }}
+          />
+          <h3>App Development</h3>
         </Link>
 
-        
-        <Link to="/services/web-development" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Web} alt="Web Development" className="imageApp"
+        <Link
+          to="/services/web-development"
+          className="service-card"
           style={{
-            width: '100%', 
-             height: '80%', 
+            display: 'block',
+            textAlign: 'center',
+            height: '300px', // Set a fixed height for the card
+          }}
+        >
+          <img
+            src={Web}
+            alt="Web Development"
+            className="imageApp"
+            style={{
+              width: '100%',
+              height: '80%',
               objectFit: 'cover',
-               borderRadius: '8px', 
-             }}
+              borderRadius: '8px',
+            }}
           />
-          
           <h3>Web Development</h3>
         </Link>
-        
-        <Link to="/services/pos-system" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Pos} alt="POS System" className="imageApp"
+
+        <Link
+          to="/services/pos-system"
+          className="service-card"
           style={{
-            width: '100%', 
-             height: '80%', 
+            display: 'block',
+            textAlign: 'center',
+            height: '300px', // Set a fixed height for the card
+          }}
+        >
+          <img
+            src={Pos}
+            alt="POS System"
+            className="imageApp"
+            style={{
+              width: '100%',
+              height: '80%',
               objectFit: 'cover',
-               borderRadius: '8px', 
-             }} />
-          <h3>Pos System Development</h3>
+              borderRadius: '8px',
+            }}
+          />
+          <h3>POS System Development</h3>
         </Link>
-        
-        <Link to="/services/cctv-installation" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Cctv} alt="CCTV Installation"  className="imageApp"
+
+        <Link
+          to="/services/cctv-installation"
+          className="service-card"
           style={{
-            width: '100%', 
-             height: '80%', 
+            display: 'block',
+            textAlign: 'center',
+            height: '300px', // Set a fixed height for the card
+          }}
+        >
+          <img
+            src={Cctv}
+            alt="CCTV Installation"
+            className="imageApp"
+            style={{
+              width: '100%',
+              height: '80%',
               objectFit: 'cover',
-               borderRadius: '8px', 
-             }}/>
+              borderRadius: '8px',
+            }}
+          />
           <h3>CCTV Installation</h3>
         </Link>
-        
-        <Link to="/services/networking" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Net} alt="Networking" className="imageApp"
+
+        <Link
+          to="/services/networking"
+          className="service-card"
           style={{
-            width: '100%', 
-             height: '80%', 
+            display: 'block',
+            textAlign: 'center',
+            height: '300px', // Set a fixed height for the card
+          }}
+        >
+          <img
+            src={Net}
+            alt="Networking"
+            className="imageApp"
+            style={{
+              width: '100%',
+              height: '80%',
               objectFit: 'cover',
-               borderRadius: '8px', 
-             }} />
+              borderRadius: '8px',
+            }}
+          />
           <h3>Networking</h3>
         </Link>
       </div>
