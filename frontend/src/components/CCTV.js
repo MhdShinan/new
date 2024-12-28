@@ -40,10 +40,10 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-blue-800">CCTV Solutions</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-blue-800">CCTV Solutions</h1>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-4 mb-8">
+        <div className="flex justify-center gap-4 mb-8 flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -64,12 +64,12 @@ function App() {
           <div key={tab.id} className={`${activeTab === tab.id ? 'block' : 'hidden'}`}>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               {/* Hero Image */}
-              <div className="relative h-[500px]">
+              <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
                 {/* Hero Content Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="text-center bg-black bg-opacity-50 p-4 rounded-lg text-white mt-64">
-                    <h2 className="text-4xl font-bold">{tab.title}</h2>
-                    <p className="text-lg mt-4">{tab.About || tab.description}</p>
+                  <div className="text-left bg-black bg-opacity-50 p-4 rounded-lg text-white mt-16 sm:mt-24 md:mt-64">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">{tab.title}</h2>
+                    <p className="text-sm sm:text-base mt-4">{tab.About || tab.description}</p>
                   </div>
                 </div>
 
@@ -89,14 +89,14 @@ function App() {
               </div>
 
               {/* Description Boxes */}
-              <div className="grid md:grid-cols-2 gap-8 p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-8">
                 <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">IP</h3>
-                  <p className="text-gray-600">{tab.description}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 text-blue-800">IP</h3>
+                  <p className="text-sm sm:text-base text-gray-600">{tab.description}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Analog</h3>
-                  <p className="text-gray-600">{tab.analogDescription}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 text-blue-800">Analog</h3>
+                  <p className="text-sm sm:text-base text-gray-600">{tab.analogDescription}</p>
                 </div>
               </div>
             </div>
