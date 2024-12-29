@@ -9,11 +9,16 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 
-
 const sections = [
   {
     title: "Services",
-    items: ["App Development", "Web Development", "POS Solution", "CCTV Installation", "Networking"],
+    items: [
+      "App Development",
+      "Web Development",
+      "POS Solution",
+      "CCTV Installation",
+      "Networking",
+    ],
   },
   {
     title: "Support",
@@ -25,7 +30,15 @@ const sections = [
   },
   {
     title: "Legal",
-    items: ["Accessibility", "Returns Policy", "Refund Policy", "Hiring Statistics"],
+    items: [
+      "Accessibility",
+      "Returns Policy",
+      "Refund Policy",
+      "Hiring Statistics",
+      <Link to="/Login" key="login">
+        <button className="p-2 mb-4">Login</button>
+      </Link>,
+    ],
   },
 ];
 
@@ -33,13 +46,13 @@ const items = [
   { name: "Facebook", icon: FaFacebook, link: "https://www.facebook.com/" },
   { name: "Instagram", icon: FaInstagram, link: "https://www.instagram.com/" },
   { name: "Twitter", icon: FaTwitter, link: "https://twitter.com/" },
-  { name: "Linkedin", icon: FaLinkedin, link: "https://www.Linkedin.tv/" },
+  { name: "Linkedin", icon: FaLinkedin, link: "https://www.linkedin.com/" },
   { name: "Github", icon: FaGithub, link: "https://github.com/" },
 ];
 
 const Footer = () => {
   return (
-    <div className="w-full mt-24 bg-slate-900 text-gray-300 py-y px-2">
+    <div className="w-full mt-24 bg-slate-900 text-gray-300 py-8 px-2">
       <div className="max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-6 border-b-2 border-gray-600 py-8">
         {sections.map((section, index) => (
           <div key={index}>
@@ -47,7 +60,7 @@ const Footer = () => {
             <ul>
               {section.items.map((item, i) => (
                 <li key={i} className="py-1 text-gray-500 hover:text-white">
-                  {item}
+                  {typeof item === "string" ? item : item}
                 </li>
               ))}
             </ul>
@@ -63,22 +76,29 @@ const Footer = () => {
             <input
               className="w-full p-2 mr-4 rounded-md mb-4"
               type="email"
-              placeholder="Enter email.."
+              placeholder="Enter email..."
             />
             <button className="p-2 mb-4">Subscribe</button>
-            <Link to="/Login">
-              <button className="p-2 mb-4">Login</button>
-            </Link>
           </form>
         </div>
       </div>
 
       <div className="flex flex-col max-w-[1240px] px-2 py-4 mx-auto justify-between sm:flex-row text-center text-gray-500">
-        <p className="py-4">2025 R-Tech Solutions, Pvt ltd. All rights reserved</p>
+        <p className="py-4">
+          2025 R-Tech Solutions, Pvt Ltd. All rights reserved
+        </p>
         <div className="flex justify-between sm:w-[300px] pt-4 text-2xl">
-          {items.map((x, index) => {
-            return <x.icon key={index} className="hover:text-white" />;
-          })}
+          {items.map((x, index) => (
+            <a
+              href={x.link}
+              key={index}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
+              <x.icon />
+            </a>
+          ))}
         </div>
       </div>
     </div>

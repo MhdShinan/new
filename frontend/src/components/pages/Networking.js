@@ -4,7 +4,8 @@ import SatisfiedClients from '../SatisfiedClients';
 import FAQ from '../FAQ';
 import ContactUs from '../ContactUs';
 import Team from '../Team';
-import NetworkingSolutions from '../NetworkingSolutions'; // Import the NetworkingSolutions component
+
+
 function Networking() {
   const data = [
     {
@@ -89,15 +90,38 @@ function Networking() {
 
   return (
     <div className="service-page bg-gray-50 p-8">
-          <div className="service-page">
-      <NetHero /> 
-
-    <NetworkingSolutions /> 
-    <SatisfiedClients/>
-    <FAQ/>
-    <Team/>
-    <ContactUs/>
-    </div>
+      <NetHero />
+      <section className="my-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                src={item.imageUrl}
+                alt={`${item.brand} logo`}
+                className="rounded-t-lg object-cover h-40 w-full"
+              />
+              <h3 className="text-xl font-semibold mt-4">{item.brand}</h3>
+              <ul className="mt-2">
+                {item.features.map((feature, idx) => (
+                  <li key={idx} className="mt-2">
+                    <h4 className="text-lg font-medium text-gray-700">
+                      {feature.title}
+                    </h4>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+      <SatisfiedClients />
+      <FAQ />
+      <Team />
+      <ContactUs />
     </div>
   );
 }

@@ -29,6 +29,15 @@ import Login from './components/Login';
 import CareerJoinUs from './components/Careerjoinus';
 import FloatingButtons from './components/Floating-buttons';
 
+// NotFound component
+const NotFound = () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', textAlign: 'center' }}>
+      <h1>404 - Page Not Found</h1>
+    </div>
+  );
+};
+
 function App() {
   const location = useLocation();
 
@@ -40,38 +49,43 @@ function App() {
       {/* Conditionally render Header */}
       {!isAdminRoute && <Header />}
       
-      <Routes>
-        <Route path="/" element={
-          <>
-            <Hero />
-            <Services />
-            <Stats />
-            <OurProcess />
-            <Testimonials />
-            <TechnologyWeUse />
-            <SatisfiedClients />
-            <FAQ />
-            <CareerJoinUs />
-            <ContactUs />
-            <Team />
-          </>
-        } />
-
-        <Route path="/services/app-development" element={<AppDevelopment />} />
-        <Route path="/services/web-development" element={<WebDevelopment />} />
-        <Route path="/services/pos-system" element={<PosSystem />} />
-        <Route path="/services/cctv-installation" element={<CctvInstallation />} />
-        <Route path="/services/networking" element={<Networking />} />
-        <Route path="/services/getstarted" element={<Getstarted />} />
-        <Route path="/Portfolio" element={<Portfolio />} />
-        <Route path='/ServiceBarWithDetailedCards' element={<ServiceBarWithDetailedCards />} />
-        <Route path='/Getstarted' element={<Getstarted />} />
-        <Route path="/TestimonialForm" element={<TestimonialForm />} />
-        <Route path='/Adminapp' element={<Adminapp />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/blog' element={<Blog />} />
-        <Route path='/Carears' element={<Carears />} />
-      </Routes>
+      <div className="page-content">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <Services />
+              <Stats />
+              <OurProcess />
+              <Testimonials />
+              <TechnologyWeUse />
+              <SatisfiedClients />
+              <FAQ />
+              <CareerJoinUs />
+              <ContactUs />
+              <Team />
+            </>
+          } />
+          
+          <Route path="/services/app-development" element={<AppDevelopment />} />
+          <Route path="/services/web-development" element={<WebDevelopment />} />
+          <Route path="/services/pos-system" element={<PosSystem />} />
+          <Route path="/services/cctv-installation" element={<CctvInstallation />} />
+          <Route path="/services/networking" element={<Networking />} />
+          <Route path="/services/getstarted" element={<Getstarted />} />
+          <Route path="/Portfolio" element={<Portfolio />} />
+          <Route path="/ServiceBarWithDetailedCards" element={<ServiceBarWithDetailedCards />} />
+          <Route path="/Getstarted" element={<Getstarted />} />
+          <Route path="/TestimonialForm" element={<TestimonialForm />} />
+          <Route path="/Adminapp" element={<Adminapp />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/Carears" element={<Carears />} />
+          
+          {/* Fallback Route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       
       {/* Conditionally render Footer */}
       {!isAdminRoute && <Footer />}
