@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9c6e93ae.css",
+    "main.js": "/static/js/main.68da9cef.js",
+    "static/media/Background1.mp4": "/static/media/Background1.80abfd69aff6557991fb.mp4",
+    "static/media/article1.jpg": "/static/media/article1.0b71af620e6be4f60fc6.jpg",
+    "static/media/article5.jpg": "/static/media/article5.32e98dd9371db23476b7.jpg",
+    "static/media/camera2.jpg": "/static/media/camera2.5242c60d92991cb362ff.jpg",
+    "static/media/camera1.jpg": "/static/media/camera1.f8a47e1aea23352a40b8.jpg",
+    "static/media/hikvision.jpg": "/static/media/hikvision.4995afbf675bcd2e5c2d.jpg",
+    "static/media/article4.jpg": "/static/media/article4.f5f5a2f8af2a41798998.jpg",
+    "static/media/B2.png": "/static/media/B2.03284e474ede4f3516c5.png",
+    "static/media/B1.png": "/static/media/B1.dd9091e97dd9d71190ee.png",
+    "static/media/article2.jpg": "/static/media/article2.fb489a53661a85aacfc7.jpg",
+    "static/media/article3.jpg": "/static/media/article3.b567d18a5111e317e189.jpg",
+    "static/media/project1.jpg": "/static/media/project1.c853a4d3368d44cedeef.jpg",
+    "static/media/project3.jpg": "/static/media/project3.4051bf988da00d103929.jpg",
+    "static/media/project7.jpg": "/static/media/project7.69a7c8d0013989244f1e.jpg",
+    "static/media/project5.jpg": "/static/media/project5.a5935f211906b53e6b68.jpg",
+    "static/media/project2.jpg": "/static/media/project2.72eb11dd3e820b23a56e.jpg",
+    "static/media/project4.jpg": "/static/media/project4.135efa506009651e9742.jpg",
+    "static/media/project6.jpg": "/static/media/project6.2812b3a1a53ed98df66d.jpg",
+    "static/media/project8.jpg": "/static/media/project8.84d75ad4c56d8412e782.jpg",
+    "static/media/project9.jpg": "/static/media/project9.15d896235cd55de9e72d.jpg",
+    "static/media/brand.jpg": "/static/media/brand.d39a600acc1a7b9310e0.jpg",
+    "static/media/web-dev.png": "/static/media/web-dev.5619034445b43575e05e.png",
+    "static/media/app-dev.png": "/static/media/app-dev.b6c83f984b5f80d69588.png",
+    "static/media/network.png": "/static/media/network.5a992e6a8367e5b6190f.png",
+    "static/media/pos.png": "/static/media/pos.e9ed43b46560d208d6b4.png",
+    "static/media/cctv.png": "/static/media/cctv.bf96ba4073cd42aa4475.png",
+    "index.html": "/index.html",
+    "main.9c6e93ae.css.map": "/static/css/main.9c6e93ae.css.map",
+    "main.68da9cef.js.map": "/static/js/main.68da9cef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c6e93ae.css",
+    "static/js/main.68da9cef.js"
+  ]
+}
