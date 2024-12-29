@@ -15,7 +15,7 @@ function CareerJoinUs() {
         <div className="space-y-6">
           {/* Quote */}
           <p className="text-gray-800 font-medium mb-8">
-            YOU CAN DO ANYTHING IN THIS WORLD, AS LONG AS YOU CAN NAVIGATE IT.
+"Success is within your reach, as long as you have the courage to navigate the journey."
           </p>
 
           {/* Main heading */}
@@ -36,14 +36,6 @@ function CareerJoinUs() {
           >
             <Link to="/Carears" className="flex items-center">
               <span className="text-lg font-medium">Access Job Opportunities</span>
-              {/* <motion.div
-                className="ml-3"
-                variants={iconVariants}
-                initial="initial"
-                whileHover="hover"
-              >
-                <ArrowRight className="h-5 w-5" />
-              </motion.div> */}
             </Link>
 
             <motion.div

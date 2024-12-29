@@ -1,57 +1,54 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Services.css';
 import App from '../assets/images/app-dev.png';
 import Web from '../assets/images/web-dev.png';
 import Pos from '../assets/images/pos.png';
 
-function Appcontent() {
+function AppContent() {
   return (
-<div className="services-section">
-      
-      <div className="services-grid">
-      <Link to="" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-      <img
-        src={App}
-         alt="App Development"
-         className="imageApp"
-        style={{
-         width: '100%', // Make the image fit the width of the card
-          height: '80%', // Maintain aspect ratio
-           objectFit: 'cover', // Ensure the image fills the container proportionally
-            borderRadius: '8px', // Optional: Add rounded corners
-          }}
-           />
-         <h3>Ios App</h3>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl">
+        {/* iOS App Development */}
+        <Link
+          to=""
+          className="service-card block text-center bg-white shadow-lg hover:shadow-xl rounded-lg"
+        >
+          <img
+            src={App}
+            alt="App Development"
+            className="rounded-lg mb-2 w-full h-60 object-cover"
+          />
+          <h3 className="text-lg font-semibold text-gray-800">iOS App Development</h3>
         </Link>
 
-        
-        <Link to="" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Web} alt="Web Development" className="imageApp"
-          style={{
-            width: '100%', 
-             height: '80%', 
-              objectFit: 'cover',
-               borderRadius: '8px', 
-             }}
+        {/* Android Development */}
+        <Link
+          to=""
+          className="service-card block text-center bg-white shadow-lg hover:shadow-xl rounded-lg"
+        >
+          <img
+            src={Web}
+            alt="Web Development"
+            className="rounded-lg mb-2 w-full h-60 object-cover"
           />
-          
-          <h3>Android Development</h3>
+          <h3 className="text-lg font-semibold text-gray-800">Android Development</h3>
         </Link>
-        
-        <Link to="" className="service-card" style={{ display: 'block', textAlign: 'center' }}>
-          <img src={Pos} alt="POS System" className="imageApp"
-          style={{
-            width: '100%', 
-             height: '80%', 
-              objectFit: 'cover',
-               borderRadius: '8px', 
-             }} />
-          <h3>Cross Platform Development</h3>
+
+        {/* Cross-Platform Development */}
+        <Link
+          to=""
+          className="service-card block text-center bg-white shadow-lg hover:shadow-xl rounded-lg"
+        >
+          <img
+            src={Pos}
+            alt="POS System"
+            className="rounded-lg mb-2 w-full h-60 object-cover"
+          />
+          <h3 className="text-lg font-semibold text-gray-800">Cross-Platform Development</h3>
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Appcontent
+export default AppContent;

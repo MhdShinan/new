@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ArrowUp, Shield } from 'lucide-react';  
+import { ArrowUp } from 'lucide-react';  
 
 export default function FloatingButtons() {
   const [showScroll, setShowScroll] = useState(false);
@@ -105,12 +105,9 @@ export default function FloatingButtons() {
             group-hover:opacity-40 transition-all duration-300"
         />
         <ArrowUp
-          className="w-6 h-6 text-white 
+          className="w-3 h-3 text-white 
             transform transition-transform duration-300
             group-hover:scale-110"
-        />
-        <Shield
-          className="absolute inset-0 w-full h-full text-white opacity-20 group-hover:opacity-30 transition-all duration-300"
         />
       </button>
     </div>

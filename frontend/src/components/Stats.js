@@ -87,7 +87,7 @@ const Counter = ({ end, suffix, reset }) => {
 
   useEffect(() => {
     let start = 0;
-    const duration = 2000; // 2 seconds for count animation
+    const duration = 1000; // 2 seconds for count animation
     const increment = end / (duration / 10);
 
     const counter = setInterval(() => {

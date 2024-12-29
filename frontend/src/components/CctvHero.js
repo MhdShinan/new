@@ -1,144 +1,262 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import Typewriter from 'typewriter-effect';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import styled from 'styled-components';
+import { FaVideo, FaShieldAlt, FaMobileAlt, FaEye, FaCog, FaArrowRight, FaLock } from 'react-icons/fa';
+import { RiAlarmWarningFill } from 'react-icons/ri';
+import { GiCctvCamera } from 'react-icons/gi';
 
-// Import images
-import App from '../assets/images/app-dev.png';
-import Web from '../assets/images/web-dev.png';
-import Pos from '../assets/images/pos.png';
-import Background1 from '../assets/images/B1.png';
-import Background2 from '../assets/images/B2.png';
+const HeroSection = styled.section`
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #005880, #003850);
+  overflow: hidden;
+  padding: 2rem;
+`;
 
-const AppHero = () => {
-  const [selectedService, setSelectedService] = useState(null);
+const ContentWrapper = styled.div`
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+`;
 
-  const services = [
-    { title: 'Mobile Development', image: App },
-    { title: 'Web Development', image: Web },
-    { title: 'POS Solutions', image: Pos },
+const Title = styled(motion.h1)`
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #ffffff, #91d5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Subtitle = styled(motion.p)`
+  font-size: 1.2rem;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+  max-width: 600px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+const Button = styled(motion.button)`
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #ff8787;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  svg {
+    margin-left: 8px;
+  }
+`;
+
+const FeatureIcon = styled(motion.div)`
+  font-size: 2.5rem;
+  color: #91d5ff;
+  margin-bottom: 1rem;
+`;
+
+const FeatureTitle = styled.h3`
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+`;
+
+const FeatureDescription = styled.p`
+  font-size: 0.9rem;
+  opacity: 0.8;
+`;
+
+const FeatureGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+`;
+
+const Feature = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const FloatingIcon = styled(motion.div)`
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+`;
+
+const BrandBadge = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin: 0.5rem;
+  display: inline-block;
+`;
+
+const CCTVInstallationHero = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const features = [
+    { icon: GiCctvCamera, title: "Expert Installation", description: "Professional setup of high-quality CCTV systems" },
+    { icon: FaShieldAlt, title: "24/7 Surveillance", description: "Round-the-clock monitoring for your peace of mind" },
+    { icon: FaMobileAlt, title: "Remote Access", description: "View your cameras from anywhere, anytime" },
+    { icon: FaEye, title: "HD Quality", description: "Crystal clear footage with our advanced cameras" },
   ];
 
-  const handleServiceClick = (index) => {
-    setSelectedService(selectedService === index ? null : index);
-  };
-  return (
-    <div className="relative min-h-screen overflow-hidden">
-    {/* Animated Background */}
-    <motion.div
-      className="absolute inset-0 z-0"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 1, 0] }}
-      transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
-    >
-      <img src={Background1} className="absolute w-full h-full object-cover" alt="" />
-    </motion.div>
-    <motion.div
-      className="absolute inset-0 z-0"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: [1, 0, 1] }}
-      transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
-    >
-      <img src={Background2} className="w-full h-full object-cover" alt="" />
-    </motion.div>
+  const floatingIcons = [
+    { Icon: FaVideo, top: '10%', left: '10%' },
+    { Icon: RiAlarmWarningFill, top: '20%', right: '10%' },
+    { Icon: FaCog, bottom: '20%', left: '15%' },
+    { Icon: FaLock, top: '15%', right: '20%' },
+  ];
 
-    {/* Content Container */}
-    <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        {/* Left Side */}
-        <div className="text-white space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#005880] flex items-center">
-            <FontAwesomeIcon icon={faRocket} className="mr-3" /> Future of
-          </h1>
-          <div
-            className="text-3xl md:text-4xl font-semibold text-[#005880]"
-            style={{ fontFamily: 'sans-serif' }}
-          >
-            <Typewriter
-              options={{
-                strings: ['CCtv Installation'],
-                autoStart: true,
-                loop: true,
-              }}
-            />
-          </div>
-          <div className="flex items-center gap-2 text-2xl md:text-3xl text-[#005880]">
-            <span>in</span>
-            <div className="relative">
-              <span className="font-bold">Sri Lanka</span>
-            </div>
-          </div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-xl">
-            Enhance your online presence with our professional services, offering
-            budget-friendly custom-made apps, responsive web designs, and POS
-            systems designed to meet your business requirements.
-          </p>
+  const brands = ["Dahua", "Hikvision", "Uniview"];
 
-          <motion.button
-  className="bg-[#005880] text-white px-8 py-3 rounded-full font-semibold 
-             transition-all duration-300 transform hover:scale-105 relative 
-             overflow-hidden group"
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 1.95 }}
->
-  <Link to="/getstarted" className="relative z-10">
-    Get Started
-  </Link>
-  <motion.div
-    className="absolute inset-0 bg-[#004060]"
-    initial={{ x: "-100%" }}
-    whileHover={{ x: 0 }}
-    transition={{ duration: 0.3 }}
-  />
-</motion.button>;
+  return React.createElement(
+    HeroSection,
+    null,
+    floatingIcons.map(({ Icon, top, left, right }, index) =>
+      React.createElement(
+        FloatingIcon,
+        {
+          key: `icon-${index}`,
+          style: { top, left, right },
+          animate: {
+            y: [0, -20, 0],
+            rotate: [-5, 5, -5],
+            scale: [1, 1.1, 1],
+          },
+          transition: {
+            duration: 5 + index,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+        },
+        React.createElement(Icon)
+      )
+    ),
+    React.createElement(
+      ContentWrapper,
+      null,
+      React.createElement(
+        Title,
+        {
+          initial: { opacity: 0, y: -20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8 },
+        },
+        "Advanced CCTV Installation Services"
+      ),
+      React.createElement(
+        Subtitle,
+        {
+          initial: { opacity: 0, y: -20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay: 0.2 },
+        },
+        "Secure your premises with state-of-the-art surveillance systems. We specialize in professional CCTV installations using top-tier equipment."
+      ),
+      React.createElement(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay: 0.4 },
+        },
+        brands.map((brand, index) =>
+          React.createElement(
+            BrandBadge,
+            {
+              key: `brand-${index}`,
+              whileHover: { scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" },
+            },
+            brand
+          )
+        )
+      ),
+      React.createElement(
+        Button,
+        {
+          whileHover: { scale: 1.05 },
+          whileTap: { scale: 0.95 },
+          onHoverStart: () => setIsHovered(true),
+          onHoverEnd: () => setIsHovered(false),
+        },
+        "Get a Free Quote",
+        React.createElement(
+          AnimatePresence,
+          null,
+          isHovered && React.createElement(
+            motion.span,
+            {
+              initial: { opacity: 0, x: -10 },
+              animate: { opacity: 1, x: 0 },
+              exit: { opacity: 0, x: 10 },
+              transition: { duration: 0.2 },
+            },
+            React.createElement(FaArrowRight)
+          )
+        )
+      ),
+      React.createElement(
+        FeatureGrid,
+        null,
+        features.map((feature, index) =>
+          React.createElement(
+            Feature,
+            {
+              key: `feature-${index}`,
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.5, delay: 0.5 + index * 0.1 },
+            },
+            React.createElement(
+              FeatureIcon,
+              {
+                whileHover: { scale: 1.1, rotate: 5 },
+              },
+              React.createElement(feature.icon)
+            ),
+            React.createElement(FeatureTitle, null, feature.title),
+            React.createElement(FeatureDescription, null, feature.description)
+          )
+        )
+      )
+    )
+  );
+};
 
-        </div>
+export default CCTVInstallationHero;
 
-        {/* Right Side - Floating Images */}
-        <div className="relative h-[500px] hidden md:block">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className={`absolute w-64 h-64 rounded-2xl overflow-hidden cursor-pointer`}
-              style={{
-                top: `${index * 150}px`,
-                right: index === 2 ? '50px' : `${50 + index * 150}px`,
-                zIndex: selectedService === index ? 10 : 1,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                scale: selectedService === index ? 1.1 : 1,
-              }}
-              transition={{
-                y: {
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.3,
-                },
-                scale: {
-                  duration: 0.3,
-                },
-              }}
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              onClick={() => handleServiceClick(index)}
-            >
-              <div className="relative w-full h-full group">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover rounded-2xl transition-all duration-300 group-hover:blur-none blur-sm"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-0 transition-all duration-300" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-  )
-}
-
-export default AppHero

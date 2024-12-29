@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaList, FaTag, FaClipboard, FaRegPaperPlane, FaChevronDown, FaTimes, FaMobileAlt, FaDesktop, FaStore, FaCamera, FaNetworkWired, FaHome, FaSun, FaMoon } from "react-icons/fa";
 import logo from "../assets/images/brand.jpg";
 
@@ -62,6 +62,7 @@ const Dropdown = ({ title, icon, links, onSelectLink }) => {
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();  // Add this line for navigation
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleDarkMode = () => setDarkMode(!darkMode);
@@ -76,6 +77,11 @@ const Header = () => {
 
   // Close the sidebar when a link is clicked
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const handleGetStartedClick = () => {
+    closeSidebar();  // Close the sidebar
+    navigate("/getstarted");  // Navigate to "Get Started" page
+  };
 
   return (
     <header className={`transition-colors ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-700'}`}>
@@ -175,11 +181,12 @@ const Header = () => {
                 </Link>
               </li>
               <li className="flex justify-center mt-4">
-                <Link to="/getstarted">
-                  <button className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity">
-                    Get Started
-                  </button>
-                </Link>
+                <button
+                  onClick={handleGetStartedClick}  // Handle the "Get Started" button click
+                  className="bg-primary text-white text-sm font-medium px-6 py-2.5 rounded hover:opacity-90 transition-opacity"
+                >
+                  Get Started
+                </button>
               </li>
             </ul>
           </div>
