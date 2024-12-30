@@ -4,13 +4,16 @@ import SatisfiedClients from '../SatisfiedClients';
 import FAQ from '../FAQ';
 import ContactUs from '../ContactUs';
 import Team from '../Team';
+import Cisco from '../../assets/images/cisco1.jpg';
+import Ruijie from '../../assets/images/Ruijie1.jpg';
+import Netgear from '../../assets/images/Netgear.jpg';
 
 
 function Networking() {
   const data = [
     {
       brand: "Cisco",
-      imageUrl: "https://via.placeholder.com/300x200?text=Cisco", // Replace with actual Cisco image URL
+      imageUrl: Cisco, 
       features: [
         {
           title: "Switches",
@@ -36,7 +39,7 @@ function Networking() {
     },
     {
       brand: "Ruijie",
-      imageUrl: "https://via.placeholder.com/300x200?text=Ruijie", // Replace with actual Ruijie image URL
+      imageUrl: Ruijie, // Replace with actual Ruijie image URL
       features: [
         {
           title: "Switches",
@@ -62,7 +65,7 @@ function Networking() {
     },
     {
       brand: "Netgear",
-      imageUrl: "https://via.placeholder.com/300x200?text=Netgear", // Replace with actual Netgear image URL
+      imageUrl:Netgear, // Replace with actual Netgear image URL
       features: [
         {
           title: "Switches",
@@ -89,7 +92,7 @@ function Networking() {
   ];
 
   return (
-    <div className="service-page bg-gray-50 p-8">
+    <div className="service-page bg-gray-50 ">
       <NetHero />
       <section className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

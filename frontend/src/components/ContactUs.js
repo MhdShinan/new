@@ -84,9 +84,9 @@ const ContactUs = () => {
           <h1 className="text-4xl font-bold">Contact Us</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
           {/* Contact Info */}
-          <div className="col-span-1 space-y-6">
+          <div className="col-span-1 space-y-6 pl-8">
             {/* Address */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -137,7 +137,7 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="col-span-2">
+          <div className="col-span-2 p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

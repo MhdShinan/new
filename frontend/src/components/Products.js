@@ -1,36 +1,42 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import Unv1 from '../assets/images/unv1.png';
+import Unv2 from '../assets/images/unv2.jpg';
+import Unv3 from '../assets/images/unv3.jpg';
+import Unv4 from '../assets/images/unv4.png';
+import Unv5 from '../assets/images/unv5.png';
+import Unv6 from '../assets/images/unv6.png';
 
 export default function ProductsGrid() {
   const products = [
 {
       title: "NVR Camera's",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv1,
       description: "Lorem ipsum"
     },
     {
       title: "DVR Camera's",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv2,
       description: "Lorem ipsum"
     },
     {
       title: "Analog Camera's",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv3,
       description: "Lorem ipsum"
     },
     {
       title: "IP Camera's",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv4,
       description: "Lorem ipsum"
     },
     {
       title: "Wifi Camera's",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv5,
       description: "Lorem ipsum"
     },
     {
       title: "Switches",
-      image: "/placeholder.svg?height=200&width=400",
+      image: Unv6,
       description: "Lorem ipsum"
     }
   ];
@@ -45,7 +51,7 @@ export default function ProductsGrid() {
               variant="top"
               src={product.image}
               alt={product.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-48 object-cover mb-8 "
             />
             <Card.Body className="bg-[#005880] text-white py-2 px-4">
               <Card.Title className="text-lg font-medium">{product.title}</Card.Title>

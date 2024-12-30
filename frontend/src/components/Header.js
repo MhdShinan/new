@@ -61,7 +61,7 @@ const Dropdown = ({ title, icon, links, isMobile, onClose }) => {
       {isOpen && (
         <ul
           className={`${
-            isMobile ? "w-full bg-white" : "absolute left-0"
+            isMobile ? "w-full bg-white bg-opacity-90" : "absolute left-0 bg-white bg-opacity-90"
           } mt-2 border border-gray-200 shadow-lg z-50 rounded-md`}
         >
           {links.map((link, index) => (

@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import Single from '../assets/images/single.jpg';
+import Ecom from '../assets/images/ecom.png';
+import Mobile from '../assets/images/mobile.jpg';
+import Pos from '../assets/images/pos.jpg';
+import Netgear from '../assets/images/Netgear.jpg';
+import Camera1 from '../assets/images/camera1.jpg';
+import Camera2 from '../assets/images/wizminds.png';
+
 
 const ServiceBarWithDetailedCards = () => {
   const [activeTab, setActiveTab] = useState("Web Development");
@@ -15,7 +23,7 @@ const ServiceBarWithDetailedCards = () => {
           title: "Single Page Website",
           advantages: ["1 Year Free Hosting", "Quick Setup", "Responsive Design"],
           price: "Starting from Rs 25,000",
-          image: "https://via.placeholder.com/150?text=Web+Dev+1",
+          image: Single ,
         },
         {
           title: "Ecommerce Starter",
@@ -25,7 +33,7 @@ const ServiceBarWithDetailedCards = () => {
             "Secure Payment Integration",
           ],
           price: "Starting from Rs 100,000",
-          image: "https://via.placeholder.com/150?text=Ecommerce+Starter",
+          image: Ecom,
         },
       ],
     },
@@ -36,7 +44,7 @@ const ServiceBarWithDetailedCards = () => {
           title: "Custom Mobile Apps",
           advantages: ["Cross-Platform Support", "User-Friendly Interface", "Secure Backend"],
           price: "Contact us for pricing",
-          image: "https://via.placeholder.com/150?text=App+Dev",
+          image: Mobile,
         },
       ],
     },
@@ -47,7 +55,7 @@ const ServiceBarWithDetailedCards = () => {
           title: "POS System",
           advantages: ["Inventory Management", "Sales Tracking", "Custom Reports"],
           price: "Starting from Rs 120,000",
-          image: "https://via.placeholder.com/150?text=POS+Solution",
+          image: Pos,
         },
       ],
     },
@@ -58,7 +66,7 @@ const ServiceBarWithDetailedCards = () => {
           title: "Network Setup",
           advantages: ["Enterprise Solutions", "Secure Networking", "Custom Configurations"],
           price: "Contact us for pricing",
-          image: "https://via.placeholder.com/150?text=Network",
+          image: Netgear,
         },
       ],
     },
@@ -69,13 +77,13 @@ const ServiceBarWithDetailedCards = () => {
           title: "2MP 4 Cameras Set",
           advantages: ["Basic Installation", "Clear Video Quality", "Affordable Pricing"],
           price: "Rs 65,000 with installation",
-          image: "https://via.placeholder.com/150?text=CCTV+Basic",
+          image: Camera1,
         },
         {
           title: "2MP 4 IP Cameras Set",
           advantages: ["High-Resolution Quality", "Remote Monitoring", "Advanced Setup"],
           price: "Starting from Rs 150,000 with installation",
-          image: "https://via.placeholder.com/150?text=CCTV+IP",
+          image: Camera2,
         },
       ],
     },

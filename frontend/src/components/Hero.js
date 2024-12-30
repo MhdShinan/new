@@ -148,11 +148,12 @@ const Hero = () => {
                 },
               }}
             >
-              <div className="relative w-full h-full group">
+              <div className="relative w-full h-full group m-6">
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover rounded-2xl transition-all duration-300 group-hover:blur-none blur-sm"
+                  className="w-full h-full object-cover rounded-md transition-all duration-300 group-hover:blur-none blur-sm"
+
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-0 transition-all duration-300" />
               </div>

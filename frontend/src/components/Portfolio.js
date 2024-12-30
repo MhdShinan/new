@@ -106,7 +106,7 @@ export default function Portfolio() {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 md:pt-28 md:pb-24 relative overflow-hidden">
+      <section id="home" className="min-h-screen z-10 container mx-auto flex  justify-center md:px-4 lg:px-40 py-16 relative bg-gray-50">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-light to-primary-dark opacity-10"></div>
           <motion.div
@@ -133,16 +133,16 @@ export default function Portfolio() {
   transition={{ duration: 0.5 }}
   className="text-4xl md:text-5xl font-bold leading-tight text-[#005880]"
 >
-  Future of App Web Development, Pos Solutions, CCTV Installation, Networking in Sri Lanka
+  Future of App Web Development, POS Solutions, CCTV Installation, Networking in Sri Lanka
 </motion.h1>
  
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-gray-600"
+                className="text-md text-gray-600"
               >
-                We deliver cutting-edge IT solutions that drive innovation and business growth. Our expertise spans across web development, cloud solutions, and digital transformation.
+                We deliver cutting-edge IT solutions that drive innovation and business growth. Our expertise spans across web development, cloud solutions, digital transformation.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -165,7 +165,7 @@ export default function Portfolio() {
 
                 
               </motion.div>
-              <div className="flex flex-row items-center gap-6">
+              <div className="flex flex-row items-center gap-6 md:hidden sm:hidden">
   <div className="flex items-center gap-2">
     <CheckCircle className="text-primary" />
     <span>24/7 Support</span>
