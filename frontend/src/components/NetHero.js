@@ -282,7 +282,7 @@ const AdvancedNetworkingHero = () => {
         <Description initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
           Empower your business with cutting-edge networking solutions. We design, implement, and maintain robust network infrastructures that drive efficiency and growth.
         </Description>
-        <Button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)}>
+        {/* <Button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)}>
           Explore Our Services
           <AnimatePresence>
             {isHovered && (
@@ -291,7 +291,7 @@ const AdvancedNetworkingHero = () => {
               </motion.span>
             )}
           </AnimatePresence>
-        </Button>
+        </Button> */}
         <FeatureGrid initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           {features.map((feature, index) => (
             <FeatureItem key={index}>
