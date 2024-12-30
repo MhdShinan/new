@@ -67,11 +67,8 @@ function App() {
               <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
                 {/* Hero Content Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="text-left bg-black bg-opacity-50 p-4 rounded-lg text-white mt-16 sm:mt-24 md:mt-64">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">{tab.title}</h2>
-                    <p className="text-sm sm:text-base mt-4">{tab.About || tab.description}</p>
-                  </div>
-                </div>
+</div>
+
 
                 {/* Swiper (Sliding Images) */}
                 <Swiper

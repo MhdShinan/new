@@ -10,7 +10,7 @@ const HeroSection = styled.section`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #005880, #003850);
+  background: linear-gradient(135deg, #005880,rgb(9, 74, 241));
   padding: 2rem;
 `;
 
@@ -19,7 +19,7 @@ const GlassMorphism = styled(motion.div)`
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2rem;
-  max-width: 800px;
+  max-width: 1500px;
   width: 90%;
   z-index: 10;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -208,7 +208,6 @@ const AdvancedWebDevHero = () => {
     { icon: FaHtml5, title: "Responsive Design", description: "Websites that look great on all devices" },
     { icon: FaCss3Alt, title: "Modern Styling", description: "Sleek and attractive user interfaces" },
     { icon: FaReact, title: "Interactive UIs", description: "Engaging and dynamic user experiences" },
-    { icon: FaJsSquare, title: "Dynamic Content", description: "Real-time updates and interactivity" },
     { icon: FaWordpress, title: "CMS Integration", description: "Easy content management with WordPress" },
     { icon: FaPhp, title: "Backend Development", description: "Robust server-side functionality" },
   ];

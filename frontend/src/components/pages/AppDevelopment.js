@@ -5,7 +5,6 @@ import Team from '../Team'
 import Contact from '../ContactUs'
 import FAQ from '../FAQ';
 import AppHero from '../AppHero';
-import Appcontent from '../Appcontent';
 import AppFaq from '../AppFaq';
 
 
@@ -13,7 +12,6 @@ function AppDevelopment() {
   return (
     <div className="service-page">
      <AppHero/>
-     <Appcontent/>
      <AppFaq/>
       <SatisfiedClients/>
       <FAQ/>

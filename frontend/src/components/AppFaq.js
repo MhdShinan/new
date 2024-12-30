@@ -48,7 +48,7 @@ const AppFaq = () => {
     <section className="py-10 px-6 lg:px-16">
       <div className="max-w-4xl mx-auto">
         {/* FAQ Category Bar */}
-        <div className="bg-gray-100 p-2 rounded-lg shadow-md mb-6">
+
           <div className="flex justify-center gap-4">
             {['ios', 'android', 'cross'].map((tab) => (
               <button
@@ -62,7 +62,7 @@ const AppFaq = () => {
               </button>
             ))}
           </div>
-        </div>
+<br/>
 
         {/* FAQ Questions */}
         <div className="space-y-4">

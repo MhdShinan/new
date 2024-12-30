@@ -27,8 +27,7 @@ import Blog from './components/Blog';
 import Carears from './components/Carears';
 import Login from './components/Login';
 import CareerJoinUs from './components/Careerjoinus';
-import FloatingButtons from './components/Floating-buttons';
-
+import FloatingButtons from './components/Floating-buttons'; 
 // NotFound component
 const NotFound = () => {
   return (

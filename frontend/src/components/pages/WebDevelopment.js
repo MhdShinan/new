@@ -7,13 +7,13 @@ import Team from '../Team'
 import Contact from '../ContactUs'
 import FAQ from '../FAQ';
 import WebFAQ from '../WebFAQ';
-import Webcontent from '../Webcontent';
+
 
 function WebDevelopment() {
   return (
     <div className="service-page">
       <Webhero/>
-      <Webcontent/>
+
       <WebFAQ/>
       <SatisfiedClients/>
       <FAQ/>
