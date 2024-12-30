@@ -22,7 +22,9 @@ const sections = [
   },
   {
     title: "Support",
-    items: ["Pricing", "Documentation", "Guides", "API Status"],
+    items: ["Pricing", "Documentation", "Guides", "API Status",      <Link to="/Login" key="login">
+      <button className="p-2 mb-4">Login</button>
+    </Link>,],
   },
   {
     title: "Company",
@@ -35,9 +37,6 @@ const sections = [
       "Returns Policy",
       "Refund Policy",
       "Hiring Statistics",
-      <Link to="/Login" key="login">
-        <button className="p-2 mb-4">Login</button>
-      </Link>,
     ],
   },
 ];

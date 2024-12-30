@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
-import { FaVideo, FaShieldAlt, FaMobileAlt, FaEye, FaCog, FaArrowRight, FaLock } from 'react-icons/fa';
-import { RiAlarmWarningFill } from 'react-icons/ri';
-import { GiCctvCamera } from 'react-icons/gi';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import {
+  FaVideo,
+  FaShieldAlt,
+  FaMobileAlt,
+  FaEye,
+  FaCog,
+  FaArrowRight,
+  FaLock,
+} from "react-icons/fa";
+import { RiAlarmWarningFill } from "react-icons/ri";
+import { GiCctvCamera } from "react-icons/gi";
+import { useNavigate } from "react-router-dom"; // Import the navigation hook
 
+// Styled components for the hero section
 const HeroSection = styled.section`
   position: relative;
   min-height: 100vh;
@@ -125,138 +135,137 @@ const BrandBadge = styled(motion.div)`
   display: inline-block;
 `;
 
+// Main Hero Component
 const CCTVInstallationHero = () => {
+  const navigate = useNavigate(); // Navigation hook
   const [isHovered, setIsHovered] = useState(false);
 
   const features = [
-    { icon: GiCctvCamera, title: "Expert Installation", description: "Professional setup of high-quality CCTV systems" },
-    { icon: FaShieldAlt, title: "24/7 Surveillance", description: "Round-the-clock monitoring for your peace of mind" },
-    { icon: FaMobileAlt, title: "Remote Access", description: "View your cameras from anywhere, anytime" },
-    { icon: FaEye, title: "HD Quality", description: "Crystal clear footage with our advanced cameras" },
+    {
+      icon: GiCctvCamera,
+      title: "Expert Installation",
+      description: "Professional setup of high-quality CCTV systems",
+    },
+    {
+      icon: FaShieldAlt,
+      title: "24/7 Surveillance",
+      description: "Round-the-clock monitoring for your peace of mind",
+    },
+    {
+      icon: FaMobileAlt,
+      title: "Remote Access",
+      description: "View your cameras from anywhere, anytime",
+    },
+    {
+      icon: FaEye,
+      title: "HD Quality",
+      description: "Crystal clear footage with our advanced cameras",
+    },
   ];
 
   const floatingIcons = [
-    { Icon: FaVideo, top: '10%', left: '10%' },
-    { Icon: RiAlarmWarningFill, top: '20%', right: '10%' },
-    { Icon: FaCog, bottom: '20%', left: '15%' },
-    { Icon: FaLock, top: '15%', right: '20%' },
+    { Icon: FaVideo, top: "10%", left: "10%" },
+    { Icon: RiAlarmWarningFill, top: "20%", right: "10%" },
+    { Icon: FaCog, bottom: "20%", left: "15%" },
+    { Icon: FaLock, top: "15%", right: "20%" },
   ];
 
   const brands = ["Dahua", "Hikvision", "Uniview"];
 
-  return React.createElement(
-    HeroSection,
-    null,
-    floatingIcons.map(({ Icon, top, left, right }, index) =>
-      React.createElement(
-        FloatingIcon,
-        {
-          key: `icon-${index}`,
-          style: { top, left, right },
-          animate: {
+  return (
+    <HeroSection>
+      {floatingIcons.map(({ Icon, top, left, right }, index) => (
+        <FloatingIcon
+          key={`icon-${index}`}
+          style={{ top, left, right }}
+          animate={{
             y: [0, -20, 0],
             rotate: [-5, 5, -5],
             scale: [1, 1.1, 1],
-          },
-          transition: {
+          }}
+          transition={{
             duration: 5 + index,
             repeat: Infinity,
             ease: "easeInOut",
-          },
-        },
-        React.createElement(Icon)
-      )
-    ),
-    React.createElement(
-      ContentWrapper,
-      null,
-      React.createElement(
-        Title,
-        {
-          initial: { opacity: 0, y: -20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.8 },
-        },
-        "Advanced CCTV Installation Services"
-      ),
-      React.createElement(
-        Subtitle,
-        {
-          initial: { opacity: 0, y: -20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.8, delay: 0.2 },
-        },
-        "Secure your premises with state-of-the-art surveillance systems. We specialize in professional CCTV installations using top-tier equipment."
-      ),
-      React.createElement(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.8, delay: 0.4 },
-        },
-        brands.map((brand, index) =>
-          React.createElement(
-            BrandBadge,
-            {
-              key: `brand-${index}`,
-              whileHover: { scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" },
-            },
-            brand
-          )
-        )
-      ),
-      React.createElement(
-        Button,
-        {
-          whileHover: { scale: 1.05 },
-          whileTap: { scale: 0.95 },
-          onHoverStart: () => setIsHovered(true),
-          onHoverEnd: () => setIsHovered(false),
-        },
-        "Get a Free Quote",
-        React.createElement(
-          AnimatePresence,
-          null,
-          isHovered && React.createElement(
-            motion.span,
-            {
-              initial: { opacity: 0, x: -10 },
-              animate: { opacity: 1, x: 0 },
-              exit: { opacity: 0, x: 10 },
-              transition: { duration: 0.2 },
-            },
-            React.createElement(FaArrowRight)
-          )
-        )
-      ),
-      React.createElement(
-        FeatureGrid,
-        null,
-        features.map((feature, index) =>
-          React.createElement(
-            Feature,
-            {
-              key: `feature-${index}`,
-              initial: { opacity: 0, y: 20 },
-              animate: { opacity: 1, y: 0 },
-              transition: { duration: 0.5, delay: 0.5 + index * 0.1 },
-            },
-            React.createElement(
-              FeatureIcon,
-              {
-                whileHover: { scale: 1.1, rotate: 5 },
-              },
-              React.createElement(feature.icon)
-            ),
-            React.createElement(FeatureTitle, null, feature.title),
-            React.createElement(FeatureDescription, null, feature.description)
-          )
-        )
-      )
-    )
+          }}
+        >
+          <Icon />
+        </FloatingIcon>
+      ))}
+      <ContentWrapper>
+        <Title
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Advanced CCTV Installation Services
+        </Title>
+        <Subtitle
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Secure your premises with state-of-the-art surveillance systems. We
+          specialize in professional CCTV installations using top-tier
+          equipment.
+        </Subtitle>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          {brands.map((brand, index) => (
+            <BrandBadge
+              key={`brand-${index}`}
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+              }}
+            >
+              {brand}
+            </BrandBadge>
+          ))}
+        </motion.div>
+        <Button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={() => navigate("/ContactWithus")}
+    >
+      Get a Free Quote
+      <AnimatePresence>
+        {isHovered && (
+          <motion.span
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <FaArrowRight />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </Button>
+        <FeatureGrid>
+          {features.map((feature, index) => (
+            <Feature
+              key={`feature-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+            >
+              <FeatureIcon whileHover={{ scale: 1.1, rotate: 5 }}>
+                <feature.icon />
+              </FeatureIcon>
+              <FeatureTitle>{feature.title}</FeatureTitle>
+              <FeatureDescription>{feature.description}</FeatureDescription>
+            </Feature>
+          ))}
+        </FeatureGrid>
+      </ContentWrapper>
+    </HeroSection>
   );
 };
 
 export default CCTVInstallationHero;
-

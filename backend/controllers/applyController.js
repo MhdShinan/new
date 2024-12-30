@@ -21,19 +21,20 @@ const sendApplicationEmail = (req, res) => {
       return res.status(400).send('Resume is required');
     }
 
-    // Set up nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.office365.com',
+      port: 587,
+      secure: false, // Use false since port 587 is typically used for non-secure connections
       auth: {
-        user: 'm.mohamed.shinan@gmail.com',
-        pass: 'bqtr qcpt rzxk xrnl', // Use environment variables for security
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Email to admin
     const mailOptionsToAdmin = {
-      from: 'm.mohamed.shinan@gmail.com',
-      to: 'm.mohamed.shinan@gmail.com',
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
       subject: `Career Application: ${jobTitle}`,
       text: `
         Name: ${name}
@@ -52,7 +53,7 @@ const sendApplicationEmail = (req, res) => {
 
     // Email to applicant
     const mailOptionsToApplicant = {
-      from: 'm.mohamed.shinan@gmail.com',
+      from: process.env.EMAIL_USER,
       to: email,
       subject: `Thank you for applying for ${jobTitle}`,
       text: `

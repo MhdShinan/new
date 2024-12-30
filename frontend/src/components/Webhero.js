@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { FaHtml5, FaCss3Alt, FaReact, FaJsSquare, FaNodeJs, FaArrowRight, FaWordpress, FaPhp } from 'react-icons/fa';
@@ -155,6 +156,12 @@ const TechName = styled.span`
 const AdvancedWebDevHero = () => {
   const particleContainerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/Getstarted');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const createParticle = () => {
@@ -238,6 +245,7 @@ const AdvancedWebDevHero = () => {
           whileTap={{ scale: 0.95 }}
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
+          onClick={handleButtonClick}
         >
           Start Your Project
           <AnimatePresence>
