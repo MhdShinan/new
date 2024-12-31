@@ -200,7 +200,7 @@ export default function Portfolio() {
     borderRadius: '25px',
     boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)', // Box shadow
   }}
-  src={App}
+  src={Brand}
   alt="App Development"
   className="mx-auto"
 />

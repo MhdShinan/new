@@ -22,9 +22,15 @@ const sections = [
   },
   {
     title: "Support",
-    items: ["Pricing", "Documentation", "Guides", "API Status",      <Link to="/Login" key="login">
-      <button className="p-2 mb-4">Login</button>
-    </Link>,],
+    items: [
+      "Pricing",
+      "Documentation",
+      "Guides",
+      "API Status",
+      <Link to="/Login" key="login">
+        <button className="p-2 mb-4">Login</button>
+      </Link>,
+    ],
   },
   {
     title: "Company",
@@ -40,6 +46,15 @@ const sections = [
     ],
   },
 ];
+
+
+
+
+  
+  
+
+
+
 
 const items = [
   { name: "Facebook", icon: FaFacebook, link: "https://www.facebook.com/" },

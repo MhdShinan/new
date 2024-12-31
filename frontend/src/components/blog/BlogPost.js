@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { FaExternalLinkAlt,} from 'react-icons/fa';
-import App from '../../assets/images/app-dev.png';
+import App from '../../assets/images/Blog.jpg';
 const categories = [
   "All",
   "Mobile Development",

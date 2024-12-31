@@ -99,7 +99,7 @@ const ContactUs = () => {
               </div>
               <div className="ml-4">
                 <p className="font-semibold">Address</p>
-                <p>123 Street Name, City</p>
+                <p>262 Peradeniya Road Kandy</p>
               </div>
             </motion.div>
 
@@ -115,7 +115,7 @@ const ContactUs = () => {
               </div>
               <div className="ml-4">
                 <p className="font-semibold">Phone</p>
-                <p>+94 123 456 789</p>
+                <p>+94 76 635 6336</p>
               </div>
             </motion.div>
 
@@ -131,7 +131,7 @@ const ContactUs = () => {
               </div>
               <div className="ml-4">
                 <p className="font-semibold">Email</p>
-                <p>info@example.com</p>
+                <p>info@Rtechsl.com</p>
               </div>
             </motion.div>
           </div>
