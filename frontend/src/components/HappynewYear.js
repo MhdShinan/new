@@ -7,80 +7,74 @@ const NewYearCard = () => {
 
   useEffect(() => {
     let index = 0;
-    const intervalId = setInterval(() => {
-      setText((prevText) => {
+    const typeText = () => {
+      const intervalId = setInterval(() => {
         if (index < fullText.length) {
+          setText(fullText.slice(0, index + 1));
           index++;
-          return fullText.slice(0, index);
+        } else {
+          clearInterval(intervalId);
+          setTimeout(() => {
+            index = 0; // Reset the text after delay
+            typeText();
+          }, 3000);
         }
-        index = 0;
-        return '';
-      });
-    }, 150);
+      }, 100);
+      return intervalId;
+    };
 
-    // Toggle stars visibility
-    const starInterval = setInterval(() => {
-      setShowStars(prev => !prev);
-    }, 1000);
+    const textIntervalId = typeText();
+    const starIntervalId = setInterval(() => setShowStars((prev) => !prev), 1000);
 
     return () => {
-      clearInterval(intervalId);
-      clearInterval(starInterval);
+      clearInterval(textIntervalId);
+      clearInterval(starIntervalId);
     };
   }, []);
+
+  const isSmallScreen = window.innerWidth <= 480;
 
   const styles = {
     card: {
       width: '100%',
-      height: '35px',
+      height: isSmallScreen ? '30px' : '50px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       background: 'linear-gradient(90deg, #003366, #005880, #003366)',
+      position: 'relative',
       overflow: 'hidden',
-      position: 'relative',
-    },
-    textContainer: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      zIndex: 2,
     },
     text: {
       color: '#fff',
-      fontSize: '16px',
+      fontSize: isSmallScreen ? '12px' : '16px',
       fontWeight: 'bold',
-      whiteSpace: 'nowrap',
-      position: 'absolute',
       textShadow: '0 0 5px rgba(255,255,255,0.5)',
-    },
-    cracker: {
-      position: 'absolute',
-      width: '25px',
-      height: '25px',
-      objectFit: 'cover',
-      pointerEvents: 'none',
-      mixBlendMode: 'screen',
-      zIndex: 1,
+      whiteSpace: 'nowrap',
     },
     star: {
       position: 'absolute',
-      fontSize: '10px',
+      fontSize: isSmallScreen ? '8px' : '10px',
       color: '#FFD700',
       animation: 'twinkle 1s infinite',
       opacity: 0.8,
-      zIndex: 1,
     },
     year: {
       position: 'absolute',
       color: '#FFD700',
-      fontSize: '18px',
+      fontSize: isSmallScreen ? '14px' : '18px',
       fontWeight: 'bold',
       opacity: 0.3,
       zIndex: 0,
+      display: isSmallScreen ? 'none' : 'block',
+    },
+    cracker: {
+      position: 'absolute',
+      width: isSmallScreen ? '15px' : '25px',
+      objectFit: 'cover',
+      pointerEvents: 'none',
+      mixBlendMode: 'screen',
+      animation: 'float 2s infinite',
     },
   };
 
@@ -94,56 +88,48 @@ const NewYearCard = () => {
             100% { opacity: 0.3; }
           }
           @keyframes float {
-            0% { transform: translateY(0px); }
+            0% { transform: translateY(0); }
             50% { transform: translateY(-2px); }
-            100% { transform: translateY(0px); }
+            100% { transform: translateY(0); }
           }
         `}
       </style>
-      
+
       {/* Background 2025 */}
-      <div style={{...styles.year, left: '10%'}}>2025</div>
-      <div style={{...styles.year, right: '10%'}}>2025</div>
+      <div style={{ ...styles.year, left: '10%' }}>2025</div>
+      <div style={{ ...styles.year, right: '10%' }}>2025</div>
 
       {/* Stars */}
       {showStars && (
         <>
-          <span style={{...styles.star, top: '5px', left: '5%'}}>⭐</span>
-          <span style={{...styles.star, top: '15px', left: '25%'}}>✦</span>
-          <span style={{...styles.star, top: '8px', right: '30%'}}>⭐</span>
-          <span style={{...styles.star, top: '18px', right: '15%'}}>✦</span>
+          <span style={{ ...styles.star, top: '5px', left: '5%' }}>⭐</span>
+          <span style={{ ...styles.star, top: '15px', left: '25%' }}>✦</span>
+          <span style={{ ...styles.star, top: '8px', right: '30%' }}>⭐</span>
+          <span style={{ ...styles.star, top: '18px', right: '15%' }}>✦</span>
         </>
       )}
 
       {/* Fireworks/Crackers */}
-      <img 
-        src="https://bestanimations.com/media/fireworks/646774028ba-large-white-shell-firework-animated-gif-.gif"
-        alt="Fireworks" 
-        style={{...styles.cracker, top: '2px', left: '2%', animation: 'float 2s infinite'}} 
-      />
-      <img 
-        src="https://bestanimations.com/media/fireworks/646774028ba-large-white-shell-firework-animated-gif-.gif"
-        alt="Fireworks" 
-        style={{...styles.cracker, top: '2px', left: '35%', animation: 'float 2.5s infinite'}} 
-      />
-      <img 
-        src="https://bestanimations.com/media/fireworks/646774028ba-large-white-shell-firework-animated-gif-.gif"
-        alt="Fireworks" 
-        style={{...styles.cracker, top: '2px', right: '35%', animation: 'float 2s infinite'}} 
-      />
-      <img 
-        src="https://bestanimations.com/media/fireworks/646774028ba-large-white-shell-firework-animated-gif-.gif"
-        alt="Fireworks" 
-        style={{...styles.cracker, top: '2px', right: '2%', animation: 'float 2.5s infinite'}} 
-      />
+      {[...Array(4)].map((_, index) => (
+        <img
+          key={index}
+          src="https://bestanimations.com/media/fireworks/646774028ba-large-white-shell-firework-animated-gif-.gif"
+          alt="Fireworks"
+          style={{
+            ...styles.cracker,
+            top: '2px',
+            [index % 2 === 0 ? 'left' : 'right']: `${index < 2 ? '2%' : '35%'}`,
+            animationDuration: `${2 + (index % 2) * 0.5}s`,
+          }}
+        />
+      ))}
 
       {/* Running Text */}
-      <div style={styles.textContainer}>
-        <div style={styles.text}>{text}</div>
+      <div>
+        <span style={styles.text}>{text}</span>
       </div>
     </div>
   );
 };
 
 export default NewYearCard;
-

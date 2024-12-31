@@ -14,13 +14,13 @@ import Pro8 from '../assets/images/project8.jpg';
 import Pro9 from '../assets/images/project9.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faBullseye } from '@fortawesome/free-solid-svg-icons';// Same for Mission logo
-import Brand from '../assets/images/brand.jpg'; 
+import Brand from '../assets/images/brand.jpg';
 
 const projects = [
   {
     id: 1,
     title: "Echo Tours Lanka Website Development",
-    description: "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec rutrum congue leo eget malesuada. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus",
+    description: "Echo Tours Lanka has excelled in website development tailored for local tourism. Their platform is intuitive, showcasing Sri Lanka's rich tapestry of cultural, natural, and historical attractions with stunning visuals and detailed itineraries. The site's design emphasizes user engagement through interactive maps, local insights, and an easy booking system. It highlights unique experiences like eco-tours, wildlife safaris, and authentic village visits, ensuring tourists connect deeply with Sri Lanka's heritage. Their commitment to sustainability and community support is evident, promoting local businesses and conservation efforts. Echo Tours Lanka's website is a gateway to experiencing the authentic charm of Sri Lanka.",
     image: Pro1,
     link: "https://echotourslanka.com/",
     tags: ["React", "Node.js", "MongoDB"]
@@ -56,7 +56,7 @@ const projects = [
     image: Pro5,
     link: "https://heartland-trading.com/",
     tags: ["Next.js", "WebRTC", "Socket.io"]
-  },  
+  },
   {
     id: 6,
     title: "Champika Export Marketing Website Development",
@@ -75,7 +75,7 @@ const projects = [
   },
   {
     id: 8,
-    title: "Twilight Blue Security Systems and Tradin Website Development",
+    title: "Twilight Blue Security Systems and Trading Website Development",
     description: "Our mission is to help enterprises accelerate adoption of new technologies, untangle complex issues that always emerge during digital evolution, and orchestrate ongoing innovation. If you are looking for a trustworthy and reputable company to build your operational Security Systems or transform your systems. Thank you for reaching out to Twilight Blue! Please fill the form right.",
     image: Pro8,
     link: "https://tbsst.ae/",
@@ -106,7 +106,7 @@ export default function Portfolio() {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" className="min-h-screen z-10 container mx-auto flex  justify-center md:px-4 lg:px-40 py-16 relative bg-gray-50">
+      <section id="home" className="min-h-screen z-10 container mx-auto flex  justify-center md:px-4 lg:px-40 py-8 relative bg-gray-50">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-light to-primary-dark opacity-10"></div>
           <motion.div
@@ -127,15 +127,15 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-            <motion.h1
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
-  className="text-4xl md:text-5xl font-bold leading-tight text-[#005880]"
->
-  Future of App Web Development, POS Solutions, CCTV Installation, Networking in Sri Lanka
-</motion.h1>
- 
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl md:text-5xl font-bold leading-tight text-[#005880]"
+              >
+                Future of App Web Development, POS Solutions, CCTV Installation, Networking in Sri Lanka
+              </motion.h1>
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -150,60 +150,50 @@ export default function Portfolio() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-<div className="flex flex-col sm:flex-row gap-4">
-  <button className="btn btn-primary flex items-center gap-2 px-6 py-3 text-white bg-[#005880] rounded-lg shadow-lg hover:bg-[#004A66] transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto max-w-xs mx-auto">
-    Get Started <ArrowRight size={20} />
-  </button>
-
-  <button className="btn btn-secondary flex items-center gap-2 px-6 py-3 text-[#005880] border-2 border-[#005880] rounded-lg hover:bg-[#005880] hover:text-white transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto max-w-xs mx-auto">
-    Learn More <FaExternalLinkAlt size={20} />
-  </button>
-</div>
 
 
-
-
-                
               </motion.div>
               <div className="flex flex-row items-center gap-6 md:hidden sm:hidden">
-  <div className="flex items-center gap-2">
-    <CheckCircle className="text-primary" />
-    <span>24/7 Support</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <CheckCircle className="text-primary" />
-    <span>99.9% Uptime</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <CheckCircle className="text-primary" />
-    <span>Secure Solutions</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <CheckCircle className="text-primary" />
-    <span>Expert Team</span>
-  </div>
-</div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-primary" />
+                  <span>24/7 Support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-primary" />
+                  <span>99.9% Uptime</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-primary" />
+                  <span>Secure Solutions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-primary" />
+                  <span>Expert Team</span>
+                </div>
+              </div>
 
             </div>
             <div>
-            <motion.img
-  initial={{ opacity: 0, x: -20, y: 0 }}
-  animate={{ opacity: 1, x: 0, y: -10 }}
-  transition={{
-    duration: 1.5,
-    delay: 0.4,
-    repeat: Infinity, // Make the float continuous
-    repeatType: 'reverse', // Reverse animation to create a floating effect
-    ease: 'easeInOut', // Smooth animation transition
-  }}
-  style={{
-    borderRadius: '25px',
-    boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)', // Box shadow
-  }}
-  src={Brand}
-  alt="App Development"
-  className="mx-auto"
-/>
+              <motion.img
+                initial={{ opacity: 0, x: -20, y: 0 }}
+                animate={{ opacity: 1, x: 0, y: -10 }}
+                transition={{
+                  duration: 1.5,
+                  delay: 0.4,
+                  repeat: Infinity, // Make the float continuous
+                  repeatType: 'reverse', // Reverse animation to create a floating effect
+                  ease: 'easeInOut', // Smooth animation transition
+                }}
+                style={{
+                  borderRadius: '25px',
+                  boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)', // Box shadow
+                  width: window.innerWidth <= 480 ? '300px' : '500px', // Adjust size based on screen width
+                  height: 'auto',
+                }}
+                src={Brand}
+                alt="App Development"
+                className="mx-auto sm:mx-0 responsive-img"
+              />
 
 
             </div>
@@ -212,10 +202,10 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16">
-        <div className="container mx-auto px-4">
+      <section id="projects" className="py-4">
+        <div className="container mx-auto px-8">
           <div className="flex flex-wrap justify-center gap-8">
-            {categories.map((category) => (
+            {/* {categories.map((category) => (
               <button
                 key={category.id}
                 className={`btn ${activeCategory === category.id ? 'btn-primary' : 'btn-secondary'}`}
@@ -223,7 +213,7 @@ export default function Portfolio() {
               >
                 {category.name}
               </button>
-            ))}
+            ))} */}
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-12 mt-12">
             {filteredProjects.map((project) => (
@@ -258,61 +248,55 @@ export default function Portfolio() {
         </div>
       </section>
       <section id="vision-mission">
-  <div
-    className="container mx-auto px-4 py-8 bg-cover sm:bg-none sm:bg-center"
-    style={{
-      backgroundImage: `url(${Brand})`, // Use the correct path to your image
-      backgroundSize: '10%', // Default size for larger screens
-      backgroundPosition: 'center', // Default position for larger screens
-      backgroundRepeat: 'no-repeat',
-    }}
-  >
-    <div className="relative z-10 text-center mb-8">
-      <h2 className="text-4xl font-extrabold text-[#005880]">Our Vision & Mission</h2>
-      <p className="text-lg text-[#005880] mt-4">
-        We are committed to driving innovation and excellence in every aspect of our work.
-      </p>
-    </div>
+        <div
 
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-8">
-        {/* Vision Card */}
-        <div className="relative rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-105 duration-300 ease-in-out max-w-sm mx-auto">
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <div className="relative flex flex-col items-center justify-center text-white p-6 space-y-4">
-            <FontAwesomeIcon
-              icon={faEye}
-              className="w-16 h-16 mb-4 transform transition-transform duration-500 ease-in-out hover:scale-110 text-white"
-            />
-            <h3 className="text-3xl font-extrabold tracking-tight text-center text-[#005880]">
-              Our Vision
-            </h3>
-            <p className="text-lg text-center font-medium text-[#005880]">
-              We envision a world where technology drives innovation and creates limitless possibilities.
+        >
+          <div className="relative z-10 text-center mb-8">
+            <h2 className="text-4xl font-extrabold text-[#005880]">Our Vision & Mission</h2>
+            <p className="text-lg text-[#005880] mt-4">
+              We are committed to driving innovation and excellence in every aspect of our work.
             </p>
           </div>
-        </div>
 
-        {/* Mission Card */}
-        <div className="relative rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-105 duration-300 ease-in-out max-w-sm mx-auto">
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <div className="relative flex flex-col items-center justify-center text-white p-6 space-y-4">
-            <FontAwesomeIcon
-              icon={faBullseye}
-              className="w-16 h-16 mb-4 transform transition-transform duration-500 ease-in-out hover:scale-110 text-white"
-            />
-            <h3 className="text-3xl font-extrabold tracking-tight text-center text-[#005880]">
-              Our Mission
-            </h3>
-            <p className="text-lg text-center font-medium text-[#005880]">
-              Our mission is to provide cutting-edge IT solutions that empower businesses and enhance digital experiences.
-            </p>
+          <div className="max-w-4xl mx-auto px-4 py-8">
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Vision Card */}
+              <div className="relative rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-105 duration-300 ease-in-out max-w-sm mx-auto">
+                <div className="absolute inset-0 bg-black opacity-30"></div>
+                <div className="relative flex flex-col items-center justify-center text-white p-6 space-y-4">
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    className="w-16 h-16 mb-4 transform transition-transform duration-500 ease-in-out hover:scale-110 text-white"
+                  />
+                  <h3 className="text-3xl font-extrabold tracking-tight text-center text-[#005880]">
+                    Our Vision
+                  </h3>
+                  <p className="text-lg text-center font-medium text-[#005880]">
+                    We envision a world where technology drives innovation and creates limitless possibilities.
+                  </p>
+                </div>
+              </div>
+
+              {/* Mission Card */}
+              <div className="relative rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-105 duration-300 ease-in-out max-w-sm mx-auto">
+                <div className="absolute inset-0 bg-black opacity-30"></div>
+                <div className="relative flex flex-col items-center justify-center text-white p-6 space-y-4">
+                  <FontAwesomeIcon
+                    icon={faBullseye}
+                    className="w-16 h-16 mb-4 transform transition-transform duration-500 ease-in-out hover:scale-110 text-white"
+                  />
+                  <h3 className="text-3xl font-extrabold tracking-tight text-center text-[#005880]">
+                    Our Mission
+                  </h3>
+                  <p className="text-lg text-center font-medium text-[#005880]">
+                    Our mission is to provide cutting-edge IT solutions that empower businesses and enhance digital experiences.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
     </>

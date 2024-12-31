@@ -47,9 +47,9 @@ const Hero = () => {
       </motion.div>
 
       {/* Content Container */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 h-screen flex flex-col justify-center items-center lg:grid lg:grid-cols-2 lg:gap-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-4 md:px-8 lg:px-16 h-screen flex flex-col justify-center items-center lg:grid lg:grid-cols-2 lg:gap-12">
         {/* Left Side */}
-        <div className="text-gray-800 space-y-6 text-center lg:text-left">
+        <div className="text-gray-800 space-y-6 text-center lg:text-left sm:mt-0 mt-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#005880]">
             Cutting-Edge Solutions
           </h1>
@@ -59,11 +59,7 @@ const Hero = () => {
           >
             <Typewriter
               options={{
-                strings: [
-                  "Mobile Development",
-                  "Web Development",
-                  "POS Solutions",
-                ],
+                strings: ["Mobile Development", "Web Development", "POS Solutions"],
                 autoStart: true,
                 loop: true,
               }}
@@ -76,20 +72,13 @@ const Hero = () => {
             </div>
           </div>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-xl mx-auto lg:mx-0">
-            Enhance your online presence with our professional services,
-            offering budget-friendly custom-made apps, responsive web designs,
-            and POS systems designed to meet your business requirements.
+            Enhance your online presence with our professional services, offering
+            budget-friendly custom-made apps, responsive web designs, and POS
+            systems designed to meet your business requirements.
           </p>
-          <motion.button
-  className="bg-[#005880] text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  onClick={() => window.location.href = "/Getstarted"}
->
-  Get Started
-</motion.button>
-
         </div>
+
+
 
         {/* Desktop View - Floating Images */}
         <div className="relative hidden lg:block h-[500px]">
