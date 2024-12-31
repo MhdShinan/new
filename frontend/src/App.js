@@ -29,7 +29,7 @@ import Login from './components/Login';
 import CareerJoinUs from './components/Careerjoinus';
 import FloatingButtons from './components/Floating-buttons'; 
 import ContactWithus from './components/ContactWithus'
-
+import HappynewYear from './components/HappynewYear';
 // NotFound component
 const NotFound = () => {
   return (
@@ -54,7 +54,9 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
+            <HappynewYear />
               <Hero />
+
               <Services />
               <Stats />
               <OurProcess />
@@ -83,6 +85,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/Carears" element={<Carears />} />
           <Route path="/ContactWithus" element={< ContactWithus/>} />
+          <Route path="/HappynewYear"  element={< HappynewYear/>} />
+
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>

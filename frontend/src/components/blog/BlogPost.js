@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { FaExternalLinkAlt,} from 'react-icons/fa';
 import App from '../../assets/images/Blog.jpg';
+
 const categories = [
   "All",
   "Mobile Development",
@@ -190,26 +191,27 @@ function BlogPost() {
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.5 }}
-  className="text-4xl md:text-5xl font-bold leading-tight text-[#005880]"
+  className="text-4xl md:text-5xl font-bold leading-tight text-[#005880] pl-1 md:pl-20"
 >
-Welcome to the R Tech Solutions Blog!
+  Welcome to the R Tech Solutions Blog!
 </motion.h1>
- 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-gray-600"
-              >
-                Delve into expert insights, practical tips, and the latest updates on cutting-edge web development, advanced CCTV installation, and innovative technology solutions. Stay informed with in-depth discussions on system integration, security solutions, and emerging tech trends.
-              </motion.p>
+
+<motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+  className="text-lg text-gray-600 pl-1 md:pl-20"
+>
+  Delve into expert insights, practical tips, and the latest updates on cutting-edge web development, advanced CCTV installation, and innovative technology solutions. Stay informed with in-depth discussions on system integration, security solutions, and emerging tech trends.
+</motion.p>
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-<div className="flex flex-col sm:flex-row gap-4">
+<div className="flex flex-col  pl-1 md:pl-20 sm:flex-row gap-4">
   <button className="btn btn-primary flex items-center gap-2 px-6 py-3 text-white bg-[#005880] rounded-lg shadow-lg hover:bg-[#004A66] transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto max-w-xs mx-auto">
     Get Started <ArrowRight size={20} />
   </button>
