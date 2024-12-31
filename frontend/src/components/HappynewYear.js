@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const NewYearCard = () => {
   const [text, setText] = useState('');
   const [showStars, setShowStars] = useState(true);
-  const fullText = "✨ Wishing You a Prosperous and Joyful 2025 - R-tech Solution ✨";
+  const fullText = "✨ Wishing You a Prosperous and Joyful 2025 - R-Tech Solution ✨";
 
   useEffect(() => {
     let index = 0;
