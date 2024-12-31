@@ -1,7 +1,7 @@
-export const backEndURL = "https://rtechsl.com";
+export const backEndURL = "https://54.204.63.231:3001";
 //export const backEndURL = "http://localhost:3001";
 
-export const imageURL = "https://rtechsl.com";
+export const imageURL = "https://54.204.63.231:3001";
 //export const imageURL = "http://localhost:3001";
 
 
