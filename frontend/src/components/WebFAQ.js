@@ -48,17 +48,42 @@ const WebFAQ = () => {
             {/* Portfolio FAQ */}
             {activeTab === 'Portfolio' && (
               <div className="faq-content" data-category="Portfolio">
-                {['What is portfolio development?', 'How to choose the right platform?', 'What are the benefits of having a portfolio?', 'How long does it take to build a portfolio website?', 'Can you integrate a blog in the portfolio?'].map((question, index) => (
+                {[
+                  {
+                    question: 'What is portfolio development?',
+                    answer:
+                      'Portfolio development involves creating a personal or professional website to showcase your work, skills, and achievements using tools like HTML, CSS, and React.',
+                  },
+                  {
+                    question: 'How to choose the right platform?',
+                    answer:
+                      'Choosing the right platform depends on your needs. We use technologies like WordPress for ease of use and customization, or React and Node.js for more advanced and dynamic portfolios.',
+                  },
+                  {
+                    question: 'What are the benefits of having a portfolio?',
+                    answer:
+                      'A portfolio enhances your professional image, helps you stand out, and serves as an online resume or showcase of your work. It is built using HTML, CSS, and PHP for functionality.',
+                  },
+                  {
+                    question: 'How long does it take to build a portfolio website?',
+                    answer:
+                      'The time required depends on the complexity. Using React and Node.js can speed up development for dynamic features.',
+                  },
+                  {
+                    question: 'Can you integrate a blog in the portfolio?',
+                    answer:
+                      'Yes, we can integrate a blog using WordPress or React, depending on your preference.',
+                  },
+                ].map((faq, index) => (
                   <div key={index} className="bg-primary rounded-lg overflow-hidden mb-4">
                     <button
                       className="w-full flex items-center justify-between p-4 text-left text-white"
                       onClick={toggleFAQ}
                     >
-                      <span className="font-medium pr-8">{question}</span>
+                      <span className="font-medium pr-8">{faq.question}</span>
                     </button>
                     <div className="hidden p-4 text-white bg-[#003d4d]">
-                      {/* You can add detailed answer content here */}
-                      <p>Answer for {question}.</p>
+                      <p>{faq.answer}</p>
                     </div>
                   </div>
                 ))}
@@ -68,17 +93,42 @@ const WebFAQ = () => {
             {/* E-commerce FAQ */}
             {activeTab === 'E-comerce' && (
               <div className="faq-content" data-category="E-comerce">
-                {['What is e-commerce?', 'How can I start an online store?', 'What payment methods do you offer?', 'How secure is the online store?', 'Do you provide marketing solutions for e-commerce?'].map((question, index) => (
+                {[
+                  {
+                    question: 'What is e-commerce?',
+                    answer:
+                      'E-commerce refers to online buying and selling. We use technologies like PHP, WordPress, and Node.js to build secure and scalable e-commerce platforms.',
+                  },
+                  {
+                    question: 'How can I start an online store?',
+                    answer:
+                      'We can help you set up an online store using platforms like WordPress or custom-built solutions using React and Node.js.',
+                  },
+                  {
+                    question: 'What payment methods do you offer?',
+                    answer:
+                      'We integrate various payment gateways like PayPal, Stripe, and local payment systems using PHP and JavaScript.',
+                  },
+                  {
+                    question: 'How secure is the online store?',
+                    answer:
+                      'We ensure security by using HTTPS, secure databases, and following best practices in Node.js and PHP development.',
+                  },
+                  {
+                    question: 'Do you provide marketing solutions for e-commerce?',
+                    answer:
+                      'Yes, we can integrate SEO tools and analytics using WordPress plugins or custom solutions in React and Node.js.',
+                  },
+                ].map((faq, index) => (
                   <div key={index} className="bg-[#005880] rounded-lg overflow-hidden mb-4 hover:bg-[#003d4d] transition">
                     <button
                       className="w-full flex items-center justify-between p-4 text-left text-white"
                       onClick={toggleFAQ}
                     >
-                      <span className="font-medium pr-8">{question}</span>
+                      <span className="font-medium pr-8">{faq.question}</span>
                     </button>
                     <div className="hidden p-4 text-white">
-                      {/* You can add detailed answer content here */}
-                      <p>Answer for {question}.</p>
+                      <p>{faq.answer}</p>
                     </div>
                   </div>
                 ))}
@@ -88,17 +138,42 @@ const WebFAQ = () => {
             {/* Single-page FAQ */}
             {activeTab === 'Single_page' && (
               <div className="faq-content" data-category="Single_page">
-                {['What is a single-page website?', 'How does a single-page website work?', 'What are the advantages of single-page sites?', 'Can I add multiple sections in a single-page website?', 'Do you offer customization for single-page websites?'].map((question, index) => (
+                {[
+                  {
+                    question: 'What is a single-page website?',
+                    answer:
+                      'A single-page website is a modern design approach where all content is displayed on a single page. We use React for seamless navigation and interactivity.',
+                  },
+                  {
+                    question: 'How does a single-page website work?',
+                    answer:
+                      'It uses JavaScript and React to dynamically load content, providing a smooth user experience without reloading the page.',
+                  },
+                  {
+                    question: 'What are the advantages of single-page sites?',
+                    answer:
+                      'Single-page sites are faster, more responsive, and easier to maintain. We use HTML, CSS, and React for these benefits.',
+                  },
+                  {
+                    question: 'Can I add multiple sections in a single-page website?',
+                    answer:
+                      'Yes, you can add as many sections as you need. We use React to handle navigation and smooth scrolling between sections.',
+                  },
+                  {
+                    question: 'Do you offer customization for single-page websites?',
+                    answer:
+                      'Yes, we offer full customization using technologies like HTML, CSS, and React to match your requirements.',
+                  },
+                ].map((faq, index) => (
                   <div key={index} className="bg-[#005880] rounded-lg overflow-hidden mb-4 hover:bg-[#003d4d] transition">
                     <button
                       className="w-full flex items-center justify-between p-4 text-left text-white"
                       onClick={toggleFAQ}
                     >
-                      <span className="font-medium pr-8">{question}</span>
+                      <span className="font-medium pr-8">{faq.question}</span>
                     </button>
                     <div className="hidden p-4 text-white">
-                      {/* You can add detailed answer content here */}
-                      <p>Answer for {question}.</p>
+                      <p>{faq.answer}</p>
                     </div>
                   </div>
                 ))}

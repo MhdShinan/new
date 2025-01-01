@@ -7,7 +7,6 @@
 //export const imageURL = "http://localhost:3001";
 //export const backEndURL = "http://localhost:3001";
 
-
 export const backEndURL = "https://rtechsl.com";  // Use HTTPS instead of HTTP
 export const imageURL = "https://rtechsl.com";    // Ensure image URL also uses HTTPS
 
