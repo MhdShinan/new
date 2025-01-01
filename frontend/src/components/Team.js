@@ -240,7 +240,7 @@ const developmentTeam = [
     _id: '4',
     name: 'Ms. Chathuri Ranasinghe',
     position: 'Mobile & Web Developer',
-    image: Id01,
+    image: Id02,
     linkedin: 'https://linkedin.com/in/bobbrown',
     website: 'https://bobbrown.dev',
     whatsapp: 'https://wa.me/5566778899',
